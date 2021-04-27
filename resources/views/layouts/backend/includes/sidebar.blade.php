@@ -24,9 +24,9 @@
             <li><a class="nav-link" href="{{ route('admin.rs_kecamatan') }}">Rumah Sakit (Kecamatan)</a></li>
             <li><a class="nav-link" href="{{ route('admin.rs_kota') }}">Rumah Sakit (Kota)</a></li>
             @if (Auth::user()->role->id == 1)
-            <li><a class="nav-link" href="#">Tenaga Medis (Kelurahan)</a></li>
-            <li><a class="nav-link" href="#">Tenaga Medis (Kecamatan)</a></li>
-            <li><a class="nav-link" href="#">Tenaga Medis (Kota)</a></li>
+            <li><a class="nav-link" href="{{ route('admin.tenagamedis-kelurahan') }}">Tenaga Medis (Kelurahan)</a></li>
+            <li><a class="nav-link" href="{{ route('admin.tenagamedis-kecamatan') }}">Tenaga Medis (Kecamatan)</a></li>
+            <li><a class="nav-link" href="{{ route('admin.tenagamedis-kota') }}">Tenaga Medis (Kota)</a></li>
                 
             @endif
           </ul>

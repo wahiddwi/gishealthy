@@ -36,6 +36,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('kecamatan', 'KecamatanController');
     Route::resource('laykes', 'LaykesController');
     Route::resource('kelurahan', 'KelurahanController');
+    Route::get('tenagamedis/wilayah', 'TenagamedisController@gettenagamediskota')->name('tenagamedis-kota');
+    Route::get('tenagamedis/kecamatan', 'TenagamedisController@gettenagamediskecamatan')->name('tenagamedis-kecamatan');
+    Route::get('tenagamedis/kelurahan', 'TenagamedisController@getmediskelurahan')->name('tenagamedis-kelurahan');
     Route::resource('tenagamedis', 'TenagamedisController');
     Route::get('rumahsakit', 'RumahSakitController@data_rumahsakit')->name('data_rumahsakit');
     Route::get('pemetaan', 'RumahSakitController@pemetaan_rs')->name('pemetaan_rs');
