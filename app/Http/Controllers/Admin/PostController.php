@@ -51,47 +51,46 @@ class PostController extends Controller
             'gambar' => 'required|mimes:jpg,png,bmp,jpeg'
         ]);
         $slug = Str::slug($request->judul);
-        $gambar = $request->gambar;
-        $namaGambar = $slug . '-' . Carbon::now()->timestamp . '.' . $gambar->getClientOriginalExtension();
-        //cek folder gambar
-        if (!Storage::disk('public')->exists('post')) {
-            Storage::disk('public')->makeDirectory('post');
+        // $gambar = $request->gambar;
+        // $namaGambar = $slug . '-' . Carbon::now()->timestamp . '.' . $gambar->getClientOriginalExtension();
+        // //cek folder gambar
+        // if (!Storage::disk('public')->exists('post')) {
+        //     Storage::disk('public')->makeDirectory('post');
 
-        }
-        //Img Crop
-        $img = Image::make($gambar)->resize(752, null, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        })->stream();
+        // }
+        // //Img Crop
+        // $img = Image::make($gambar)->resize(752, null, function ($constraint) {
+        //     $constraint->aspectRatio();
+        //     $constraint->upsize();
+        // })->stream();
 
-        Storage::disk('public')->put('post/'. $namaGambar, $img);
+        // Storage::disk('public')->put('post/'. $namaGambar, $img);
 
         $post = new Post();
         $post->judul = $request->judul;
         $post->user_id = Auth::id();
         $post->slug = $slug;
-        $post->gambar = $namaGambar;
         $post->body = $request->body;
+        
+        //jika gambar tidak diisi
+        $image_path = "";
+        //jika gambar diisi
+        if ($request->hasFile('gambar')) {
+            $image = $request->gambar;
+            $namaGambar = time().$image->getClientOriginalName();
+            $image->move('post/', $namaGambar);
+            //jika gambar tidak diupload maka tidak diisi nama file
+            $image_path = 'post/'.$namaGambar;
+        }
+
+        $post->gambar = $image_path;
         
         $post->save();
         Toastr::success('Artikel berhasil ditambahkan', 'success');
         return redirect()->route('admin.post.index');
 
 
-        // $gambar = $request->gambar;
-        // $new_gambar = time().$gambar->getClientOriginalName();
-
-        // $posts = Post::create(request([
-        //     'judul' => $request->judul,
-        //     'body' => $request->body,
-        //     'gambar' => 'public/uploads/posts/'.$new_gambar,
-        //     // 'slug' => Str::slug($request->judul),
-        //     'users_id' => Auth::id(),
-        // ]));
-
-        // $gambar->move('public/uploads/posts/', $new_gambar);
-
-        // return redirect()->route('admin.post.index')->with('success', 'Tulisan Berhasil Ditambahkan');
+        
     }
 
     /**
@@ -136,33 +135,23 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
         $slug = Str::slug($request->judul);
-        if (isset($request->gambar)) {
-            $gambar = $request->gambar;
-            $namaGambar = $slug . '-' . Carbon::now()->timestamp . '.' . $gambar->getClientOriginalExtension();
-            //cek folder gambar
-            if (!Storage::disk('public')->exists('post')) {
-                Storage::disk('public')->makeDirectory('post');
 
-            }
-            //hapus gambar lama
-            if (!Storage::disk('public')->exists('post/'. $post->gambar)) {
-                Storage::disk('public')->delete('post/'. $post->gambar);
-            }
-            $postGambar = Image::make($gambar)->resize(752, null, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })->stream();
-            //disimpan di folder
-            Storage::disk('public')->put('post/' . $namaGambar, $postGambar); //metode put dapat digunakan untuk menyimpan konten raw file pada disk
-        } else {
-            # jika gambar tidak diubah tetap post bisa disimpan
-            $namaGambar = $post->gambar;
-        }
         $post->user_id = Auth::id();
         $post->judul = $request->judul;
         $post->slug = $slug;
-        $post->gambar = $namaGambar;
         $post->body = $request->body;
+
+        if ($request->hasFile('gambar')) {
+            if (file_exists($post->gambar)) {
+                unlink($post->gambar);
+            }
+
+            $image = $request->gambar;
+            $namaGambar = time().$image->getClientOriginalName();
+            $image->move('post/', $namaGambar);
+            //jika gambar tidak diupload maka tidak diisi nama file
+            $post->gambar = 'post/'.$namaGambar;
+        }
 
         $post->save();
         Toastr::success('Artikel berhasil diubah', 'success');
@@ -180,8 +169,8 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         //delete gambar jika masih ada
-        if (!Storage::disk('public')->exists('post/'. $post->gambar)) {
-            Storage::disk('public')->delete('post/'. $post->gambar);
+        if (file_exists($post->gambar)) {
+            unlink($post->gambar);
         }
         $post->delete();
         

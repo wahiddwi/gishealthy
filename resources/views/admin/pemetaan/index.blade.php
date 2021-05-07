@@ -14,45 +14,45 @@
 @endpush
 @section('content')
 
-    <div class="section-body">
-      {{-- <div>
-        <a href="{{ route('admin.laykes.create') }}" class="btn btn-primary fas fa-plus"> Tambah Layanan Kesehatan</a>
+<div class="section-body">
+  <div class="card">
+    <div class="card-body p-0">
+      <div id="mapid" style="width: 1040px; height: 400px;"></div>
     </div>
-    <br> --}}
-    <div class="card">
-        <div class="card-body p-0">
-            <div id="mapid" style="width: 1040px; height: 400px;"></div>
-        </div>
-    </div>
-    
-    <script>
-        var mymap = L.map('mapid').setView([-6.205154154013863, 106.84186463929707], 11);
-      
-      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-        // maxZoom: 11,
+  </div>
+
+<script>
+
+var mymap = L.map('mapid').setView([-6.205154154013863, 106.84186463929707], 11);
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            // maxZoom: 11,
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
           'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox/streets-v11',
         // tileSize: 512,
         // zoomOffset: -1
       }).addTo(mymap);
+
+          //marker posisi awal
+  L.marker([-6.1382687, 106.7428817]).addTo(mymap);  
+
+var icon = L.icon({
+  iconUrl: '{{ asset('assets/img/loc.png') }}', //folder icon
+  iconSize: [40, 40], //icon size
+});
+
+@foreach ($laykes as $data)
+  // menampilkan informasi di map
+    var info = '<table><thead><tr><th colspan="2" class="text-center">{{$data->nama_rumahsakit}}</th></tr></thead><tbody><tr><td>Alamat</td><td>: {{$data->alamat}}</td></tr><tr><td>Kelurahan</td><td>: {{$data->kelurahan->nama}}</td></tr><tr><td>kecamatan</td><td>: {{$data->kecamatan->nama}}</td></tr><tr><td>Kota Madya</td><td>: {{ $data->wilayah->nama }}</td></tr><tr><td>No. Telpon</td><td>: {{$data->no_telpon}}</td></tr><tr><td colspan="2" class="text-center"><a href="{{route('admin.laykes.show', $data->id)}}" class="btn btn-sm btn-default">Detail</a></td></tr></tbody></table>';
+    // // menampilkan marker
+    L.marker([<?=$data->latitude?>, <?=$data->longitude?>], {icon: icon})
+    .addTo(mymap)
+    // menampilkan popup
+    .bindPopup(info);  
+@endforeach
+
+
+</script>
   
-      @foreach ($laykes as $data)
-      var icon = L.icon({
-        iconUrl: '{{ asset('assets/img/loc.png') }}', //folder icon
-        iconSize: [40, 40], //icon size
-      });
-  
-      //menampilkan informasi di map
-  
-      var info = '<table><thead><tr><th colspan="2" class="text-center">{{$data->nama_rumahsakit}}</th></tr></thead><tbody><tr><td>Alamat</td><td>: {{$data->alamat}}</td></tr><tr><td>Kelurahan</td><td>: {{$data->kelurahan->nama}}</td></tr><tr><td>kecamatan</td><td>: {{$data->kecamatan->nama}}</td></tr><tr><td>Kota Madya</td><td>: {{ $data->wilayah->nama }}</td></tr><tr><td>No. Telpon</td><td>: {{$data->no_telpon}}</td></tr><tr><td colspan="2" class="text-center"><a href="{{route('admin.laykes.show', $data->id)}}" class="btn btn-sm btn-default">Detail</a></td></tr></tbody></table>';
-  
-      //menampilkan marker
-      L.marker([{{$data->latitude}}, {{$data->longitude}}], {icon: icon})
-      .addTo(mymap)
-      //menampilkan popup
-          .bindPopup(info);
-  
-      @endforeach
-          </script>
-  @endsection
+
+@endsection

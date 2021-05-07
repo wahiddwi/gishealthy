@@ -10,7 +10,7 @@
     <div class="section-body">
       <div>
         <a href="{{route('admin.kelurahan.create')}}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#btn-create"> Tambah Kelurahan</a>
-        <a href="#" class="btn btn-primary fas fa-file-pdf"> Export</a>
+        <a href="{{ route('petugas.download-kelurahan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
         <div class="card">

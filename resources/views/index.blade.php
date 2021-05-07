@@ -1,12 +1,33 @@
 @extends('layouts.frontend.master')
 
 @section('content')
+    <!--Header-->
+    <div class="hero-v1">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mr-auto text-center text-lg-left">
+            <span class="d-block subheading">Covid-19 Awareness</span>
+            <h1 class="heading mb-3">Stay Safe & Stay Home</h1>
+            <p class="mb-5"></p>
+            <br>
+            <p class="mb-4"><a href="#" class="btn btn-primary">How to prevent</a></p>
+  
+          </div>
+          <div class="col-lg-6">
+            <figure class="illustration">
+              <img src="{{ asset('frontend/images/illustration.png') }}" alt="Image" class="img-fluid">
+            </figure>
+          </div>
+          <div class="col-lg-6"></div>
+        </div>
+      </div>
+    </div>
+
 <div class="site-section stats">
     <div class="container">
       <div class="row mb-3">
         <div class="col-lg-7 text-center mx-auto">
           <h2 class="section-heading">Coronavirus Statistics</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, voluptate!</p>
         </div>
       </div>
       <div class="row"> 
@@ -304,7 +325,7 @@
     </div>
   </div>
 
-
+  <!--Artikel-->
   <div class="site-section">
     <div class="container">
       <div class="row mb-5">

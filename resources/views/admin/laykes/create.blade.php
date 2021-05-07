@@ -123,7 +123,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   marker.setLatLng(position,{
   	draggable : 'true'
   	}).bindPopup(position).update();
-  	$("#latitude").val(position.lat);
+  	$("#latitude").val(position.lat).keyup();
   	$("#longitude").val(position.lng).keyup();
   });
 

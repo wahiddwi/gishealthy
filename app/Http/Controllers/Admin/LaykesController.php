@@ -138,4 +138,5 @@ class LaykesController extends Controller
         Toastr::success('Data berhasil dihapus', 'success');
         return redirect()->back();
     }
+
 }

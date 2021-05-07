@@ -9,8 +9,8 @@
 
     <div class="section-body">
       <div>
-        <a href="{{route('admin.kecamatan.create')}}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#btn-create"> Tambah Kecamatan</a>
-        <a href="{{ route('admin.download-kecamatan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
+        <a href="{{route('petugas.kecamatan.create')}}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#btn-create"> Tambah Kecamatan</a>
+        <a href="{{ route('petugas.download-kecamatan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
         <div class="card">

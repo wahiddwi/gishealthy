@@ -16,7 +16,7 @@
 
     <div class="section-body">
       <div>
-        <a href="{{ route('admin.laykes.index') }}" class="btn btn-primary " style="float: right;">Kembali <i class="fas fa-share"></i></a>
+        <a href="{{ route('admin.pemetaan') }}" class="btn btn-primary " style="float: right;">Kembali <i class="fas fa-share"></i></a>
         <a href="" class="btn btn-primary fas far fa-file-pdf" style="float: left;"> Export</a>
     </div>
     <br>

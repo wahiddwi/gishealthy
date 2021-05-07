@@ -30,7 +30,12 @@
                     <div class="card-body">
                       <h3 class="card-title"></h3>
                       
+                      @if(Auth::user()->role->id == 1)
                       <form  method="post" action="{{ route('admin.post.update', $post->id) }}" enctype="multipart/form-data"
+                      class="form-horizontal">
+                      @elseif(Auth::user()->role->id == 3)
+                      <form  method="post" action="{{ route('petugas.post.update', $post->id) }}" enctype="multipart/form-data"
+                      @endif
                       class="form-horizontal">
                         @csrf
                         @method('put')

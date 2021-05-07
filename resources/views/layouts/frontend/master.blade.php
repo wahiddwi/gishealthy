@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="{{ asset('frontend/fonts/flaticon-covid/font/flaticon.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/css/aos.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
-
+  @stack('page-styles')
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
@@ -47,31 +47,6 @@
 @include('layouts.frontend.includes.navbar')
 
 
-    
-
-    <div class="hero-v1">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6 mr-auto text-center text-lg-left">
-            <span class="d-block subheading">Covid-19 Awareness</span>
-            <h1 class="heading mb-3">Stay Safe. Stay Home.</h1>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel a, nulla incidunt eaque sit praesentium porro consectetur optio!</p>
-            <p class="mb-4"><a href="#" class="btn btn-primary">How to prevent</a></p>
-
-
-
-          </div>
-          <div class="col-lg-6">
-            <figure class="illustration">
-              <img src="{{ asset('frontend/images/illustration.png') }}" alt="Image" class="img-fluid">
-            </figure>
-          </div>
-          <div class="col-lg-6"></div>
-        </div>
-      </div>
-    </div>
-
-
     <!-- MAIN -->
     
     @yield('content')
@@ -93,7 +68,7 @@
   <script src="{{ asset('frontend/js/jquery.sticky.js') }}"></script>
   <script src="{{ asset('frontend/js/isotope.pkgd.min.js') }}"></script>
   <script src="{{ asset('frontend/js/main.js') }}"></script>
-
+  @stack('after-scripts')
 
 </body>
 </html>

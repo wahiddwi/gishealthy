@@ -20,7 +20,7 @@
 @endforeach
 @endif
         <div>
-            <a href="{{ route('admin.post.create') }}" class="btn btn-primary">Tambah Tulisan</a>
+            <a href="{{ route('petugas.post.create') }}" class="btn btn-primary">Tambah Tulisan</a>
         </div>
         <br>
         <div class="card">
@@ -46,10 +46,24 @@
                           {{-- <td>{{ $post->body }}</td> --}}
                           {{-- <td>{{ $post->gambar }}</td> --}}
                           <td>
-                            <a href="{{ route('admin.post.show', $post->id) }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
-                            <a href="{{ route('admin.post.edit', $post->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                            <a href="#" data-id="{{$post->id}}" class="btn btn-sm btn-danger fas fa-trash swal-confirm">
-                            <form action="{{ route('admin.post.destroy', $post->id) }}" id="deletePost{{ $post->id }}" method="POST">
+                            @if(Auth::user()->role->id == 1)
+                              <a href="{{ route('admin.post.show', $post->id) }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                              @elseif(Auth::user()->role->id == 3)
+                              <a href="{{ route('petugas.post.show', $post->id) }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                            @endif
+                            @if(Auth::user()->role->id == 1)
+                              <a href="{{ route('admin.post.edit', $post->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                              @elseif(Auth::user()->role->id == 3)
+                              <a href="{{ route('petugas.post.edit', $post->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                            @endif
+
+                            @if (Auth::user()->role->id == 1)
+                              <a href="#" data-id="{{$post->id}}" class="btn btn-sm btn-danger fas fa-trash swal-confirm">
+                              <form action="{{ route('admin.post.destroy', $post->id) }}" id="deletePost{{ $post->id }}" method="POST">
+                              @elseif(Auth::user()->role->id == 3)
+                                <a href="#" data-id="{{$post->id}}" class="btn btn-sm btn-danger fas fa-trash swal-confirm">
+                                <form action="{{ route('petugas.post.destroy', $post->id) }}" id="deletePost{{ $post->id }}" method="POST">  
+                            @endif
                             @csrf
                             @method('delete')
                           </form>

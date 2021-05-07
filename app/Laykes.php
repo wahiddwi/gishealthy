@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Laykes extends Model
 {
@@ -28,4 +29,5 @@ class Laykes extends Model
     {
         return $this->hasMany(TenagaMedis::class, 'id', 'id');
     }
+    
 }

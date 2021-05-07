@@ -36,4 +36,9 @@ class Kelurahan extends Model
         return $this->hasMany(TenagaMedis::class, 'id', 'id');
     }
 
+    public function pasien()
+    {
+        return $this->hasMany(Pasien::class, 'id', 'id');
+    }
+
 }
