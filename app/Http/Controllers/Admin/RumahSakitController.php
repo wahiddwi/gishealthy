@@ -22,20 +22,6 @@ class RumahSakitController extends Controller
         ));
     }
 
-    // public function pemetaan_rs()
-    // {
-    //     $wilayah = Wilayah::all();
-    //     $kecamatan = Kecamatan::all();
-    //     $kelurahan = Kelurahan::all();
-    //     $laykes = Laykes::all();
-    //     // return view('admin.pemetaan.index', compact(
-    //     //     'wilayah', 'kecamatan', 'kelurahan', 'laykes'
-    //     // ));
-    //     return view('admin.pemetaan.index', ['wilayah'=> $wilayah, 'kecamatan' => $kecamatan, 'kelurahan' => $kelurahan, 'laykes' => $laykes]
-            
-    //     );
-    // }
-
     public function getrskelurahan()
     {
 
@@ -104,4 +90,5 @@ class RumahSakitController extends Controller
 
         return view('admin.master_data.rumahsakitwilayah', $data);
     }
+    
 }

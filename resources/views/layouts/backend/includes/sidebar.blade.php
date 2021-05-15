@@ -51,6 +51,16 @@
             <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-compass"></i> <span>Pasien</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="{{ route('admin.data_pasien') }}">Data Pasien</a></li>
+            <li><a class="nav-link" href="{{ route('admin.pasien_allData') }}">Data Kasus</a></li>
+            <li><a class="nav-link" href="{{ route('admin.pasien_wilayah') }}">Pasien (Kotamadya)</a></li>
+            <li><a class="nav-link" href="{{ route('admin.pasien_kecamatan') }}">Pasien (Kecamatan)</a></li>
+            <li><a class="nav-link" href="{{ route('admin.pasien_kelurahan') }}">Pasien (Kelurahan)</a></li>
+          </ul>
+        </li>
                 
         <li><a class="nav-link" href="{{ route('admin.user.index') }}"><i class="fas fa-user-cog"></i> <span>User</span></a></li>
         @endif

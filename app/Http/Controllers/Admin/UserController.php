@@ -86,6 +86,7 @@ class UserController extends Controller
 
         Toastr::success('success', 'Role berhasil diubah');
         return redirect()->back();
+
     }
 
     /**

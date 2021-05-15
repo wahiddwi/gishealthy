@@ -45,16 +45,25 @@
   </div>
 
 <script>
-
-let latLng=[-6.209178670646127, 106.73857221021726];
+let latLng = [-6.209178670646127, 106.73857221021726];
+let centerMap = false;
 let map = L.map('mapid').setView(latLng, 15);
+
+let latLngAwal = L.latLng(latLng);
+// let latLngTujuan = 
+// @foreach($laykes as $data)
+// L.latLng({{$data->latitude}}, {{$data->longitude}});
+// @endforeach
+// let waypoint1 = new L.Routing.Waypoint(latLngAwal);
+// let waypoint2 = new L.Routing.Waypoint(latLngTujuan);
+
 let layer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             });
             map.addLayer(layer);
 
-          //marker posisi awal
-  // L.marker(latLng).addTo(map);  
+          // marker posisi awal
+  // L.marker([-6.209178670646127, 106.73857221021726]).addTo(map);  
 
 let icon = L.icon({
   iconUrl: '{{ asset('assets/img/hospital.png') }}', //folder icon
@@ -63,6 +72,9 @@ let icon = L.icon({
 
 //ambil titik awal
 getLocation();
+// setInterval(() => {
+// getLocation();
+// }, 5000); 
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -72,12 +84,18 @@ function getLocation() {
 }
 
 function showPosition(position) {
+  console.log('route sekarang', position.coords.latitude, position.coords.longitude)
   $("[name=latNow]").val(position.coords.latitude);
   $("[name=lngNow]").val(position.coords.longitude);
+  let latLng = [position.coords.latitude, position.coords.longitude];
+    control.spliceWaypoints(0, 1, latLng);
+    if (centerMap==false) {
+      map.panTo(latLng);
+      centerMap = true;
+    }
 }
 
   @foreach ($laykes as $data)
-  let latLngAwal = L.latLng(-6.209178670646127, 106.73857221021726);\
     // menampilkan informasi di map
     var info = '<table><thead><tr><th colspan="2" class="text-center">{{$data->nama_rumahsakit}}</th></tr></thead><tbody><tr><td>Alamat</td><td>: {{$data->alamat}}</td></tr><tr><td>Kelurahan</td><td>: {{$data->kelurahan->nama}}</td></tr><tr><td>kecamatan</td><td>: {{$data->kecamatan->nama}}</td></tr><tr><td>Kota Madya</td><td>: {{ $data->wilayah->nama }}</td></tr><tr><td>No. Telpon</td><td>: {{$data->no_telpon}}</td></tr><tr><td colspan="2" class="text-center"><button class="btn btn-sm btn-success" onclick="return keSini({{$data->latitude}}, {{$data->longitude}})">Ke Sini</button></td></tr></tbody></table>';
     // // menampilkan marker
@@ -89,10 +107,7 @@ function showPosition(position) {
 
 //rute
 let control =L.Routing.control({
-    waypoints: [
-      latLng //posisi awal
-    ],
-
+    waypoints: [null],
     geocoder: L.Control.Geocoder.nominatim(),
     routeWhileDragging: true,
     reverseWaypoints: true,
@@ -106,7 +121,7 @@ let control =L.Routing.control({
     },
     createMarker: function (i, waypoint, n) {
       let iconMyMarker;
-      console.log(i+","+n)
+      // console.log(i+","+n)
       //jika i==0 maka muncul posisi awal
       if (i==0) {
         iconMyMarker='{{ asset('assets/img/loc_user.png') }}'; //folder icon
@@ -144,6 +159,37 @@ control.addTo(map);
   function keSini(latitude, longitude){
     //inisialisasi variabel latLng
     let latLng = L.latLng(latitude,longitude);
+    let waypoint1 = new L.Routing.Waypoint(latLngAwal);
+    let waypoint2 = new L.Routing.Waypoint(latLng);
+
+    let routeUs = L.Routing.osrmv1();
+routeUs.route([waypoint1,waypoint2],(err,routes)=>{
+  console.log(waypoint2), routes;
+if (!err) {
+  //jarak dari posisi awal ke posisi tujuan
+  let best = 100000000000000;
+  //array pertama
+  let bestRoute = 0;
+
+  for(i in routes){
+    if (routes[i].summary.totaltotalDistance < best) {
+      bestRoute = i;
+      best = routes[i].summary.totalDistance;
+    }
+  }
+  console.log('best route', routes[bestRoute]);
+  // L.Routing.line(routes[bestRoute],{
+  //   styles : [
+  //     {
+  //       color: 'green',
+  //       weight: 9
+  //     }
+  //   ]
+    
+  // }).addTo(map);
+}
+})
+
     control.spliceWaypoints(control.getWaypoints().length - 1, 1, latLng);
   }
 

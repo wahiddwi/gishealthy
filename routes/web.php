@@ -42,6 +42,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('rswilayah', 'RumahSakitController@getrskota')->name('rs_kota');
     Route::get('rute', 'RuteController@rute')->name('rute');
     Route::get('pemetaan', 'PemetaanController@pemetaan')->name('pemetaan');
+    Route::get('profile', 'ProfilController@profil')->name('profil');
+    Route::get('pasien', 'PasienController@index')->name('data_pasien');
+    Route::get('pasien/create', 'PasienController@create')->name('create');
+    Route::get('pasien/getdatawilayah', 'PasienController@getDataWilayah')->name('pasien_wilayah');
+    Route::get('pasien/getdatakecamatan', 'PasienController@getDatakecamatan')->name('pasien_kecamatan');
+    Route::get('pasien/getdatakelurahan', 'PasienController@getDatakelurahan')->name('pasien_kelurahan');
+    Route::get('pasien/getAllData', 'PasienController@getAllData')->name('pasien_allData');
+
 
 });
 

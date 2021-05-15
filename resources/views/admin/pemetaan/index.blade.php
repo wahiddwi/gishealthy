@@ -34,11 +34,11 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
       }).addTo(mymap);
 
           //marker posisi awal
-  L.marker([-6.1382687, 106.7428817]).addTo(mymap);  
+  // L.marker([-6.1382687, 106.7428817]).addTo(mymap);  
 
 var icon = L.icon({
-  iconUrl: '{{ asset('assets/img/loc.png') }}', //folder icon
-  iconSize: [40, 40], //icon size
+  iconUrl: '{{ asset('assets/img/hospital_loc.png') }}', //folder icon
+  iconSize: [30, 30], //icon size
 });
 
 @foreach ($laykes as $data)
