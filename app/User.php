@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany('App\Post');//Relasi Database one to many ke tabel post
+        return $this->hasMany(Post::class, 'user_id', 'id');//Relasi Database one to many ke tabel post
     }
 
     public function kelurahan()

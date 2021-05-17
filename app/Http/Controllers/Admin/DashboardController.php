@@ -4,14 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $response = Http::get("https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/COVID19_Indonesia_per_Provinsi/FeatureServer/0/query?where=Provinsi%20%3D%20'DKI%20JAKARTA'&outFields=*&outSR=4326&f=json")->json();
-        $data = $response["features"];
-        return view('admin.dashboard', compact('data'));
+        $data['allData'] = DB::table('pasien')
+            ->select(['pasien.*',
+            DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
+            DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
+            DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
+            ])
+            ->get()
+            ;
+            return view('admin.dashboard', $data);
     }
 }

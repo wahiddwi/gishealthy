@@ -9,24 +9,24 @@
                   <div class="col-sm-3 col-6 mb-md-0 mb-4 text-center">
                     <div class="img-shadow flag-icon flag-icon-id"></div>
                     <div class="mt-2 font-weight-bold text-nowrap">Provinsi</div>
-                    @foreach ($data as $dataCovid)
-                        
-                    <div class="text-small text-muted">{{ $dataCovid['attributes']['Provinsi'] }}</div>
+                    
+                    <div class="text-small text-muted">DKI Jakarta</div>
                 </div>
+                @foreach ($allData as $data)
                 <div class="col-sm-3 col-6 mb-md-0 mb-4 text-center">
                     <div class="img-shadow flag-icon flag-icon-ps"></div>
                     <div class="mt-2 font-weight-bold text-nowrap">Positif</div>
-                    <div class="text-small text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span> {{ $dataCovid['attributes']['Kasus_Posi'] }}</div>
+                    <div class="text-small text-muted"><span class="text-primary"></span> {{ $data->jumlah_positif }}</div>
                 </div>
                 <div class="col-sm-3 col-6 text-center">
                     <div class="img-shadow flag-icon flag-icon-sy"></div>
                     <div class="mt-2 font-weight-bold text-nowrap">Sembuh</div>
-                    <div class="text-small text-muted"><span class="text-danger"><i class="fas fa-caret-down"></i></span> {{ $dataCovid['attributes']['Kasus_Semb'] }}</div>
+                    <div class="text-small text-muted"><span class="text-danger"></span> {{ $data->jumlah_sembuh }}</div>
                   </div>
                   <div class="col-sm-3 col-6 text-center">
                       <div class="img-shadow flag-icon flag-icon-my"></div>
                       <div class="mt-2 font-weight-bold text-nowrap">Meninggal</div>
-                    <div class="text-small text-muted">{{ $dataCovid['attributes']['Kasus_Meni'] }}</div>
+                    <div class="text-small text-muted">{{ $data->jumlah_meninggal }}</div>
                 </div>
                 @endforeach
             </div>
@@ -79,11 +79,11 @@ plotOptions: {
         pointStart: 2010
     }
 },
-
+    @foreach ($allData as $data)
 series: [{
-    name: 'Total Kasus',
-    data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-}, {
+//     name: 'Total Kasus',
+//     data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+// }, {
     name: 'Positif',
     data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
 }, {
@@ -93,7 +93,7 @@ series: [{
     name: 'Meninggal',
     data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
 }],
-
+@endforeach
 responsive: {
     rules: [{
         condition: {

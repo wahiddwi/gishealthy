@@ -16,12 +16,6 @@ class UserAccess
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role->id == 2) {
-            # code...
             return $next($request);
-        }
-        else {
-            return redirect()->route('login');
-        }
     }
 }

@@ -6,10 +6,10 @@
         <li class="has-children">
           <a href="#">Layanan Kesehatan</a>
           <ul class="dropdown">
-            <li><a href="#">Data Rumah Sakit</a></li>
-            <li><a href="#">Rumah Sakit Per Kelurahan</a></li>
-            <li><a href="#">Rumah Sakit Per Kecamatan</a></li>
-            <li><a href="#">Rumah Sakit Per Kota</a></li>
+            <li><a href="{{ route('data_rumahsakit') }}">Data Rumah Sakit</a></li>
+            <li><a href="{{ route('rumah_sakit.kecamatan') }}">Rumah Sakit Per Kecamatan</a></li>
+            <li><a href="{{ route('rumah_sakit.kelurahan') }}">Rumah Sakit Per Kelurahan</a></li>
+            <li><a href="{{ route('rumah_sakit.kota') }}">Rumah Sakit Per Kota</a></li>
           </ul>
         </li>
         <li class="has-children">

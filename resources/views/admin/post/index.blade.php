@@ -20,7 +20,11 @@
 @endforeach
 @endif
         <div>
-            <a href="{{ route('petugas.post.create') }}" class="btn btn-primary">Tambah Tulisan</a>
+          @if(Auth::user()->role->id == 1)
+          <a href="{{ route('admin.post.create') }}" class="btn btn-primary">Tambah Tulisan</a>
+          @elseif(Auth::user()->role->id == 3)
+          <a href="{{ route('petugas.post.create') }}" class="btn btn-primary">Tambah Tulisan</a>
+          @endif
         </div>
         <br>
         <div class="card">
@@ -72,16 +76,6 @@
                         </tr>
                     @endforeach
                   </tbody>
-                  {{-- <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                  </tfoot> --}}
               </table>
               </div>
         </div>

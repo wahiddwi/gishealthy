@@ -17,9 +17,17 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('pemetaan', 'PemetaanController@pemetaan')->name('pemetaan');
 Route::get('wilayah', 'WilayahController@index')->name('wilayah');
 Route::get('kecamatan', 'KecamatanController@index')->name('kecamatan');
 Route::get('kelurahan', 'KelurahanController@index')->name('kelurahan');
+Route::get('rumahsakit', 'RumahSakitController@data_rumahsakit')->name('data_rumahsakit');
+Route::get('rumahsakit/kecamatan', 'RumahSakitController@getrskecamatan')->name('rumah_sakit.kecamatan');
+Route::get('rumahsakit/kelurahan', 'RumahSakitController@getrskelurahan')->name('rumah_sakit.kelurahan');
+Route::get('rumahsakit/kota', 'RumahSakitController@getrskota')->name('rumah_sakit.kota');
+
+
+
 ////Admin/////////////////////////
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
@@ -52,16 +60,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 
 });
-
-
-
-
-///User//////////////////////////
-Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => ['auth', 'user']], function () {
-    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-});
-
-
 ////Petugas/////
 Route::group(['prefix' => 'petugas', 'as' => 'petugas.', 'namespace' => 'Petugas', 'middleware' => ['auth', 'petugas']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');

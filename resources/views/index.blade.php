@@ -1,4 +1,31 @@
 @extends('layouts.frontend.master')
+@push('page-styles')
+<link rel="stylesheet" href="{{asset('assets/css/chart.css')}}">
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<!--Leaflet CSS-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+<!--Routing Machine CSS-->
+<link rel="stylesheet" href="{{ asset('assets/leaflet-routing-machine/dist/leaflet-routing-machine.css') }}">
+<!--Leaflet JS-->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+crossorigin="">
+</script>
+<!--Routing Machine Js-->
+<script src="{{ asset('assets/leaflet-routing-machine/dist/leaflet-routing-machine.js') }}"></script>
+<script src="{{ asset('assets/leaflet-routing-machine/examples/Control.Geocoder.js') }}"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@endpush
+
+@section('title', 'Dashboard')
 
 @section('content')
     <!--Header-->
@@ -27,17 +54,17 @@
     <div class="container">
       <div class="row mb-3">
         <div class="col-lg-7 text-center mx-auto">
-          <h2 class="section-heading">Coronavirus Statistics</h2>
+          <h2 class="section-heading">Statistik Kasus Covid-19</h2>
         </div>
       </div>
       <div class="row"> 
         <div class="col-lg-4">
           <div class="data">
-        @foreach ($data as $dataCovid)
+        @foreach ($allData as $data)
             <span class="icon text-primary">
               <span class="flaticon-virus"></span>
             </span>
-            <strong class="d-block number">{{ $dataCovid['attributes']['Kasus_Posi'] }}</strong>
+            <strong class="d-block number">{{ $data->jumlah_positif }}</strong>
             <span class="label">Kasus Positif</span>
           </div>
         </div>
@@ -46,7 +73,7 @@
             <span class="icon text-primary">
               <span class="flaticon-virus"></span>
             </span>
-            <strong class="d-block number">{{ $dataCovid['attributes']['Kasus_Meni'] }}</strong>
+            <strong class="d-block number">{{ $data->jumlah_meninggal }}</strong>
             <span class="label">Kasus Meninggal</span>
           </div>
         </div>
@@ -55,7 +82,7 @@
             <span class="icon text-primary">
               <span class="flaticon-virus"></span>
             </span>
-            <strong class="d-block number">{{ $dataCovid['attributes']['Kasus_Semb'] }}</strong>
+            <strong class="d-block number">{{ $data->jumlah_sembuh }}</strong>
             <span class="label">Kasus Sembuh</span>
           </div>
         </div>
@@ -67,33 +94,11 @@
 
   <div class="site-section">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6 mb-4 mb-lg-0">
-          <figure class="img-play-vid">
-            <img src="{{ asset('frontend/images/hero_1.jpg') }}" alt="Image" class="img-fluid">
-            <div class="absolute-block d-flex">
-              <span class="text">Watch the Video</span>
-              <a href="https://www.youtube.com/watch?v=9pVy8sRC440" data-fancybox class="btn-play">
-                <span class="icon-play"></span>
-              </a>
-            </div>
-          </figure>
-        </div>
-        <div class="col-lg-5 ml-auto">
-          <h2 class="mb-4 section-heading">What is Coronavirus?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p>
-          <ul class="list-check list-unstyled mb-5">
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Consectetur adipisicing elit</li>
-            <li>Unde doloremque</li>
-          </ul>
-          <p><a href="#" class="btn btn-primary">Learn more</a></p>
-        </div>
-      </div>
+      <div id="container"></div>
     </div>
   </div>
 
-  <div class="container pb-5">
+  {{-- <div class="container pb-5">
     <div class="row">
       <div class="col-lg-3">
         <div class="feature-v1 d-flex align-items-center">
@@ -140,84 +145,26 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
-
-  <div class="site-section bg-primary-light">
+<!--map rumah sakit-->
+  {{-- <div class="site-section bg-primary-light">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-6">
-
-          <div class="row">
-            <div class="col-6 col-lg-6 mt-lg-5">
-              <div class="media-v1 bg-1">
-                <div class="icon-wrap">
-                  <span class="flaticon-stay-at-home"></span>
-                </div>
-                <div class="body">
-                  <h3>Stay at home</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, debitis!</p>
-                </div>
-              </div>
-
-              <div class="media-v1 bg-1">
-                <div class="icon-wrap">
-                  <span class="flaticon-patient"></span>
-                </div>
-                <div class="body">
-                  <h3>Wear facemask</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, debitis!</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-6 col-lg-6">
-              <div class="media-v1 bg-1">
-                <div class="icon-wrap">
-                  <span class="flaticon-social-distancing"></span>
-                </div>
-                <div class="body">
-                  <h3>Keep social distancing</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, debitis!</p>
-                </div>
-              </div>
-
-              <div class="media-v1 bg-1">
-                <div class="icon-wrap">
-                  <span class="flaticon-hand-washing"></span>
-                </div>
-                <div class="body">
-                  <h3>Wash your hands</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, debitis!</p>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        <div class="col-lg-5 ml-auto">
-          <h2 class="section-heading mb-4">How to Prevent Coronavirus?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque corporis doloribus consequatur fugit voluptatum ex rerum perspiciatis cupiditate, esse hic!</p>
-          <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, error!</p>
-
-          <ul class="list-check list-unstyled mb-5">
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Consectetur adipisicing elit</li>
-            <li>Unde doloremque</li>
-          </ul>
-
-          <p><a href="#" class="btn btn-primary">Read more about prevention</a></p>
-        </div>
+        <div class="col-lg-12 text-center mx-auto">
+          <h2 class="section-heading">Daftar Layanan Kesehatan</h2>
+          <div id="mapid" style="height: 400px;"></div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
-  <div class="site-section">
+  {{-- <div class="site-section">
     <div class="container">
       <div class="row mb-5">
         <div class="col-lg-7 mx-auto text-center">
           <span class="subheading">What you need to do</span>
-          <h2 class="mb-4 section-heading">How To Protect Yourself</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p>
+          <h2 class="mb-4 section-heading">Rute</h2>
+          <p>Mencari rute terdekat menuju rumah sakit tujuan</p>
         </div>
       </div>
       <div class="row">
@@ -251,11 +198,14 @@
           <img src="{{ asset('frontend/images/protect.png') }}" alt="Image" class="img-fluid">
         </div>
       </div>
+      <div class="col-lg-12 text-center mx-auto">
+        <div id="mapid" style="height: 95vh; margin:0"></div>
+      </div>
     </div>
-  </div>
+  </div> --}}
 
 
-  <div class="site-section bg-primary-light">
+  {{-- <div class="site-section bg-primary-light">
     <div class="container">
       <div class="row mb-5">
         <div class="col-lg-7 mx-auto text-center">
@@ -323,15 +273,15 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
   <!--Artikel-->
   <div class="site-section">
     <div class="container">
       <div class="row mb-5">
         <div class="col-lg-7 mx-auto text-center">
-          <h2 class="mb-4 section-heading">News &amp; Articles</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p>
+          <h2 class="mb-4 section-heading">Artikel</h2>
+          {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p> --}}
         </div>
       </div>
 
@@ -396,4 +346,72 @@
       </div>
     </div>
   </div>
+
+  <script>
+    //highchart
+    Highcharts.chart('container', {
+
+title: {
+text: 'Grafik Penyebaran Covid-19'
+},
+
+yAxis: {
+title: {
+    text: 'Number of Employees'
+}
+},
+
+xAxis: {
+accessibility: {
+    rangeDescription: 'Range: 2010 to 2017'
+}
+},
+
+legend: {
+layout: 'vertical',
+align: 'right',
+verticalAlign: 'middle'
+},
+
+plotOptions: {
+series: {
+    label: {
+        connectorAllowed: false
+    },
+    pointStart: 2010
+}
+},
+@foreach ($allData as $data)
+series: [{
+//     name: 'Total Kasus',
+//     data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+// }, {
+name: 'Positif',
+data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+}, {
+name: 'Sembuh',
+data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+}, {
+name: 'Meninggal',
+data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+}],
+@endforeach
+responsive: {
+rules: [{
+    condition: {
+        maxWidth: 400
+    },
+    chartOptions: {
+        legend: {
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom'
+        }
+    }
+}]
+}
+
+});
+
+</script>
 @endsection

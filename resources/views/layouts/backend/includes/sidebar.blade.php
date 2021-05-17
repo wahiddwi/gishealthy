@@ -52,7 +52,7 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-compass"></i> <span>Pasien</span></a>
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-hospital-user"></i> <span>Pasien</span></a>
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="{{ route('admin.data_pasien') }}">Data Pasien</a></li>
             <li><a class="nav-link" href="{{ route('admin.pasien_allData') }}">Data Kasus</a></li>
@@ -74,22 +74,14 @@
           </ul>
         </li>
         @endif
-
+        
         @if(Auth::user()->role->id == 1)
         <li><a class="nav-link" href="{{ route('admin.post.index') }}"><i class="fab fa-blogger"></i> <span>Artikel</span></a></li>
         @elseif(Auth::user()->role->id == 3)
         <li><a class="nav-link" href="{{ route('petugas.post.index') }}"><i class="fab fa-blogger"></i> <span>Artikel</span></a></li>
         @endif
-        {{-- <li class="menu-header">Master Data</li> --}}
-        {{-- <li class="nav-item dropdown">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-compass"></i> <span>Master Data</span></a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="layout-default.html">Detail Kecamatan</a></li>
-            <li><a class="nav-link" href="layout-transparent.html">Detail Kelurahan</a></li>
-            <li><a class="nav-link" href="layout-top-navigation.html">Data Rumah Sakit</a></li>
-            <li><a class="nav-link" href="layout-top-navigation.html">Data Artikel</a></li>
-            <li><a class="nav-link" href="layout-top-navigation.html">Data Tenaga Medis</a></li>
-          </ul>
-        </li> --}}
+        @if(Auth::user()->role->id == 1)
+        <li><a class="nav-link" href=""><i class="fas fa-user-plus"></i> <span>Register</span></a></li>
+        @endif
       </ul>
 </aside>

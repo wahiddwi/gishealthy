@@ -1,18 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Kecamatan;
 use App\Kelurahan;
 use App\Laykes;
-use App\Pemetaan;
 use App\Wilayah;
 use Illuminate\Http\Request;
 
 class PemetaanController extends Controller
 {
-
     public function pemetaan()
     {
         $data = [
@@ -21,6 +18,6 @@ class PemetaanController extends Controller
             'kecamatan' => Kecamatan::all(),
             'kelurahan' =>Kelurahan::all(),
         ];
-        return view('admin.pemetaan.index', $data);
+        return view('index', $data);
     }
 }
