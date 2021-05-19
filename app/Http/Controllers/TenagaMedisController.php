@@ -36,7 +36,7 @@ class TenagaMedisController extends Controller
         ->orderBy('id_wilayah')
         ->get()
         ;
-        return view('tenagamedis.datatenagamediskota', $data);
+        return view('tenagamedis.mediskota', $data);
     }
 
     public function gettenagamediskecamatan()

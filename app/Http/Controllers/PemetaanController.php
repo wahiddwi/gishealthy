@@ -18,6 +18,6 @@ class PemetaanController extends Controller
             'kecamatan' => Kecamatan::all(),
             'kelurahan' =>Kelurahan::all(),
         ];
-        return view('index', $data);
+        return view('pemetaan.index', $data);
     }
 }

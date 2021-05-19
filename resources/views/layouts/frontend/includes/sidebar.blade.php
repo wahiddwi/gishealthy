@@ -26,7 +26,7 @@
     <li class="has-children">
         <a href="#" class="nav-link">Pemetaan</a>
         <ul class="dropdown">
-          <li><a href="#" class="nav-link">Pemetaan Rumah Sakit</a></li>
+          <li><a href="{{ route('pemetaan') }}" class="nav-link">Pemetaan Rumah Sakit</a></li>
           <li><a href="#" class="nav-link">Cari Rute Rumah Sakit</a></li>
           <li><a href="#" class="nav-link">Wear facemasl</a></li>
           <li><a href="#" class="nav-link">Wash your hands</a></li>

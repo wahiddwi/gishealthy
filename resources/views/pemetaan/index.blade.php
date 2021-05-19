@@ -1,26 +1,32 @@
-@extends('layouts.backend.master')
-@section('title', 'Pemetaan Layanan Kesehatan')
+@extends('layouts.frontend.master')
+@section('title', 'Pemetaan Rumah Sakit')
 @push('page-styles')
-    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     
-    <!--Leaflet-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin="">
-  </script>
+<!--Leaflet-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+crossorigin="">
+</script>
+
 @endpush
 @section('content')
 
-<div class="section-body">
-  <div class="card">
-    <div class="card-body p-0">
-      <div id="mapid" style="height: 400px;"></div>
+<div class="site-section stats">
+    <div class="container">
+    <div class="col-lg-7 text-center mx-auto">
+        <h2 class="section-heading">@yield('title')</h2>
     </div>
-  </div>
-
+    <div class="section-body">
+        <div class="card">
+          <div class="card-body">
+            <div id="mapid" style="height: 500px;"></div>
+          </div>
+        </div>
+      
 <script>
 
 var mymap = L.map('mapid').setView([-6.205154154013863, 106.84186463929707], 11);
@@ -53,6 +59,5 @@ var icon = L.icon({
 
 
 </script>
-  
 
 @endsection
