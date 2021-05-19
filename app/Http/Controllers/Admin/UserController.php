@@ -23,6 +23,7 @@ class UserController extends Controller
         return view('admin.user.user_management', compact('user', 'role'));
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *

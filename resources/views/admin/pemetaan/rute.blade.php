@@ -172,7 +172,7 @@ if (!err) {
   let bestRoute = 0;
 
   for(i in routes){
-    if (routes[i].summary.totaltotalDistance < best) {
+    if (routes[i].summary.totalDistance < best) {
       bestRoute = i;
       best = routes[i].summary.totalDistance;
     }

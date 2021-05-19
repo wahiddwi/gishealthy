@@ -40,12 +40,12 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->belongsTo(Role::class, 'id', 'id');//Relasi Database one to many ke tabel roles
+        return $this->belongsTo(Role::class, 'role_id', 'id'); //Relasi Database one to many ke tabel roles
     }
 
     public function posts()
     {
-        return $this->hasMany(Post::class, 'user_id', 'id');//Relasi Database one to many ke tabel post
+        return $this->hasMany(Post::class, 'user_id', 'id'); //Relasi Database one to many ke tabel post
     }
 
     public function kelurahan()

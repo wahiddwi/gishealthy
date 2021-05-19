@@ -25,12 +25,19 @@ Route::get('rumahsakit', 'RumahSakitController@data_rumahsakit')->name('data_rum
 Route::get('rumahsakit/kecamatan', 'RumahSakitController@getrskecamatan')->name('rumah_sakit.kecamatan');
 Route::get('rumahsakit/kelurahan', 'RumahSakitController@getrskelurahan')->name('rumah_sakit.kelurahan');
 Route::get('rumahsakit/kota', 'RumahSakitController@getrskota')->name('rumah_sakit.kota');
+Route::get('tenagamedis', 'TenagaMedisController@index')->name('tenagamedis');
+Route::get('tenagamedis/wilayah', 'TenagamedisController@gettenagamediskota')->name('tenagamedis-kota');
+Route::get('tenagamedis/kecamatan', 'TenagamedisController@gettenagamediskecamatan')->name('tenagamedis-kecamatan');
+Route::get('tenagamedis/kelurahan', 'TenagamedisController@getmediskelurahan')->name('tenagamedis-kelurahan');
 
 
 
 ////Admin/////////////////////////
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('chart', 'ChartController@index')->name('chart');
+    // Route::get('dashboard/chart', 'DashboardController@chart')->name('dashboard.chart');
+    
     Route::resource('user', 'UserController');
     Route::resource('post', 'PostController');
     Route::resource('wilayah', 'WilayahController');

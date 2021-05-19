@@ -15,9 +15,10 @@
         <li class="has-children">
             <a href="#">Tenaga Kesehatan</a>
             <ul class="dropdown">
-              <li><a href="#">Tenaga Medis Per Kelurahan</a></li>
-              <li><a href="#">Tenaga Medis Per Kecamatan</a></li>
-              <li><a href="#">Tenaga Medis Per Kota</a></li>
+              <li><a href="{{ route('tenagamedis') }}">Data Tenaga Medis</a></li>
+              <li><a href="{{ route('tenagamedis-kelurahan') }}">Tenaga Medis Per Kelurahan</a></li>
+              <li><a href="{{ route('tenagamedis-kecamatan') }}">Tenaga Medis Per Kecamatan</a></li>
+              <li><a href="{{ route('tenagamedis-kota') }}">Tenaga Medis Per Kota</a></li>
             </ul>
           </li>
       </ul>

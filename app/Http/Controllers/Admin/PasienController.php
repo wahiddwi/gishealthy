@@ -78,6 +78,7 @@ class PasienController extends Controller
             return view('admin.pasien.pasien_kelurahan', $data);
         }
         
+        
         public function getAllData()
         {
         $data['allData'] = DB::table('pasien')
