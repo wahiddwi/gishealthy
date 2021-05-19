@@ -18,6 +18,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('pemetaan', 'PemetaanController@pemetaan')->name('pemetaan');
+Route::get('pemetaan/rute', 'PemetaanController@rute')->name('pemetaan.rute');
 Route::get('wilayah', 'WilayahController@index')->name('wilayah');
 Route::get('kecamatan', 'KecamatanController@index')->name('kecamatan');
 Route::get('kelurahan', 'KelurahanController@index')->name('kelurahan');

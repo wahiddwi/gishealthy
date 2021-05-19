@@ -27,9 +27,9 @@
         <a href="#" class="nav-link">Pemetaan</a>
         <ul class="dropdown">
           <li><a href="{{ route('pemetaan') }}" class="nav-link">Pemetaan Rumah Sakit</a></li>
-          <li><a href="#" class="nav-link">Cari Rute Rumah Sakit</a></li>
-          <li><a href="#" class="nav-link">Wear facemasl</a></li>
-          <li><a href="#" class="nav-link">Wash your hands</a></li>
+          <li><a href="{{ route('pemetaan.rute') }}" class="nav-link">Cari Rute Rumah Sakit</a></li>
+          <li><a href="#" class="nav-link">Pemetaan Kasus Covid-19</a></li>
+          {{-- <li><a href="#" class="nav-link">Wash your hands</a></li> --}}
           {{-- <li class="has-children">
             <a href="#">More Links</a>
             <ul class="dropdown">

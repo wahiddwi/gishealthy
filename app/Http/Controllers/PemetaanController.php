@@ -20,4 +20,13 @@ class PemetaanController extends Controller
         ];
         return view('pemetaan.index', $data);
     }
+
+    public function rute()
+    {
+        $wilayah = Wilayah::all();
+        $kecamatan = Kecamatan::all();
+        $kelurahan = Kelurahan::all();
+        $laykes = Laykes::all();
+        return view('pemetaan.rute', compact('wilayah', 'kecamatan', 'kelurahan', 'laykes'));
+    }
 }
