@@ -284,65 +284,25 @@ crossorigin="">
           {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p> --}}
         </div>
       </div>
-
+      
       <div class="row">
-        <div class="col-lg-4">
+      @foreach ($posts as $post)
+      <div class="col-lg-4">
           <div class="post-entry">
-            <a href="#" class="thumb">
-              <span class="date">30 Jul, 2020</span>
-              <img src="{{ asset('frontend/images/hero_1.jpg') }}" alt="Image" class="img-fluid">
+            <a href="{{ route('post.artikelDetail', $post->id) }}" class="thumb">
+              <span class="date">{{$post->created_at->diffForHumans()}}</span>
+              <img src="{{ asset($post->gambar) }}" alt="Image" class="img-fluid" width="200px">
             </a>
             <div class="post-meta text-center">
               <a href="">
                 <span class="icon-user"></span>
-                <span>Admin</span>
-              </a>
-              <a href="#">
-                <span class="icon-comment"></span>
-                <span>3 Comments</span>
+                <span>{{$post->user->name}}</span>
               </a>
             </div>
-            <h3><a href="#">How Coronavirus Very Contigous</a></h3>
+            <h3><a href="{{ route('post.artikelDetail', $post->id) }}">{{ $post->judul }}</a></h3>
           </div>
         </div>
-        <div class="col-lg-4">
-          <div class="post-entry">
-            <a href="#" class="thumb">
-              <span class="date">30 Jul, 2020</span>
-              <img src="{{ asset('frontend/images/hero_2.jpg') }}" alt="Image" class="img-fluid">
-            </a>
-            <div class="post-meta text-center">
-              <a href="">
-                <span class="icon-user"></span>
-                <span>Admin</span>
-              </a>
-              <a href="#">
-                <span class="icon-comment"></span>
-                <span>3 Comments</span>
-              </a>
-            </div>
-            <h3><a href="#">How Coronavirus Very Contigous</a></h3>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="post-entry">
-            <a href="#" class="thumb">
-              <span class="date">30 Jul, 2020</span>
-              <img src="{{ asset('frontend/images/hero_1.jpg') }}" alt="Image" class="img-fluid">
-            </a>
-            <div class="post-meta text-center">
-              <a href="">
-                <span class="icon-user"></span>
-                <span>Admin</span>
-              </a>
-              <a href="#">
-                <span class="icon-comment"></span>
-                <span>3 Comments</span>
-              </a>
-            </div>
-            <h3><a href="#">How Coronavirus Very Contigous</a></h3>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
   </div>

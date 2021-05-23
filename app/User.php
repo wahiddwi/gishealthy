@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Kelurahan::class, 'id', 'id');
     }
+
+    public function laykes()
+    {
+        return $this->hasMany(Laykes::class, 'id', 'id');
+    }
 }

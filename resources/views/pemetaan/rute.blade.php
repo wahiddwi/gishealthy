@@ -33,9 +33,9 @@ crossorigin="">
     </div>
     <div class="section-body">
         <div class="card">
-          <div class="card-body">
-            <div id="mapid" style="height: 95vh; margin:0"></div>
-          </div>
+          {{-- <div class="card-body"> --}}
+            <div id="mapid" style="height: 95vh; margin:0 ;z-index:0"></div>
+          {{-- </div> --}}
         </div>
       
 <script>

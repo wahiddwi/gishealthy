@@ -22,11 +22,11 @@ crossorigin="">
     </div>
     <div class="section-body">
         <div class="card">
-          <div class="card-body">
-            <div id="mapid" style="height: 500px;"></div>
-          </div>
+          
+            <div id="mapid" style="height: 500px; z-index:0"></div>
+          
         </div>
-      
+    </div> 
 <script>
 
 var mymap = L.map('mapid').setView([-6.205154154013863, 106.84186463929707], 11);
@@ -49,7 +49,7 @@ var icon = L.icon({
 
 @foreach ($laykes as $data)
   // menampilkan informasi di map
-    var info = '<table><thead><tr><th colspan="2" class="text-center">{{$data->nama_rumahsakit}}</th></tr></thead><tbody><tr><td>Alamat</td><td>: {{$data->alamat}}</td></tr><tr><td>Kelurahan</td><td>: {{$data->kelurahan->nama}}</td></tr><tr><td>kecamatan</td><td>: {{$data->kecamatan->nama}}</td></tr><tr><td>Kota Madya</td><td>: {{ $data->wilayah->nama }}</td></tr><tr><td>No. Telpon</td><td>: {{$data->no_telpon}}</td></tr><tr><td colspan="2" class="text-center"><a href="{{route('admin.laykes.show', $data->id)}}" class="btn btn-sm btn-default">Detail</a></td></tr></tbody></table>';
+    var info = '<table><thead><tr><th colspan="2" class="text-center">{{$data->nama_rumahsakit}}</th></tr></thead><tbody><tr><td>Alamat</td><td>: {{$data->alamat}}</td></tr><tr><td>Kelurahan</td><td>: {{$data->kelurahan->nama}}</td></tr><tr><td>kecamatan</td><td>: {{$data->kecamatan->nama}}</td></tr><tr><td>Kota Madya</td><td>: {{ $data->wilayah->nama }}</td></tr><tr><td>No. Telpon</td><td>: {{$data->no_telpon}}</td></tr><tr><td colspan="2" class="text-center"><a href="{{route('pemetaan.laykesDetail', $data->id)}}" class="btn btn-sm btn-default">Detail</a></td></tr></tbody></table>';
     // // menampilkan marker
     L.marker([<?=$data->latitude?>, <?=$data->longitude?>], {icon: icon})
     .addTo(mymap)

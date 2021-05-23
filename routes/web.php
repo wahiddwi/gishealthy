@@ -19,6 +19,8 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('pemetaan', 'PemetaanController@pemetaan')->name('pemetaan');
 Route::get('pemetaan/rute', 'PemetaanController@rute')->name('pemetaan.rute');
+Route::get('pemetaan/detail/{id}', 'PemetaanController@detail')->name('pemetaan.laykesDetail');
+Route::get('pemetaan/covid19/wilayah', 'PemetaanController@covid19wilayah')->name('pemetaan.covid19');
 Route::get('wilayah', 'WilayahController@index')->name('wilayah');
 Route::get('kecamatan', 'KecamatanController@index')->name('kecamatan');
 Route::get('kelurahan', 'KelurahanController@index')->name('kelurahan');
@@ -27,9 +29,11 @@ Route::get('rumahsakit/kecamatan', 'RumahSakitController@getrskecamatan')->name(
 Route::get('rumahsakit/kelurahan', 'RumahSakitController@getrskelurahan')->name('rumah_sakit.kelurahan');
 Route::get('rumahsakit/kota', 'RumahSakitController@getrskota')->name('rumah_sakit.kota');
 Route::get('tenagamedis', 'TenagaMedisController@index')->name('tenagamedis');
-Route::get('tenagamedis/wilayah', 'TenagamedisController@gettenagamediskota')->name('tenagamedis-kota');
-Route::get('tenagamedis/kecamatan', 'TenagamedisController@gettenagamediskecamatan')->name('tenagamedis-kecamatan');
-Route::get('tenagamedis/kelurahan', 'TenagamedisController@getmediskelurahan')->name('tenagamedis-kelurahan');
+Route::get('tenagamedis/wilayah', 'TenagaMedisController@gettenagamediskota')->name('tenagamedis-kota');
+Route::get('tenagamedis/kecamatan', 'TenagaMedisController@gettenagamediskecamatan')->name('tenagamedis-kecamatan');
+Route::get('tenagamedis/kelurahan', 'TenagaMedisController@getmediskelurahan')->name('tenagamedis-kelurahan');
+Route::get('artikel', 'PostController@index')->name('post');
+Route::get('post/detail/{id}', 'PostController@artikelDetail')->name('post.artikelDetail');
 
 
 

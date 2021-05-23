@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Kecamatan;
 use App\Kelurahan;
 use App\Laykes;
+use App\Post;
+use App\User;
 use App\Wilayah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -28,7 +31,9 @@ class HomeController extends Controller
 
     public function index()
     {
-    $data['allData'] = DB::table('pasien')
+        $posts = Post::latest()->take(3)->get();
+        $user = User::all();
+        $allData = DB::table('pasien')
         ->select(['pasien.*',
         DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
         DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
@@ -36,7 +41,7 @@ class HomeController extends Controller
         ])
         ->get()
         ;
-        return view('index', $data);
+        return view('index', compact('allData', 'posts', 'user'));
     }
 
 }
