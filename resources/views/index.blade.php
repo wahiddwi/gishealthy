@@ -288,12 +288,12 @@ crossorigin="">
       <div class="row">
       @foreach ($posts as $post)
       <div class="col-lg-4">
-          <div class="post-entry">
+          <div class="post-entry card" style="width: 17rem;">
             <a href="{{ route('post.artikelDetail', $post->id) }}" class="thumb">
               <span class="date">{{$post->created_at->diffForHumans()}}</span>
-              <img src="{{ asset($post->gambar) }}" alt="Image" class="img-fluid" width="200px">
+              <img src="{{ asset($post->gambar) }}" alt="Image" class="img-fluid card-img-top">
             </a>
-            <div class="post-meta text-center">
+            <div class="post-meta text-center card-body">
               <a href="">
                 <span class="icon-user"></span>
                 <span>{{$post->user->name}}</span>

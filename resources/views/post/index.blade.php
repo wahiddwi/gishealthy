@@ -17,20 +17,24 @@
         {{-- <div class="card"> --}}
             {{-- <div class="card-body"> --}}
                 <div class="row">
-                    @foreach ($post as $post)
+                    @foreach ($post as $p)
                     <div class="col-lg-4">
-                        <div class="post-entry">
-                          <a href="{{ route('post.artikelDetail', $post->id) }}" class="thumb">
-                            <span class="date">{{$post->created_at->diffForHumans()}}</span>
-                            <img src="{{ asset($post->gambar) }}" alt="Image" class="img-fluid" width="200px">
+                        {{-- <div class="post-entry"> --}}
+                        <div class="post-entry card" style="width: 20rem;">
+                          <a href="{{ route('post.artikelDetail', $p->id) }}" class="thumb">
+                            <span class="date">{{$p->created_at->diffForHumans()}}</span>
+                            <img class="card-img-top" src="{{ asset($p->gambar) }}" alt="Image" class="img-fluid">
                           </a>
-                          <div class="post-meta text-center">
+                          <div class="post-meta text-center card-body">
                             <a href="">
-                              <span class="icon-user"></span>
-                              <span>{{$post->user->name}}</span>
+                                <span class="icon-user"></span>
+                                <span>{{$p->user->name}}</span>
                             </a>
-                          </div>
-                          <h3><a href="{{ route('post.artikelDetail', $post->id) }}">{{ $post->judul }}</a></h3>
+                        </div>
+                        
+                        {{-- <div class="card-body"> --}}
+                              <h3><a href="{{ route('post.artikelDetail', $p->id) }}" class="card-text">{{ $p->judul }}</a></h3>
+                          {{-- </div> --}}
                         </div>
                       </div>
                       @endforeach
@@ -41,7 +45,7 @@
         </div>
     </div>
 </div>
-</div>
+{{ $post->links() }}
 @endsection
 @push('page-scripts')
     <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

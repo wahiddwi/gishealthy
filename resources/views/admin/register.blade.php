@@ -29,76 +29,67 @@
             </div>
 
             <div class="card card-primary">
-              <div class="card-header"><h4>Login</h4></div>
+              <div class="card-header"><h4>Register</h4></div>
 
               <div class="card-body">
-                <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+                <form method="POST" action="{{ route('admin.post.register') }}" class="needs-validation" novalidate="">
                   @csrf
+                  <div class="form-group">
+                    <label for="text">Nama</label>
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" tabindex="1" value="{{ old('name') }}" placeholder="Isi Nama Lengkap Anda" required autofocus>
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
+                  </div>
                     <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" tabindex="1" required autofocus>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Isi Email Anda" tabindex="1" required autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <div class="invalid-feedback">
-                      Please fill in your email
-                    </div>
-                  </div>
 
                   <div class="form-group">
                     <div class="d-block">
                     	<label for="password" class="control-label">Password</label>
                     </div>
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" tabindex="2" required>
+                    <input id="password" type="password" placeholder="Masukkan Password" class="form-control @error('password') is-invalid @enderror" name="password" tabindex="2" required>
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <div class="invalid-feedback">
-                      please fill in your password
-                    </div>
+
                   </div>
 
                   <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                      <label class="custom-control-label" for="remember-me">Remember Me</label>
+                    <div class="d-block">
+                    	<label for="password" class="control-label">Konfirmasi Password</label>
                     </div>
+                    <input id="password-confirm" type="password" placeholder="Masukkan Konfirmasi Password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" tabindex="2" required>
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
                   </div>
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">
-                      Login
+                      Daftar
                     </button>
-                    <a href="{{ route('home') }}" class="btn btn-danger btn-lg btn-block">
+                    <a href="{{ route('admin.dashboard') }}" class="btn btn-default btn-lg btn-block">
                         Kembali
                     </a>
                   </div>
                 </form>
-                {{-- <div class="text-center mt-4 mb-3">
-                  <div class="text-job text-muted">Login With Social</div>
-                </div>
-                <div class="row sm-gutters">
-                  <div class="col-6">
-                    <a class="btn btn-block btn-social btn-facebook">
-                      <span class="fab fa-facebook"></span> Facebook
-                    </a>
-                  </div>
-                  <div class="col-6">
-                    <a class="btn btn-block btn-social btn-twitter">
-                      <span class="fab fa-twitter"></span> Twitter
-                    </a>
-                  </div>
-                </div> --}}
-
               </div>
             </div>
-            {{-- <div class="mt-5 text-muted text-center">
-              Don't have an account? <a href="auth-register.html">Create One</a>
-            </div> --}}
             <div class="simple-footer">
               Copyright &copy; <a href="/">Gishealthy</a> 2021
             </div>

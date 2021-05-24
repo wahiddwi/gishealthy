@@ -81,7 +81,7 @@
         <li><a class="nav-link" href="{{ route('petugas.post.index') }}"><i class="fab fa-blogger"></i> <span>Artikel</span></a></li>
         @endif
         @if(Auth::user()->role->id == 1)
-        <li><a class="nav-link" href=""><i class="fas fa-user-plus"></i> <span>Register</span></a></li>
+        <li><a class="nav-link" href="{{ route('admin.register') }}"><i class="fas fa-user-plus"></i> <span>Register</span></a></li>
         @endif
       </ul>
 </aside>

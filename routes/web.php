@@ -42,7 +42,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('chart', 'ChartController@index')->name('chart');
     // Route::get('dashboard/chart', 'DashboardController@chart')->name('dashboard.chart');
-    
+    Route::get('register', 'RegisterController@index')->name('register');
+    Route::post('register/post', 'RegisterController@postRegister')->name('post.register');
     Route::resource('user', 'UserController');
     Route::resource('post', 'PostController');
     Route::resource('wilayah', 'WilayahController');
