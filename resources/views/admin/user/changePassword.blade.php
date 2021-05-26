@@ -18,7 +18,7 @@
                       Change information about yourself on this page.
                     </p> --}}
         
-                    <div class="row mt-sm-4">
+                    {{-- <div class="row mt-sm-4">
                       <div class="col-12 col-md-12 col-lg-5">
                         <div class="card">
                             <div class="user-item">
@@ -30,54 +30,66 @@
                                 </div>
                               </div>
                         </div>
-                      </div>
+                      </div> --}}
                       <div class="col-12 col-md-12 col-lg-7">
                         <div class="card">
-                          <form method="post" class="needs-validation" novalidate="">
+                          @if(Auth::user()->role->id == 1)
+                          <form method="post" action="{{ route('admin.password.update') }}" class="needs-validation" novalidate="">
+                            @elseif(Auth::user()->role->id == 3)
+                            <form method="post" action="{{ route('petugas.password.update') }}" class="needs-validation" novalidate="">
+                          @endif
+                            @csrf
+                            @method('put')
                             <div class="card-header">
-                              <h4>Edit Profile</h4>
+                              <h4>Ubah Password</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                  <div class="form-group col-md-6 col-12">
-                                    <label>First Name</label>
-                                    <input type="text" class="form-control" value="Ujang" required="">
-                                    <div class="invalid-feedback">
-                                      Please fill in the first name
-                                    </div>
-                                  </div>
-                                  <div class="form-group col-md-6 col-12">
-                                    <label>Last Name</label>
-                                    <input type="text" class="form-control" value="Maman" required="">
-                                    <div class="invalid-feedback">
-                                      Please fill in the last name
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
                                   <div class="form-group col-md-12 col-12">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control" value="ujang@maman.com" required="">
-                                    <div class="invalid-feedback">
-                                      Please fill in the email
-                                    </div>
+                                    <label for="old_password">Password Lama</label>
+                                    <input type="password" class="form-control @error('old_password') is-invalid @enderror" 
+                                    id="old_password" name="old_password"
+                                    placeholder="Masukkan password lama">
+                                    @error('old_password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                   </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-12 col-12">
-                                      <label>Password</label>
-                                      <input type="text" class="form-control" required="">
-                                      <div class="invalid-feedback">
-                                        Please fill in the email
-                                      </div>
+                                      <label for="password">Password Baru</label>
+                                      <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                      id="password" name="password"
+                                      placeholder="Masukkan password baru">
+                                      @error('password')
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                      @enderror
                                     </div>
                                   </div>
+                                  <div class="row">
+                                    <div class="form-group col-md-12 col-12">
+                                      <label for="password_confirmation">Konfirmasi Password Baru</label>
+                                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" 
+                                    id="password_confirmation" name="password_confirmation" 
+                                    placeholder="Masukkan konfirmasi password">
+                                    @error('password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                  </div>
                                 </div>
+                              </div>
+                              <div class="card-footer text-right">
+                                <button class="btn btn-primary">Ubah Password</button>
+                              </div>
+                            </form>
+                              </div>
                             </div>
-                            <div class="card-footer text-right">
-                              <button class="btn btn-primary">Save Changes</button>
-                            </div>
-                          </form>
                         </div>
                       </div>
                     </div>

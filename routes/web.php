@@ -63,7 +63,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('rswilayah', 'RumahSakitController@getrskota')->name('rs_kota');
     Route::get('rute', 'RuteController@rute')->name('rute');
     Route::get('pemetaan', 'PemetaanController@pemetaan')->name('pemetaan');
-    Route::get('profile', 'ProfilController@profil')->name('profil');
+    Route::get('password', 'PasswordController@password')->name('password');
+    Route::put('password/update', 'PasswordController@changePassword')->name('password.update');
     Route::get('pasien', 'PasienController@index')->name('data_pasien');
     Route::get('pasien/create', 'PasienController@create')->name('create');
     Route::get('pasien/getdatawilayah', 'PasienController@getDataWilayah')->name('pasien_wilayah');
@@ -82,4 +83,6 @@ Route::group(['prefix' => 'petugas', 'as' => 'petugas.', 'namespace' => 'Petugas
     Route::get('kelurahan/download', 'KelurahanController@downloadPDF')->name('download-kelurahan');
     Route::resource('kelurahan', 'KelurahanController');
     Route::resource('post', 'PostController');
+    Route::get('password', 'PasswordController@password')->name('password');
+    Route::put('password/update', 'PasswordController@changePassword')->name('password.update');
 });

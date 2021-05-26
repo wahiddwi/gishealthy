@@ -12,13 +12,15 @@
         <div class="d-sm-none d-lg-inline-block">Hi, {{Auth::user()->name}}</div></a>
         <div class="dropdown-menu dropdown-menu-right">
           {{-- <div class="dropdown-title">Logged in 5 min ago</div> --}}
-          <a href="{{ route('admin.profil') }}" class="dropdown-item has-icon">
-            <i class="far fa-user"></i> Profile
+        @if(Auth::user()->role->id == 1)
+          <a href="{{ route('admin.password') }}" class="dropdown-item has-icon">
+            <i class="far fa-user"></i> Ubah Password
           </a>
-          {{-- <a href="features-activities.html" class="dropdown-item has-icon">
-            <i class="fas fa-bolt"></i> Activities
-          </a> --}}
-          {{-- <div class="dropdown-divider"></div> --}}
+        @elseif(Auth::user()->role->id == 3)
+        <a href="{{ route('petugas.password') }}" class="dropdown-item has-icon">
+          <i class="far fa-user"></i> Ubah Password
+        </a>
+        @endif
             <a class="dropdown-item has-icon" href="{{ route('logout') }}"
               onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
