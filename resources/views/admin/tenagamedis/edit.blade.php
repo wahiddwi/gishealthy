@@ -13,39 +13,65 @@
         <div class="card">
             <div class="form-group">
                 <label for="nama">Jumlah Tenaga Medis</label>
-                <input type="text" name="jumlah_tenaga_medis" value="{{ $tenagamedis->jumlah_tenaga_medis }}" class="form-control">
+                <input type="text" name="jumlah_tenaga_medis" value="{{ $tenagamedis->jumlah_tenaga_medis }}"
+                class="form-control @error('jumlah_tenaga_medis') is-invalid @enderror" required>
+                @error('jumlah_tenaga_medis')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
             </div>
             <div class="form-group">
                 <label>Rumah Sakit</label>
-                <select class="form-control" name="id_rumahsakit">
+                <select class="form-control @error('id_rumahsakit') is-invalid @enderror" name="id_rumahsakit" required>
                     @foreach ($laykes as $data)
                       <option value="{{$data->id}}" {{$data->id == $tenagamedis->id_rumahsakit ? 'selected' : ''}}>{{ $data->nama_rumahsakit }}</option>
                     @endforeach
                 </select>
+                @error('id_rumahsakit')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
             <div class="form-group">
                 <label>Kelurahan</label>
-                <select class="form-control" name="id_kelurahan">
+                <select class="form-control @error('id_kelurahan') is-invalid @enderror" name="id_kelurahan" required>
                     @foreach ($kelurahan as $data)
                       <option value="{{$data->id}}" {{$data->id == $tenagamedis->id_kelurahan ? 'selected' : ''}}>{{ $data->nama }}</option>
                     @endforeach
                 </select>
+                @error('id_kelurahan')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
               <div class="form-group">
                 <label>Kecamatan</label>
-                <select class="form-control" name="id_kecamatan">
+                <select class="form-control @error('id_kecamatan') is-invalid @enderror" name="id_kecamatan" required>
                 @foreach ($kecamatan as $data)
                     <option value="{{$data->id}}" {{$data->id == $tenagamedis->id_kecamatan ? 'selected' : ''}}>{{ $data->nama }}</option>
                 @endforeach
                 </select>
+                @error('id_kecamatan')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
               <div class="form-group">
                 <label>Wilayah</label>
-                <select class="form-control" name="id_wilayah">
+                <select class="form-control @error('id_wilayah') is-invalid @enderror" name="id_wilayah" required>
                 @foreach ($wilayah as $data)
                     <option value="{{$data->id}}" {{$data->id == $tenagamedis->id_wilayah ? 'selected' : ''}}>{{ $data->nama }}</option>
                 @endforeach
                 </select>
+                @error('id_wilayah')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
             <div class="card-footer text-right">
                 <button class="btn btn-warning fas fa-edit" type="submit">Ubah</button>

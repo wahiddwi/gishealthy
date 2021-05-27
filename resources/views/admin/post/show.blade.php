@@ -27,7 +27,7 @@
           <div class="card-body">
             <h1>{{ $post->judul }}</h1>
             <p>Created At : {{ $post->created_at }}</p>
-            <p>Author : {{ Auth::user()->name }}</p>
+            <p>Author : {{ $post->user->name }}</p>
             <p style="text-align: center"><img src="{{ asset($post->gambar) }}" width="400"></p>
             {{-- <p><b>{{ Auth::user()->role->name }}</b></p> --}}
             <hr>

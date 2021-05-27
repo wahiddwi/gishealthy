@@ -13,7 +13,13 @@
         <div class="card">
             <div class="form-group">
                 <label for="nama">Nama Wilayah</label>
-                <input type="text" name="nama" value="{{ $wilayah->nama }}" class="form-control">
+                <input type="text" name="nama" value="{{ $wilayah->nama }}"
+                class="form-control @error('nama') is-invalid @enderror" required>
+                @error('nama')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
             </div>
             <div class="card-footer text-right">
                 <button class="btn btn-warning fas fa-edit" type="submit">Ubah</button>

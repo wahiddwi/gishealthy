@@ -53,6 +53,18 @@ class LaykesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nama_rumahsakit' => 'required',
+            'alamat' => 'required',
+            'no_telpon' => 'required',
+            'jumlah_kamar' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'id_wilayah' => 'required',
+            'id_kelurahan' => 'required',
+            'id_kecamatan' => 'required',
+            'user_id' => 'required'
+        ]);
         $laykes = new Laykes();
         $laykes->nama_rumahsakit = $request->nama_rumahsakit;
         $laykes->alamat = $request->alamat;

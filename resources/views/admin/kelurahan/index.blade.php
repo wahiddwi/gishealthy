@@ -9,7 +9,7 @@
 
     <div class="section-body">
       <div>
-        <a href="{{route('admin.kelurahan.create')}}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#btn-create"> Tambah Kelurahan</a>
+        <a href="{{route('petugas.kelurahan.create')}}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#btn-create"> Tambah Kelurahan</a>
         <a href="{{ route('petugas.download-kelurahan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
@@ -40,9 +40,9 @@
                             <td>{{ $data->created_at }}</td>
                             <td>{{ $data->updated_at }}</td>
                             <td>
-                              <a href="{{ route('admin.kelurahan.edit', $data->id) }}" class="btn btn-warning fa fa-edit"></a>
+                              <a href="{{ route('petugas.kelurahan.edit', $data->id) }}" class="btn btn-warning fa fa-edit"></a>
                               <a href="#" data-id="{{ $data->id }}" class="btn btn-danger fas fa-trash swal-confirm">
-                                <form action="{{ route('admin.kelurahan.destroy', $data->id) }}" id="deleteKelurahan{{ $data->id }}" method="POST">
+                                <form action="{{ route('petugas.kelurahan.destroy', $data->id) }}" id="deleteKelurahan{{ $data->id }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 </form>
@@ -54,23 +54,6 @@
               </table>
           </div>
       </div>
-              {{-- <div class="card-footer text-right">
-                <nav class="d-inline-block">
-                  <ul class="pagination mb-0">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                    </li>
-                  </ul>
-                </nav>
-              </div> --}}
         </div>
     </div>
 @endsection
@@ -86,35 +69,46 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ route('admin.kelurahan.store') }}" method="POST">
+        <form action="{{ route('petugas.kelurahan.store') }}" method="POST">
           @csrf
         <div class="modal-body">
             <div class="card-body">
               <div class="form-group">
-                <label @error('nama')
-                    class="text-danger"
-                @enderror>Nama @error('nama')
-                    | {{$message}}
-                @enderror</label>
-                <input type="text" class="form-control" value="{{ old('nama') }}" id="inputName" name="nama" placeholder="Nama Kelurahan" autofocus>
+                <label >Nama </label>
+                <input type="text" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" id="inputName" name="nama" placeholder="Nama Kelurahan" autofocus required>
+                @error('nama')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
               <div class="form-group">
                 <label>Kecamatan</label>
-                <select class="form-control" name="id_kecamatan">
-                  <option>--Pilih Kecamatan--</option>
+                <select class="form-control @error('id_kecamatan') is-invalid @enderror" name="id_kecamatan" required>
+                  <option value="">--Pilih Kecamatan--</option>
                     @foreach ($kecamatan as $item)
                       <option value="{{ $item->id }}">{{ $item->nama }}</option>
                     @endforeach
                 </select>
+                @error('id_kecamatan')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
               <div class="form-group">
                 <label>Wilayah</label>
-                <select class="form-control" name="id_wilayah">
-                  <option>--Pilih Wilayah--</option>
+                <select class="form-control @error('id_wilayah') is-invalid @enderror" name="id_wilayah" required>
+                  <option value="">--Pilih Wilayah--</option>
                     @foreach ($wilayah as $w)
                       <option value="{{ $w->id }}">{{ $w->nama }}</option>
                     @endforeach
                 </select>
+                @error('id_wilayah')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
             </div>
           </div>

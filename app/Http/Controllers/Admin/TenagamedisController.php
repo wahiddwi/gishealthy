@@ -47,6 +47,13 @@ class TenagamedisController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'jumlah_tenaga_medis' => 'required',
+            'id_rumahsakit' => 'required',
+            'id_kelurahan' => 'required',
+            'id_kecamatan' => 'required',
+            'id_wilayah' => 'required'
+        ]);
         $tenagamedis = new TenagaMedis();
         $tenagamedis->jumlah_tenaga_medis = $request->jumlah_tenaga_medis;
         $tenagamedis->id_rumahsakit = $request->id_rumahsakit;
@@ -97,6 +104,13 @@ class TenagamedisController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'jumlah_tenaga_medis' => 'required',
+            'id_rumahsakit' => 'required',
+            'id_kelurahan' => 'required',
+            'id_kecamatan' => 'required',
+            'id_wilayah' => 'required'
+        ]);
         $tenagamedis = TenagaMedis::findOrFail($id);
         $tenagamedis->jumlah_tenaga_medis = $request->jumlah_tenaga_medis;
         $tenagamedis->id_kelurahan = $request->id_kelurahan;

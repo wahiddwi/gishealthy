@@ -36,9 +36,9 @@
                             <td>{{ $k->created_at }}</td>
                             <td>{{ $k->updated_at }}</td>
                             <td>
-                              <a href="{{ route('admin.kecamatan.edit', $k->id) }}" class="btn btn-warning fa fa-edit"></a>
+                              <a href="{{ route('petugas.kecamatan.edit', $k->id) }}" class="btn btn-warning fa fa-edit"></a>
                               <a href="#" data-id="{{ $k->id }}" class="btn btn-danger fas fa-trash swal-confirm">
-                                <form action="{{ route('admin.kecamatan.destroy', $k->id) }}" id="deleteKecamatan{{ $k->id }}" method="POST">
+                                <form action="{{ route('petugas.kecamatan.destroy', $k->id) }}" id="deleteKecamatan{{ $k->id }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 </form>
@@ -50,23 +50,6 @@
               </table>
           </div>
       </div>
-              {{-- <div class="card-footer text-right">
-                <nav class="d-inline-block">
-                  <ul class="pagination mb-0">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                    </li>
-                  </ul>
-                </nav>
-              </div> --}}
         </div>
     </div>
 @endsection
@@ -82,26 +65,33 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ route('admin.kecamatan.store') }}" method="POST">
+        <form action="{{ route('petugas.kecamatan.store') }}" method="POST">
           @csrf
         <div class="modal-body">
             <div class="card-body">
               <div class="form-group">
-                <label @error('nama')
-                    class="text-danger"
-                @enderror>Nama @error('nama')
-                    | {{$message}}
-                @enderror</label>
-                <input type="text" class="form-control" value="{{ old('nama') }}" id="inputName" name="nama" placeholder="Nama Kecamatan" autofocus>
+                <label for="nama">Nama</label>
+                <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                value="{{ old('nama') }}" id="inputName" name="nama" placeholder="Nama Kecamatan" autofocus required>
+                @error('nama')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
               <div class="form-group">
                 <label>Wilayah</label>
-                <select class="form-control" name="id_wilayah">
-                  <option>--Pilih Wilayah--</option>
+                <select class="form-control @error('id_wilayah') is-invalid @enderror" name="id_wilayah" required>
+                  <option value="">--Pilih Wilayah--</option>
                     @foreach ($wilayah as $w)
                       <option value="{{ $w->id }}">{{ $w->nama }}</option>
                     @endforeach
                 </select>
+                @error('id_wilayah')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
             </div>
           </div>

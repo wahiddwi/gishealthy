@@ -11,13 +11,14 @@
             @method('patch')
         
         <div class="card">
+            <div class="card-body">
             <div class="form-group">
                 <label for="nama">Nama Kecamatan</label>
-                <input type="text" name="nama" value="{{ $kecamatan->nama }}" class="form-control">
+                <input type="text" name="nama" value="{{ $kecamatan->nama }}" class="form-control @error('nama') is-invalid @enderror" required>
             </div>
             <div class="form-group">
                 <label>Wilayah</label>
-                <select class="form-control" name="id_wilayah">
+                <select class="form-control @error('id_wilayah') is-invalid @enderror" name="id_wilayah" required>
                     @foreach ($wilayah as $w)
                       <option value="{{$w->id}}" {{$w->id == $kecamatan->id_wilayah ? 'selected' : ''}}>{{ $w->nama }}</option>
                     @endforeach
@@ -28,6 +29,7 @@
                 <button class="btn btn-danger fa fa-trash" type="reset">Reset</button>
             </div>
         </div>
+    </div>
     </form>
     </div>
 @endsection

@@ -12,18 +12,6 @@
     </div>
     @section('modal')
     <div class="container">
-      @if ($errors->any())
-        @foreach ($errors->all() as $errors)
-        <div class="alert alert-danger alert-dismissible show fade" role="alert">
-          <span class="badge badge-pill badge-danger">Error</span>{{$error}}
-          {{-- <div class="alert-body"> --}}
-            <button class="close" type="button" data-dismiss="alert" aria-label="close">
-                <span aria-hidden="true">x</span>
-            </button>
-          {{-- </div> --}}
-        </div>
-        @endforeach
-      @endif
       <div class="row">
             <div class="col-lg-9">
                 <div class="card">
@@ -41,12 +29,23 @@
                         @method('put')
                         <div class="form-group">
                           <label for="judul" class="font-weight-bolder">Judul</label>
-                        <input type="text" class="form-control" name="judul" value="{{$post->judul}}" aria-describedby="emailHelp" placeholder="Judul">
+                        <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul" value="{{$post->judul}}" aria-describedby="emailHelp" placeholder="Judul" required>
+                        @error('judul')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror
                         </div>
                         
                         <div class="form-group">
                           <label for="textarea-input" class="form-control-label">Content</label>
-                          <textarea name="body" id="summernote" rows="9" class="form-control">{{ $post->body }}</textarea>
+                          <textarea name="body" id="summernote" rows="9"
+                          class="form-control @error('body') is-invalid @enderror">{{ $post->body }}</textarea required>
+                          @error('body')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Publish</button>
@@ -62,10 +61,15 @@
                           </div>
                           <span id="gambar"></span>
                     </div>
-                    <div class="custom-file">
-                        <input type="file" name="gambar" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" value="{{ $post->gambar }}" style="overflow: hidden" for="customFile">Choose file</label>
-                    </div>
+                    <div class="form-group">
+                      <input type="file" name="gambar" class="form-control @error('body') is-invalid @enderror"
+                      id="customFile" required>
+                      @error('gambar')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
                 </form>
                 </div>
             </div>

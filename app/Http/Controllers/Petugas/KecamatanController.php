@@ -41,6 +41,11 @@ class KecamatanController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nama' => 'required',
+            'id_wilayah' => 'required'
+        ]);
+
         $kecamatan = new Kecamatan();
         $kecamatan->nama = $request->nama;
         $kecamatan->id_wilayah = $request->id_wilayah;
@@ -84,6 +89,10 @@ class KecamatanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'nama' => 'required',
+            'id_wilayah' => 'required'
+        ]);
         $kecamatan = Kecamatan::findOrFail($id);
         $kecamatan->nama = $request->nama;
         $kecamatan->id_wilayah = $request->id_wilayah;

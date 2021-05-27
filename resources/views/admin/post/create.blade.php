@@ -9,36 +9,9 @@
 @section('content')
     
 <div class="section-body">
-    </div>
+  </div>
     @section('modal')
     <div class="container">
-      @if (count($errors)>0)
-        <div class="alert alert-danger alert-dismissible show fade">
-        <div class="alert-body">
-          <button class="close" data-dismiss="alert">
-            <span>×</span>
-          </button>
-            <ul>
-              @foreach ($errors->all() as $errors)
-                  <li>
-                    {{$errors}}
-                  </li>
-              @endforeach
-            </ul>
-        </div>
-        </div>          
-      @endif
-        
-        @if (Session::has('success'))
-        <div class="alert alert-info alert-dismissible show fade">
-          <div class="alert-body">
-            <button class="close" data-dismiss="alert" role="alert">
-              <span>×</span>
-            </button>
-              {{ Session('success') }}
-          </div>
-        </div>
-        @endif
       <div class="row">
             <div class="col-lg-9">
                 <div class="card">
@@ -52,19 +25,27 @@
                       <form  method="post" action="{{ route('petugas.post.store') }}" enctype="multipart/form-data"
                       class="form-horizontal">
                       @endif
-                      {{-- <form  method="post" action="{{ route('admin.post.store') }}" enctype="multipart/form-data"
-                      class="form-horizontal"> --}}
                         @csrf
                         
                         <div class="form-group">
                           <label for="judul" class="font-weight-bolder">Judul</label>
-                        <input type="text" class="form-control" name="judul" aria-describedby="emailHelp" placeholder="Judul">
+                        <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul" aria-describedby="emailHelp"
+                        placeholder="Judul" required>
+                        @error('judul')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
                         </div>
                         
                         <div class="form-group">
-                          <label for="textarea-input" class="form-control-label">Content</label>
-                          {{-- <textarea name="body" class="form-control" id="body"></textarea> --}}
-                          <textarea name="body"  id="summernote" rows="9" class="form-control"></textarea>
+                          <label for="textarea-input" class="form-control-label ">Content</label>
+                          <textarea name="body"  id="summernote" rows="9" class="form-control @error('body') is-invalid @enderror" required></textarea>
+                          @error('judul')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Publish</button>
@@ -73,19 +54,22 @@
             </div>
             <div class="col-lg-3">
                 <div class="card">
-                  <div class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <strong>Tambah Gambar</strong>
+                            <strong>Thumbnail</strong>
                           </div>
                           <span id="gambar"></span>
                     </div>
-                    <div class="custom-file">
-                        <input type="file" name="gambar" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" style="overflow: hidden" for="customFile">Choose file</label>
+                    <div class="form-group">
+                        <input type="file" name="gambar" class="form-control @error('body') is-invalid @enderror"
+                        id="customFile" required>
+                        @error('gambar')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror
                     </div>
                 </form>
-                </div>
             </div>
         </div>
 

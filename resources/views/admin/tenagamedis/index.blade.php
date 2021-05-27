@@ -76,48 +76,70 @@
         <div class="modal-body">
             <div class="card-body">
               <div class="form-group">
-                <label @error('nama')
-                    class="text-danger"
-                @enderror>Jumlah Tenaga Medis @error('nama')
-                    | {{$message}}
-                @enderror</label>
-                <input type="text" class="form-control" id="inputName" name="jumlah_tenaga_medis" placeholder="Jumlah Tenaga Medis">
+                <label>Jumlah Tenaga Medis</label>
+                <input type="text" class="form-control  @error('jumlah_tenaga_medis') is-invalid @enderror" id="inputName" name="jumlah_tenaga_medis"
+                placeholder="Jumlah Tenaga Medis" required>
+                @error('jumlah_tenaga_medis')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
               <div class="form-group">
                 <label>Rumah Sakit</label>
-                <select class="form-control" name="id_rumahsakit">
-                  <option>--Pilih Rumah Sakit--</option>
+                <select class="form-control @error('id_rumahsakit') is-invalid @enderror" name="id_rumahsakit" required>
+                  <option value="">--Pilih Rumah Sakit--</option>
                     @foreach ($laykes as $data)
                       <option value="{{ $data->id }}">{{ $data->nama_rumahsakit }}</option>
                     @endforeach
                 </select>
+                @error('id_rumahsakit')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
               <div class="form-group">
                 <label>Kelurahan</label>
-                <select class="form-control" name="id_kelurahan">
-                  <option>--Pilih Kelurahan--</option>
+                <select class="form-control @error('id_kelurahan') is-invalid @enderror" name="id_kelurahan" required>
+                  <option value="">--Pilih Kelurahan--</option>
                     @foreach ($kelurahan as $data)
                       <option value="{{ $data->id }}">{{ $data->nama }}</option>
                     @endforeach
                 </select>
+                @error('id_kelurahan')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
               <div class="form-group">
                 <label>Kecamatan</label>
-                <select class="form-control" name="id_kecamatan">
-                  <option>--Pilih Kecamatan--</option>
+                <select class="form-control @error('id_kecamatan') is-invalid @enderror" name="id_kecamatan" required>
+                  <option value="">--Pilih Kecamatan--</option>
                     @foreach ($kecamatan as $data)
                       <option value="{{ $data->id }}">{{ $data->nama }}</option>
                     @endforeach
                 </select>
+                @error('id_kecamatan')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
               <div class="form-group">
                 <label>Wilayah</label>
-                <select class="form-control" name="id_wilayah">
-                  <option>--Pilih Wilayah--</option>
+                <select class="form-control @error('id_wilayah') is-invalid @enderror" name="id_wilayah" required>
+                  <option value="">--Pilih Wilayah--</option>
                     @foreach ($wilayah as $data)
                       <option value="{{ $data->id }}">{{ $data->nama }}</option>
                     @endforeach
                 </select>
+                @error('id_wilayah')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
               </div>
             </div>
           </div>

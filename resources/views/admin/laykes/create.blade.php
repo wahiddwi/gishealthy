@@ -23,56 +23,108 @@
       <div class="card-body">
         <div class="form-group">
           <label for="inputAddress2">Nama Layanan Kesehatan</label>
-          <input type="text" class="form-control" name="nama_rumahsakit" id="inputAddress2" placeholder="Nama Rumah Sakit">
+          <input type="text" class="form-control @error('nama_rumahsakit') is-invalid @enderror"
+           name="nama_rumahsakit" id="inputAddress2" placeholder="Nama Rumah Sakit" required>
+            @error('nama_rumahsakit')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+            @enderror
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputPassword4">Latitude</label>
-            <input type="text" name="latitude" class="form-control" id="latitude" placeholder="Latitude">
+            <input type="text" name="latitude" class="form-control @error('latitude') is-invalid @enderror"
+            id="latitude" placeholder="Latitude" required>
+            @error('latitude')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
           </div>
           <div class="form-group col-md-6">
             <label for="inputEmail4">Longitude</label>
-            <input type="text" name="longitude" class="form-control" id="longitude" placeholder="Longitude">
+            <input type="text" name="longitude" class="form-control @error('longitude') is-invalid @enderror"
+            id="longitude" placeholder="Longitude" required>
+            @error('longitude')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
           </div>
         </div>
         <div class="form-group">
           <label for="inputAddress">Alamat</label>
-          <input type="text" class="form-control" name="alamat" id="inputAddress" placeholder="Alamat Lengkap">
+          <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat"
+          id="inputAddress" placeholder="Alamat Lengkap" required>
+          @error('alamat')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
         </div>
         <div class="form-group">
           <label for="inputPassword4">Wilayah</label>
-          <select id="inputState" class="form-control" name="id_wilayah">
+          <select id="inputState" class="form-control @error('id_wilayah') is-invalid @enderror" name="id_wilayah" required>
             <option selected="">--Pilih Wilayah--</option>
             @foreach ($wilayah as $data)
             <option value="{{ $data->id }}">{{ $data->nama }}</option>
           @endforeach
           </select>
+          @error('id_wilayah')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
         </div>
         <div class="form-group">
           <label for="inputPassword4">Kecamatan</label>
-          <select id="inputState" class="form-control" name="id_kecamatan">
+          <select id="inputState" class="form-control @error('id_kecamatan') is-invalid @enderror" name="id_kecamatan" required>
             <option selected="">--Pilih Kecamatan--</option>
             @foreach ($kecamatan as $item)
             <option value="{{ $item->id }}">{{ $item->nama }}</option>
           @endforeach
           </select>
+          @error('id_kecamatan')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
         </div>
         <div class="form-group">
           <label for="inputPassword4">Kelurahan</label>
-          <select id="inputState" class="form-control" name="id_kelurahan">
+          <select id="inputState" class="form-control @error('id_kelurahan') is-invalid @enderror"
+          name="id_kelurahan" required>
             <option selected="">--Pilih Kelurahan--</option>
             @foreach ($kelurahan as $data)
             <option value="{{ $data->id }}">{{ $data->nama }}</option>
           @endforeach
           </select>
+          @error('id_kelurahan')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
         </div>
         <div class="form-group">
           <label for="inputAddress2">No. Telpon</label>
-          <input type="text" name="no_telpon" class="form-control" id="inputAddress2" placeholder="No. Telpon">
+          <input type="text" name="no_telpon" class="form-control @error('no_telpon') is-invalid @enderror"
+          id="inputAddress2" placeholder="No. Telpon" required>
+          @error('no_telpon')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
         </div>
         <div class="form-group">
           <label for="inputAddress2">Jumlah Kamar</label>
-          <input type="text" name="jumlah_kamar" class="form-control" id="inputAddress2" placeholder="Jumlah Kamar">
+          <input type="text" name="jumlah_kamar" class="form-control @error('jumlah_kamar') is-invalid @enderror"
+          id="inputAddress2" placeholder="Jumlah Kamar" required>
+          @error('jumlah_kamar')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
         </div>
       </div>
       <div class="card-footer">

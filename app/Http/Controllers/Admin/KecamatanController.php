@@ -41,7 +41,11 @@ class KecamatanController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        $this->validate($request, [
+            'nama' => 'required',
+            'id_wilayah' => 'required'
+        ]);
+
         $kecamatan = new Kecamatan();
         $kecamatan->nama = $request->nama;
         $kecamatan->id_wilayah = $request->id_wilayah;
@@ -85,18 +89,20 @@ class KecamatanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'nama' => 'required',
+            'id_wilayah' => 'required'
+        ]);
+
         $kecamatan = Kecamatan::findOrFail($id);
         $kecamatan->nama = $request->nama;
-        $kecamatan->id_wilayah = $request->id_wilayah; 
+        $kecamatan->id_wilayah = $request->id_wilayah;
         $kecamatan->update();
 
         // return 'data berhasil diupdate';
 
-
-
         Toastr::success('Data berhasil diubah', 'success');
         return redirect()->route('admin.kecamatan.index');
-        
     }
 
     /**
@@ -110,7 +116,6 @@ class KecamatanController extends Controller
         Kecamatan::where('id', $id)->delete();
         Toastr::success('Data Kecamatan berhasil di hapus', 'success');
         return redirect()->back();
-        
     }
 
     public function downloadPDF()
@@ -119,6 +124,5 @@ class KecamatanController extends Controller
         $kecamatan = Kecamatan::all();
         $pdf = PDF::loadView('admin.kecamatan.download_kecamatan', compact('wilayah', 'kecamatan'));
         return $pdf->download('data_kelurahan.pdf');
-        
     }
 }

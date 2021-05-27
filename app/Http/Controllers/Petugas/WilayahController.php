@@ -39,6 +39,9 @@ class WilayahController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nama' => 'required'
+        ]);
         Wilayah::create($request->all());
         Toastr::success('Data berhasil ditambah', 'success');
         return redirect()->back();
