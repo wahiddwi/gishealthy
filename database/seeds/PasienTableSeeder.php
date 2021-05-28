@@ -17,19 +17,19 @@ class PasienTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create('id_ID');
-        for ($i=0; $i <20 ; $i++) {
+        for ($i = 0; $i < 12; $i++) {
             Pasien::insert([
                 'id_kelurahan' => kelurahan::all()->random()->id,
                 'id_kecamatan' => kecamatan::all()->random()->id,
                 'id_wilayah' => wilayah::all()->random()->id,
                 'nama_pasien' => $faker->name,
-                'usia' => $faker->numberBetween(1,100),
+                'usia' => $faker->numberBetween(1, 100),
                 'jenis_kelamin' => $faker->randomElement(['P', 'L']),
                 'status' => $faker->randomElement(['Positif', 'Meninggal', 'Sembuh']),
                 'alamat' => $faker->address,
-                'created_at' => Carbon::now(),
+                'created_at' => '2021-' . mt_rand(1, 12) . '-12',
                 'updated_at' => Carbon::now()
-            ]); 
+            ]);
         }
     }
 }

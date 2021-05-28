@@ -310,68 +310,65 @@ crossorigin="">
   <script>
     //highchart
     Highcharts.chart('container', {
-
-title: {
-text: 'Grafik Penyebaran Covid-19'
-},
-
-yAxis: {
-title: {
-    text: 'Number of Employees'
-}
-},
-
-xAxis: {
-accessibility: {
-    rangeDescription: 'Range: 2010 to 2017'
-}
-},
-
-legend: {
-layout: 'vertical',
-align: 'right',
-verticalAlign: 'middle'
-},
-
-plotOptions: {
-series: {
-    label: {
-        connectorAllowed: false
+    
+    title: {
+        text: 'Grafik Penyebaran Covid-19'
     },
-    pointStart: 2010
-}
-},
-@foreach ($allData as $data)
-series: [{
-//     name: 'Total Kasus',
-//     data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-// }, {
-name: 'Positif',
-data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-}, {
-name: 'Sembuh',
-data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-}, {
-name: 'Meninggal',
-data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-}],
-@endforeach
-responsive: {
-rules: [{
-    condition: {
-        maxWidth: 400
+    
+    subtitle: {
+        text: 'Source: Gishealthy'
     },
-    chartOptions: {
-        legend: {
-            layout: 'horizontal',
-            align: 'center',
-            verticalAlign: 'bottom'
+    
+    yAxis: {
+        title: {
+            text: 'Jumlah kasus Covid-19'
         }
+    },
+    
+    xAxis: {
+        categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+    },
+    
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+    
+    plotOptions: {
+        series: {
+            allowPointSelect: true
+        }
+    },
+    series: [{
+        name: 'Total Kasus',
+        data: {!!$total_kasus!!}
+    }, {
+        name: 'Positif',
+        data: {!!$total_positif!!}
+    }, {
+        name: 'Sembuh',
+        data: {!!$total_sembuh!!}
+    }, {
+        name: 'Meninggal',
+        data: {!!$total_meninggal!!}
+    }],
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 400
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
     }
-}]
-}
-
-});
-
-</script>
+    
+    });
+    
+    </script>
 @endsection

@@ -1,5 +1,6 @@
 @extends('layouts.backend.master')
 @section('title', 'Dashboard')
+
 @section('content')
 
     <div class="section-body">
@@ -31,39 +32,36 @@
                 @endforeach
             </div>
               <br><br>
-              <div id="container"></div>
+              <div id="container" style="width: 990px"></div>
             </div>
           </div>
         </div>
-    <link rel="stylesheet" href="{{asset('assets/css/chart.css')}}">
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     
-    <script>
-        Highcharts.chart('container', {
+<script>
+    
+Highcharts.chart('container', {
 
 title: {
     text: 'Grafik Penyebaran Covid-19'
 },
 
 subtitle: {
-    // text: 'Source: covid19.bnpb.go.id'
+    text: 'Source: Gishealthy'
 },
 
 yAxis: {
     title: {
-        text: 'Number of Employees'
+        text: 'Jumlah kasus Covid-19'
     }
 },
 
 xAxis: {
-    @foreach ($allData as $data)
-    accessibility: {
-        rangeDescription: 'Range: 2010 to 2017'
-    }
+    categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
 },
 
 legend: {
@@ -74,26 +72,22 @@ legend: {
 
 plotOptions: {
     series: {
-        label: {
-            connectorAllowed: false
-        },
-        pointStart: 2010
+        allowPointSelect: true
     }
 },
 series: [{
-//     name: 'Total Kasus',
-//     data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-// }, {
+    name: 'Total Kasus',
+    data: {!!$total_kasus!!}
+}, {
     name: 'Positif',
-    data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+    data: {!!$total_positif!!}
 }, {
     name: 'Sembuh',
-    data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+    data: {!!$total_sembuh!!}
 }, {
     name: 'Meninggal',
-    data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+    data: {!!$total_meninggal!!}
 }],
-@endforeach
 responsive: {
     rules: [{
         condition: {
@@ -110,7 +104,10 @@ responsive: {
 }
 
 });
-    </script>
+
+</script>
     
-{{-- @endsection --}}
 @endsection
+@push('after-script')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+@endpush
