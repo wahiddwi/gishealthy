@@ -1,6 +1,5 @@
 @extends('layouts.frontend.master')
 @push('page-styles')
-<link rel="stylesheet" href="{{asset('assets/css/chart.css')}}">
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
