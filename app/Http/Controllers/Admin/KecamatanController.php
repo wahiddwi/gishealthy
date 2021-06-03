@@ -118,11 +118,5 @@ class KecamatanController extends Controller
         return redirect()->back();
     }
 
-    public function downloadPDF()
-    {
-        $wilayah = Wilayah::all();
-        $kecamatan = Kecamatan::all();
-        $pdf = PDF::loadView('admin.kecamatan.download_kecamatan', compact('wilayah', 'kecamatan'));
-        return $pdf->download('data_kelurahan.pdf');
-    }
+
 }

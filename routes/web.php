@@ -63,12 +63,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('pemetaan', 'PemetaanController@pemetaan')->name('pemetaan');
     Route::get('password', 'PasswordController@password')->name('password');
     Route::put('password/update', 'PasswordController@changePassword')->name('password.update');
-    Route::get('pasien', 'PasienController@index')->name('data_pasien');
-    Route::get('pasien/create', 'PasienController@create')->name('create');
+
     Route::get('pasien/getdatawilayah', 'PasienController@getDataWilayah')->name('pasien_wilayah');
     Route::get('pasien/getdatakecamatan', 'PasienController@getDatakecamatan')->name('pasien_kecamatan');
     Route::get('pasien/getdatakelurahan', 'PasienController@getDatakelurahan')->name('pasien_kelurahan');
     Route::get('pasien/getAllData', 'PasienController@getAllData')->name('pasien_allData');
+    Route::resource('pasien', 'PasienController');
+
+
 });
 ////Petugas/////
 Route::group(['prefix' => 'petugas', 'as' => 'petugas.', 'namespace' => 'Petugas', 'middleware' => ['auth', 'petugas']], function () {

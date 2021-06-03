@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use App\User;
 use App\Wilayah;
 use App\Kecamatan;
@@ -8,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kelurahan extends Model
 {
-    protected $table ='kelurahan';
+    protected $table = 'kelurahan';
     protected $fillable = ['nama, id_wilayah, id_kecamatan'];
 
     public function wilayah()
@@ -23,7 +24,7 @@ class Kelurahan extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function laykes()
@@ -40,5 +41,4 @@ class Kelurahan extends Model
     {
         return $this->hasMany(Pasien::class, 'id', 'id');
     }
-
 }

@@ -3,7 +3,7 @@
 @push('page-styles')
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-    
+
 @endpush
 @section('content')
 
@@ -29,7 +29,7 @@
                         <th>Kecamatan</th>
                         <th>Kota Madya</th>
                         <th>User</th>
-                        <th>Action</th>
+                        {{-- <th>Action</th> --}}
                       </tr>
                 </thead>
                 <tbody>
@@ -45,7 +45,7 @@
                         <td>{{ $l->kecamatan->nama }}</td>
                         <td>{{ $l->wilayah->nama }}</td>
                         <td>{{ Auth::user()->name }}</td>
-                        <td class="text-center">
+                        {{-- <td class="text-center">
                           <a href="{{ route('admin.laykes.edit', $l->id) }}" class="btn btn-sm btn-warning fa fa-edit"></a>
                           <a href="#" data-id="{{ $l->id }}" class="btn btn-sm btn-danger fas fa-trash swal-confirm">
                             <form action="{{ route('admin.laykes.destroy', $l->id) }}" id="deleteLaykes{{ $l->id }}" method="POST">
@@ -53,7 +53,7 @@
                             @method('delete')
                             </form>
                         </a>
-                        </td>
+                        </td> --}}
                       </tr>
                   @endforeach
               </tbody>
@@ -70,5 +70,5 @@
       $(document).ready( function () {
           $('#data_rumahsakit').DataTable();
       } );
-  </script>  
+  </script>
 @endpush

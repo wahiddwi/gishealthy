@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 @endpush
 @section('content')
-    
+
 <div class="section-body">
     </div>
     @section('modal')
@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                       <h3 class="card-title"></h3>
-                      
+
                       @if(Auth::user()->role->id == 1)
                       <form  method="post" action="{{ route('admin.post.update', $post->id) }}" enctype="multipart/form-data"
                       class="form-horizontal">
@@ -36,7 +36,7 @@
                         </span>
                       @enderror
                         </div>
-                        
+
                         <div class="form-group">
                           <label for="textarea-input" class="form-control-label">Content</label>
                           <textarea name="body" id="summernote" rows="9"
@@ -47,8 +47,8 @@
                           </span>
                         @enderror
                         </div>
-                        
-                        <button type="submit" class="btn btn-primary">Publish</button>
+
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                   </div>
             </div>

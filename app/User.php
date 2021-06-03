@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function kelurahan()
     {
-        return $this->belongsTo(Kelurahan::class, 'id', 'id');
+        return $this->belongsTo(Kelurahan::class, 'id_kelurahan', 'id');
     }
 
     public function laykes()

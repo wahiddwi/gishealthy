@@ -23,7 +23,7 @@
                               <th>Nama Kelurahan</th>
                               <th>Nama Kecamatan</th>
                               <th>Nama Wilayah</th>
-                              <th>Nama</th>
+                              <th>Nama Petugas</th>
                               <th>Created At</th>
                               <th>Updated At</th>
                               <th>Action</th>
@@ -36,7 +36,7 @@
                             <td>{{ $data->nama }}</td>
                             <td>{{ $data->kecamatan->nama }}</td>
                             <td>{{ $data->wilayah->nama }}</td>
-                            <td>{{ Auth::user()->name }}</td>
+                            <td>{{ $data->user->name }}</td>
                             <td>{{ $data->created_at }}</td>
                             <td>{{ $data->updated_at }}</td>
                             <td>
@@ -120,7 +120,7 @@
     </div>
   </div>
 </div>
-    
+
 </div>
 
 </div>
@@ -140,7 +140,7 @@
     $(document).ready( function () {
         $('#data_kelurahan').DataTable();
     } );
-</script>  
+</script>
 <script>
     $(".swal-confirm").click(function(e) {
         id = e.target.dataset.id;

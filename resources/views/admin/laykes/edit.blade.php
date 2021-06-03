@@ -20,6 +20,7 @@
       <form action="{{ route('admin.laykes.update', $laykes->id) }}" method="POST">
       @csrf
       @method('put')
+      <div class="card">
       <div class="card-body">
         <div class="form-group">
           <label for="inputAddress2">Nama Layanan Kesehatan</label>
@@ -125,9 +126,11 @@
         @enderror
         </div>
       </div>
+
       <div class="card-footer">
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit">Simpan</button>
       </div>
+    </div>
     </div>
   </form>
   </div>

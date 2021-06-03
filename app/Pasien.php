@@ -17,11 +17,11 @@ class Pasien extends Model
 
     public function kecamatan()
     {
-        return $this->belongsTo(kecamatan::class, 'id_kecamatan', 'id');
+        return $this->belongsTo(Kecamatan::class, 'id_kecamatan', 'id');
     }
 
     public function wilayah()
     {
-        return $$this->belongsTo(Wilayah::class, 'id_wilayah', 'id');
+        return $this->belongsTo(Wilayah::class, 'id_wilayah', 'id');
     }
 }

@@ -9,8 +9,9 @@
         <form action="{{ route('admin.tenagamedis.update', $tenagamedis->id) }}" method="POST">
             @csrf
             @method('put')
-        
+
         <div class="card">
+            <div class="card-body">
             <div class="form-group">
                 <label for="nama">Jumlah Tenaga Medis</label>
                 <input type="text" name="jumlah_tenaga_medis" value="{{ $tenagamedis->jumlah_tenaga_medis }}"
@@ -74,9 +75,10 @@
               @enderror
               </div>
             <div class="card-footer text-right">
-                <button class="btn btn-warning fas fa-edit" type="submit">Ubah</button>
+                <button class="btn btn-warning fas fa-edit" type="submit">Simpan</button>
                 <button class="btn btn-danger fa fa-trash" type="reset">Reset</button>
             </div>
+        </div>
         </div>
     </form>
     </div>
