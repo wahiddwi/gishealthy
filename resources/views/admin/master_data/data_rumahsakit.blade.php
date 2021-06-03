@@ -10,7 +10,7 @@
     <div class="section-body">
       <div>
         {{-- <a href="{{ route('admin.laykes.create') }}" class="btn btn-primary fas fa-plus"> Tambah Layanan Kesehatan</a> --}}
-        <a href="#" class="btn btn-primary fas fa-file-pdf"> Export</a>
+        <a href="{{ route('admin.download-rumahsakit') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
         <div class="card">
@@ -44,16 +44,7 @@
                         <td>{{ $l->kelurahan->nama }}</td>
                         <td>{{ $l->kecamatan->nama }}</td>
                         <td>{{ $l->wilayah->nama }}</td>
-                        <td>{{ Auth::user()->name }}</td>
-                        {{-- <td class="text-center">
-                          <a href="{{ route('admin.laykes.edit', $l->id) }}" class="btn btn-sm btn-warning fa fa-edit"></a>
-                          <a href="#" data-id="{{ $l->id }}" class="btn btn-sm btn-danger fas fa-trash swal-confirm">
-                            <form action="{{ route('admin.laykes.destroy', $l->id) }}" id="deleteLaykes{{ $l->id }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            </form>
-                        </a>
-                        </td> --}}
+                        <td>{{ $l->user->name }}</td>
                       </tr>
                   @endforeach
               </tbody>

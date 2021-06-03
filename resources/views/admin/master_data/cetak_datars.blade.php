@@ -38,38 +38,44 @@
     </style>
 </head>
 <body>
-    {{-- <div style="display:flex;"> --}}
-        <div>
-        {{-- <img style="display:block" src="{{asset('assets/img/logo.png')}}" width="50" height="50" alt=""> --}}
-        {{-- <h5 style="display:block; margin-left: 250px; font-size: 20px">Laporan Data Kecamatan</h5> --}}
-        <img style="" src="{{ltrim(public_path('assets/img/logo.png'),'/')}}" height="auto" width="120">
-        <h2 style="text-align:center; margin-top:-30px">Laporan Data Kelurahan</h2>
+    <div>
+        <img src="{{ public_path('logo.png') }}" height="auto" width="120">
+        <h2 style="text-align:center; margin-top:-30px">Laporan Data Rumah Sakit</h2>
     </div>
 
     <table style="text-align: center; margin-top: 50px;" border="1" cellspacing="0" cellpadding="8" width="100%">
         <thead>
               <tr>
-                  <th>No.</th>
-                  <th>Nama Kelurahan</th>
-                  <th>Nama Kecamatan</th>
-                  <th>Nama Wilayah</th>
-                  <th>Nama Petugas</th>
+                <th>No.</th>
+                <th>Nama Layanan</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Alamat</th>
+                <th>No. Telpon</th>
+                <th>Kelurahan</th>
+                <th>Kecamatan</th>
+                <th>Kota Madya</th>
+
               </tr>
         </thead>
         <tbody>
-          @foreach ($kelurahan as $kel)
-              <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $kel->nama }}</td>
-                <td>{{ $kel->kecamatan->nama }}</td>
-                <td>{{ $kel->wilayah->nama }}</td>
-                <td>{{ $kel->user->name }}</td>
-              </tr>
-          @endforeach
-      </tbody>
-  </table>
+            @foreach ($laykes as $l)
+            <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $l->nama_rumahsakit }}</td>
+              <td>{{ $l->longitude }}</td>
+              <td>{{ $l->latitude }}</td>
+              <td>{{ $l->alamat }}</td>
+              <td>{{ $l->no_telpon }}</td>
+              <td>{{ $l->kelurahan->nama }}</td>
+              <td>{{ $l->kecamatan->nama }}</td>
+              <td>{{ $l->wilayah->nama }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+        </table>
 
-<table style="margin-top: 30px" width="640px">
+        <table style="margin-top: 30px" width="900px">
     <tr>
         <td align="right">Jakarta, {{ \Carbon\Carbon::now()->format('d - m - Y') }}</td>
     </tr>
@@ -77,7 +83,7 @@
         <td align="right">Dilaporkan Oleh,</td>
     </tr>
     <tr>
-        <td align="right">Petugas Kelurahan</td>
+        <td align="right">{{ $l->user->name }}</td>
     </tr>
     <tr><td></td></tr>
     <tr><td></td></tr>

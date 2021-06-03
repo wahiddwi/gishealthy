@@ -3,14 +3,14 @@
 @push('page-styles')
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-    
+
 @endpush
 @section('content')
 
     <div class="section-body">
       <div>
         {{-- <a href="{{ route('admin.laykes.create') }}" class="btn btn-primary fas fa-plus"> Tambah Layanan Kesehatan</a> --}}
-        <a href="#" class="btn btn-primary fas fa-file-pdf"> Export</a>
+        <a href="{{ route('admin.download-rumahsakit-kelurahan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
         <div class="card">
@@ -22,7 +22,7 @@
                         <th>No.</th>
                         <th>Kelurahan</th>
                         <th>Jumlah Rumah Sakit Rujukan</th>
-                        <th>Action</th>
+                        {{-- <th>Action</th> --}}
                       </tr>
                 </thead>
                 <tbody>
@@ -31,10 +31,10 @@
                         <td>{{ $no+1 }}</td>
                         <td>{{ $result->nama }}</td>
                         <td>{{ $result->jumlah }}</td>
-                        <td class="text-center">
+                        {{-- <td class="text-center">
                             <a href="" class="btn btn-sm btn-info fa fa-eye"></a>
                             <a href="" class="btn btn-sm btn-danger fas fa-file-pdf"></a>
-                        </td>
+                        </td> --}}
                     </tr>
                     @endforeach
                 </tbody>
@@ -51,5 +51,5 @@
       $(document).ready( function () {
           $('#data_rumahsakitKelurahan').DataTable();
       } );
-  </script>  
+  </script>
 @endpush

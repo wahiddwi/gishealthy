@@ -52,7 +52,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('tenagamedis/wilayah', 'TenagamedisController@gettenagamediskota')->name('tenagamedis-kota');
     Route::get('tenagamedis/kecamatan', 'TenagamedisController@gettenagamediskecamatan')->name('tenagamedis-kecamatan');
     Route::get('tenagamedis/kelurahan', 'TenagamedisController@getmediskelurahan')->name('tenagamedis-kelurahan');
+    Route::get('tenagamedis/download', 'TenagamedisController@downloadPDF')->name('download-tenagamedis');
+    Route::get('tenagamedis/download/kota', 'TenagamedisController@downloadMedisKota')->name('download-medis_kota');
+    Route::get('tenagamedis/download/kecamatan', 'TenagamedisController@downloadMedisKecamatan')->name('download-medis-kecamatan');
+    Route::get('tenagamedis/download/kelurahan', 'TenagamedisController@downloadMedisKelurahan')->name('download-medis-kelurahan');
     Route::resource('tenagamedis', 'TenagamedisController');
+    Route::get('rumahsakit/download', 'RumahSakitController@downloadPDF')->name('download-rumahsakit');
+    Route::get('rumahsakit/download/kelurahan', 'RumahSakitController@downloadRsKelurahan')->name('download-rumahsakit-kelurahan');
+    Route::get('rumahsakit/download/kecamatan', 'RumahSakitController@downloadRsKecamatan')->name('download-rumahsakit-kecamatan');
+    Route::get('rumahsakit/download/kota', 'RumahSakitController@downloadRsKota')->name('download-rumahsakit-kota');
     Route::get('rumahsakit', 'RumahSakitController@data_rumahsakit')->name('data_rumahsakit');
     // Route::get('pemetaan', 'RumahSakitController@pemetaan_rs')->name('pemetaan_rs');
     Route::get('rskelurahan', 'RumahSakitController@getrskelurahan')->name('rs_kelurahan');

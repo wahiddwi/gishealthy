@@ -8,8 +8,8 @@
 
     <div class="section-body">
       <div>
-        <button href="{{ route('admin.tenagamedis.create') }}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#modalCreate"> Tambah Tenaga Medis</button>
-        <button href="#" class="btn btn-primary fas fa-file-pdf"> Export</button>
+        <a href="{{ route('admin.tenagamedis.create') }}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#modalCreate"> Tambah Tenaga Medis</a>
+        <a href="{{ route('admin.download-tenagamedis') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
         <div class="card">
@@ -21,9 +21,6 @@
                               <th>No.</th>
                               <th>Jumlah Tenaga Medis</th>
                               <th>Nama Rumah Sakit</th>
-                              {{-- <th>Kelurahan</th>
-                              <th>Kecamatan</th>
-                              <th>Kota Madya</th> --}}
                               <th>Created At</th>
                               <th>Updated At</th>
                               <th>Action</th>
@@ -35,9 +32,6 @@
                     <td>{{ $no+1 }}</td>
                     <td>{{ $data->jumlah_tenaga_medis }}</td>
                     <td>{{ $data->laykes->nama_rumahsakit }}</td>
-                    {{-- <td>{{ $data->kelurahan->nama }}</td>
-                    <td>{{ $data->kecamatan->nama }}</td>
-                    <td>{{ $data->wilayah->nama }}</td> --}}
                     <td>{{ $data->created_at }}</td>
                     <td>{{ $data->updated_at }}</td>
                     <td class="text-center">

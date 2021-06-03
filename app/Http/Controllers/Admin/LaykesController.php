@@ -62,8 +62,7 @@ class LaykesController extends Controller
             'longitude' => 'required',
             'id_wilayah' => 'required',
             'id_kelurahan' => 'required',
-            'id_kecamatan' => 'required',
-            'user_id' => 'required'
+            'id_kecamatan' => 'required'
         ]);
         $laykes = new Laykes();
         $laykes->nama_rumahsakit = $request->nama_rumahsakit;
@@ -92,7 +91,7 @@ class LaykesController extends Controller
     public function show($id)
     {
         $laykes = Laykes::findOrFail($id);
-        
+
         return view('admin.laykes.show', compact('laykes'));
     }
 
@@ -104,6 +103,7 @@ class LaykesController extends Controller
      */
     public function edit($id)
     {
+
         $laykes = Laykes::findOrFail($id);
         $wilayah = Wilayah::all();
         $kecamatan = Kecamatan::all();
@@ -122,6 +122,18 @@ class LaykesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'nama_rumahsakit' => 'required',
+            'alamat' => 'required',
+            'no_telpon' => 'required',
+            'jumlah_kamar' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'id_wilayah' => 'required',
+            'id_kelurahan' => 'required',
+            'id_kecamatan' => 'required'
+        ]);
+
         $laykes = Laykes::findOrFail($id);
         $laykes->nama_rumahsakit = $request->nama_rumahsakit;
         $laykes->id_wilayah = $request->id_wilayah;
