@@ -27,8 +27,8 @@
           @endif
         </div>
         <br>
-        <div class="card">
-            <div class="card-body">
+        {{-- <div class="card">
+            <div class="card-body"> --}}
               <div class="table-responsive">
                 <table class="table table-striped table-bordered" id="data_artikel">
                   <thead>
@@ -42,7 +42,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                    @foreach ($posts as $no => $post)                    
+                    @foreach ($posts as $no => $post)
                       <tr>
                           <td>{{ $no+1 }}</td>
                           <td>{{ $post->judul }}</td>
@@ -66,7 +66,7 @@
                               <form action="{{ route('admin.post.destroy', $post->id) }}" id="deletePost{{ $post->id }}" method="POST">
                               @elseif(Auth::user()->role->id == 3)
                                 <a href="#" data-id="{{$post->id}}" class="btn btn-sm btn-danger fas fa-trash swal-confirm">
-                                <form action="{{ route('petugas.post.destroy', $post->id) }}" id="deletePost{{ $post->id }}" method="POST">  
+                                <form action="{{ route('petugas.post.destroy', $post->id) }}" id="deletePost{{ $post->id }}" method="POST">
                             @endif
                             @csrf
                             @method('delete')
@@ -78,8 +78,8 @@
                   </tbody>
               </table>
               </div>
-        </div>
-        </div>
+        {{-- </div>
+        </div> --}}
 </div>
 @endsection
 
@@ -96,7 +96,7 @@
     $(document).ready( function () {
         $('#data_artikel').DataTable();
     } );
-</script>  
+</script>
 <script>
     $(".swal-confirm").click(function(e) {
         id = e.target.dataset.id;

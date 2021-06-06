@@ -8,6 +8,7 @@ use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -71,7 +72,7 @@ class PostController extends Controller
         $post->user_id = Auth::id();
         $post->slug = $slug;
         $post->body = $request->body;
-        
+
         //jika gambar tidak diisi
         $image_path = "";
         //jika gambar diisi
@@ -84,13 +85,13 @@ class PostController extends Controller
         }
 
         $post->gambar = $image_path;
-        
+
         $post->save();
         Toastr::success('Artikel berhasil ditambahkan', 'success');
         return redirect()->route('admin.post.index');
 
 
-        
+
     }
 
     /**
@@ -113,7 +114,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id); 
+        $post = Post::findOrFail($id);
         return view('admin.post.edit', compact('post'));
     }
 
@@ -173,9 +174,17 @@ class PostController extends Controller
             unlink($post->gambar);
         }
         $post->delete();
-        
+
         Toastr::success('Artikel berhasil dihapus', 'success');
 
         return redirect()->route('admin.post.index');
+    }
+
+    public function downloadPDF($id)
+    {
+        $post = Post::findOrFail($id);
+
+        $pdf = PDF::loadView('admin.post.cetak_berita', compact('post'));
+        return $pdf->download('artikel.pdf');
     }
 }

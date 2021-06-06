@@ -7,6 +7,7 @@ use App\Kecamatan;
 use App\Kelurahan;
 use App\Laykes;
 use App\Wilayah;
+use PDF;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -161,6 +162,14 @@ class LaykesController extends Controller
         Laykes::where('id', $id)->delete();
         Toastr::success('Data berhasil dihapus', 'success');
         return redirect()->back();
+    }
+
+    public function downloadPDF($id)
+    {
+        $laykes = Laykes::findOrFail($id);
+
+        $pdf = PDF::loadView('admin.pemetaan.cetak_detailrs', compact('laykes'));
+        return $pdf->download('detail_rumahsakit.pdf');
     }
 
 }

@@ -20,14 +20,14 @@
 <div class="section-body">
   <div>
     {{-- <a href="{{route('admin.kelurahan.create')}}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#btn-create"> Tambah Kelurahan</a> --}}
-    <a href="#" class="btn btn-primary fas fa-file-pdf"> Export</a>
+    <a href="{{ route('admin.post-download',  $post->id) }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
   </div>
         <br>
         <div class="card">
           <div class="card-body">
-            <h1>{{ $post->judul }}</h1>
-            <p>Created At : {{ $post->created_at->format('d, m Y') }}</p>
-            <p>Author : {{ $post->user->name }}</p>
+            <h1 style="text-align: center">{{ $post->judul }}</h1>
+            <p><i class="far fa-calendar-alt" style="font-size: 2em"></i> {{ $post->created_at->format('d-m-Y') }}</p>
+            <p><i class="fas fa-user-tie" style="font-size: 2em" > </i> <b>{{ $post->user->name }}</b></p>
             <p style="text-align: center"><img src="{{ asset($post->gambar) }}" width="400"></p>
             {{-- <p><b>{{ Auth::user()->role->name }}</b></p> --}}
             <hr>

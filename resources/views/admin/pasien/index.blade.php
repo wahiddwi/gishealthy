@@ -9,16 +9,17 @@
     <div class="section-body">
       <div>
         <a href="{{ route('admin.pasien.create') }}" class="btn btn-primary fas fa-plus"> Tambah Pasien</a>
-        <a href="#" class="btn btn-primary fas fa-file-pdf"> Export</a>
+        <a href="{{ route('admin.pasien-download') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
-        <div class="card">
-          <div class="card-body">
+        {{-- <div class="card"> --}}
+          {{-- <div class="card-body"> --}}
             <div class="table-responsive">
               <table class="table table-striped table-bordered" id="data_rumahsakitKota">
                 <thead>
                     <tr>
                         <th>No.</th>
+                        <th>Nama</th>
                         <th>Jenis Kelamin</th>
                         <th>Usia</th>
                         <th>Kotamadya</th>
@@ -29,9 +30,10 @@
                       </tr>
                 </thead>
                 <tbody>
-                  @foreach ($pasien as $p)
-                      <tr>
+                    @foreach ($pasien as $p)
+                        <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>{{ $p->nama_pasien }}</td>
                         <td>{{ $p->jenis_kelamin }}</td>
                         <td>{{ $p->usia }}</td>
                         <td>{{ $p->wilayah->nama }}</td>
@@ -47,12 +49,13 @@
                                 </form>
                             </a>
                           </td>
-                  @endforeach
+                          @endforeach
+                        </tr>
               </tbody>
           </table>
       </div>
-        </div>
-    </div>
+        {{-- </div> --}}
+    {{-- </div> --}}
 
 @endsection
 

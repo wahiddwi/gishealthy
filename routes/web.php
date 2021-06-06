@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,10 +44,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('register', 'RegisterController@index')->name('register');
     Route::post('register/post', 'RegisterController@postRegister')->name('post.register');
     Route::resource('user', 'UserController');
+    Route::get('post/download/{id}', 'PostController@downloadPDF')->name('post-download');
     Route::resource('post', 'PostController');
     Route::resource('wilayah', 'WilayahController');
     Route::get('kecamatan/download', 'KecamatanController@downloadPDF')->name('download-kecamatan');
     Route::resource('kecamatan', 'KecamatanController');
+    Route::get('laykes/download/{id}', 'LaykesController@downloadPDF')->name('download-detail-laykes');
     Route::resource('laykes', 'LaykesController');
     Route::resource('kelurahan', 'KelurahanController');
     Route::get('tenagamedis/wilayah', 'TenagamedisController@gettenagamediskota')->name('tenagamedis-kota');
@@ -76,6 +79,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('pasien/getdatakecamatan', 'PasienController@getDatakecamatan')->name('pasien_kecamatan');
     Route::get('pasien/getdatakelurahan', 'PasienController@getDatakelurahan')->name('pasien_kelurahan');
     Route::get('pasien/getAllData', 'PasienController@getAllData')->name('pasien_allData');
+    Route::get('pasien/download', 'PasienController@downloadPDF')->name('pasien-download');
+    Route::get('pasien/download/kota', 'PasienController@downloadPasienKota')->name('pasien-download-kota');
+    Route::get('pasien/download/kecamatan', 'PasienController@downloadPasienKecamatan')->name('pasien-download-kecamatan');
+    Route::get('pasien/download/kelurahan', 'PasienController@downloadPasienKelurahan')->name('pasien-download-kelurahan');
+    Route::get('pasien/download/total-kasus', 'PasienController@downloadTotalKasus')->name('pasien-download-total-kasus');
     Route::resource('pasien', 'PasienController');
 
 
