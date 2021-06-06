@@ -43,29 +43,60 @@
         {{-- <img style="display:block" src="{{asset('assets/img/logo.png')}}" width="50" height="50" alt=""> --}}
         {{-- <h5 style="display:block; margin-left: 250px; font-size: 20px">Laporan Data Kecamatan</h5> --}}
         <img style="" src="{{ltrim(public_path('assets/img/logo.png'),'/')}}" height="auto" width="120">
-        <h2 style="text-align:center; margin-top:-30px">Laporan Data Kelurahan</h2>
+        <h2 style="text-align:center; margin-top:-30px">Laporan Detail Layanan Kesehatan</h2>
     </div>
 
     <table style="text-align: center; margin-top: 50px;" border="1" cellspacing="0" cellpadding="8" width="100%">
-        <thead>
-              <tr>
-                  <th>No.</th>
-                  <th>Nama Kelurahan</th>
-                  <th>Nama Kecamatan</th>
-                  <th>Nama Wilayah</th>
-                  <th>Nama Petugas</th>
-              </tr>
-        </thead>
         <tbody>
-          @foreach ($kelurahan as $kel)
+            <tbody>
+                <tr>
+                  <th>Nama Rumah Sakit</th>
+                  <th>{{ $laykes->nama_rumahsakit }}</th>
+                </tr>
               <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $kel->nama }}</td>
-                <td>{{ $kel->kecamatan->nama }}</td>
-                <td>{{ $kel->wilayah->nama }}</td>
-                <td>{{ $kel->user->name }}</td>
+                <td>Alamat</td>
+                <td>{{$laykes->alamat}}</td>
               </tr>
-          @endforeach
+              <tr>
+                <td>Kelurahan</td>
+                <td>{{$laykes->kelurahan->nama}}</td>
+              </tr>
+              <tr>
+                <td>Kecamatan</td>
+                <td>{{$laykes->kecamatan->nama}}</td>
+              </tr>
+              <tr>
+                <td>Kota Madya</td>
+                <td>{{$laykes->wilayah->nama}}</td>
+              </tr>
+              <tr>
+                <td>No. Telpon</td>
+                <td>{{$laykes->no_telpon}}</td>
+              </tr>
+              <tr>
+                <td>Latitude</td>
+                <td>{{$laykes->latitude}}</td>
+              </tr>
+              <tr>
+                <td>Longitude</td>
+                <td>{{$laykes->longitude}}</td>
+              </tr>
+              <tr>
+                <td>Jumlah Kamar</td>
+                <td>{{$laykes->jumlah_kamar}}</td>
+              </tr>
+              <tr>
+                <td>User</td>
+                <td>{{$laykes->user->name}}</td>
+              </tr>
+              <tr>
+                <td>Created At</td>
+                <td>{{$laykes->created_at}}</td>
+              </tr>
+              <tr>
+                <td>Updated At</td>
+                <td>{{$laykes->updated_at}}</td>
+            </tr>
       </tbody>
   </table>
 
@@ -77,7 +108,7 @@
         <td align="right">Dilaporkan Oleh,</td>
     </tr>
     <tr>
-        <td align="right">Petugas Kelurahan</td>
+        <td align="right">Petugas Dinas Kesehatan</td>
     </tr>
     <tr><td></td></tr>
     <tr><td></td></tr>

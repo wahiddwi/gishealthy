@@ -13,8 +13,11 @@
         <h2 class="section-heading">@yield('title')</h2>
     </div>
     <div class="section-body">
-        <div class="card">
-            <div class="card-body">
+        <div class="mb-3">
+            <a href="{{ route('download-medis-kota') }}" class="btn btn-primary fas far fa-file-pdf"> Export</a>
+        </div>
+        {{-- <div class="card">
+            <div class="card-body"> --}}
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered" id="data">
                     <thead>
@@ -25,20 +28,20 @@
                       </tr>
                 </thead>
                 <tbody>
-                    @foreach ($medis_kota as $no => $result)
-                      <tr>
-                        <td>{{ $no+1 }}</td>
-                        <td>{{ $result->nama }}</td>
-                        <td>{{ $result->jumlah_tenaga_medis }}</td>
-                      </tr>
-                  @endforeach
+                    @foreach ($medis_kota as $result)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $result->nama }}</td>
+                            <td>{{ $result->jumlah_tenaga_medis }}</td>
+                        </tr>
+                    @endforeach
                   </tbody>
               </table>
           </div>
       </div>
-            
-        </div>
-    </div>
+
+        {{-- </div>
+    </div> --}}
     </div>
   </div>
 @endsection

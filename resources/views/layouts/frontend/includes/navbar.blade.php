@@ -44,7 +44,7 @@
                 <ul class="dropdown">
                   <li><a href="{{ route('pemetaan') }}" class="nav-link">Pemetaan Rumah Sakit</a></li>
                   <li><a href="{{ route('pemetaan.rute') }}" class="nav-link">Cari Rute Rumah Sakit</a></li>
-                  <li><a href="{{ route('pemetaan.covid19') }}" class="nav-link">Pemetaan Kasus Covid-19</a></li>
+                  {{-- <li><a href="{{ route('pemetaan.covid19') }}" class="nav-link">Pemetaan Kasus Covid-19</a></li> --}}
                 </ul>
               </li>
               <li class="has-children">
@@ -55,17 +55,17 @@
                   <li><a href="{{ route('kelurahan') }}" class="nav-link">Kelurahan</a></li>
                 </ul>
               </li>
-        
+
             <li><a href="#" class="nav-link">About</a></li>
-        
-        
+
+
             <li><a href="{{ route('post') }}" class="nav-link">Artikel</a></li>
             <li><a href="{{ route('login') }}" class="nav-link">Login</a></li>
             </div>
         </ul>
         </nav>
-        
-        
+
+
         <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-black"></span></a></div>
       </div>
 

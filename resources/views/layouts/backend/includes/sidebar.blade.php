@@ -48,7 +48,7 @@
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="{{ route('admin.pemetaan') }}">Pemetaan Rumah Sakit</a></li>
             <li><a class="nav-link" href="{{ route('admin.rute') }}">Cari Rute Rumah Sakit</a></li>
-            <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
+            {{-- <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li> --}}
           </ul>
         </li>
         <li class="nav-item dropdown">

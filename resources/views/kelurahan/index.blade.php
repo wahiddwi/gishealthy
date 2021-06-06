@@ -14,11 +14,11 @@
     </div>
     <div class="section-body">
       <div>
-        <a href="#" class="btn btn-primary fas fa-file-pdf"> Export</a>
+        <a href="{{ route('kelurahan.download') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
-        <div class="card">
-            <div class="card-body">
+        {{-- <div class="card">
+            <div class="card-body"> --}}
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered" id="data_kecamatan">
                     <thead>
@@ -45,8 +45,8 @@
                   </tbody>
               </table>
           </div>
-      </div>
-        </div>
+      {{-- </div>
+        </div> --}}
     </div>
     </div>
   </div>
@@ -67,6 +67,6 @@
     $(document).ready( function () {
         $('#data_kecamatan').DataTable();
     } );
-</script>  
+</script>
 @endpush
 

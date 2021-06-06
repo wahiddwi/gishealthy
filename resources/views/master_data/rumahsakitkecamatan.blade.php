@@ -13,8 +13,11 @@
         <h2 class="section-heading">@yield('title')</h2>
     </div>
     <div class="section-body">
-        <div class="card">
-            <div class="card-body">
+        <div class="mb-3">
+            <a href="{{ route('download-rs-kecamatan') }}" class="btn btn-primary fas far fa-file-pdf"> Export</a>
+        </div>
+        {{-- <div class="card">
+            <div class="card-body"> --}}
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered" id="data">
                     <thead>
@@ -41,9 +44,9 @@
               </table>
           </div>
       </div>
-            
-        </div>
-    </div>
+
+        {{-- </div>
+    </div> --}}
     </div>
   </div>
 @endsection

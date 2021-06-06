@@ -6,6 +6,7 @@ use App\Kecamatan;
 use App\Kelurahan;
 use App\Laykes;
 use App\Wilayah;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,7 +35,7 @@ class PemetaanController extends Controller
     public function covid19wilayah()
     {
         $data['covid19'] = DB::table('pasien')
-            ->select(['wilayah.nama as nama_wilayah', 
+            ->select(['wilayah.nama as nama_wilayah',
             // 'kecamatan.nama as nama_kecamatan',
             // 'kelurahan.nama as nama_kelurahan',
             DB::raw('COUNT(*) as total_kasus'),
@@ -58,5 +59,13 @@ class PemetaanController extends Controller
     {
         $laykes = Laykes::findOrFail($id);
         return view('pemetaan.detail', compact('laykes'));
+    }
+
+    public function downloadPDF($id)
+    {
+        $laykes = Laykes::findOrFail($id);
+
+        $pdf = PDF::loadView('pemetaan.download_pemetaandetail', compact('laykes'));
+        return $pdf->download('data_detail-laykes.pdf');
     }
 }

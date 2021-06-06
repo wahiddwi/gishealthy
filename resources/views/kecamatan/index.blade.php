@@ -14,11 +14,11 @@
     </div>
     <div class="section-body">
       <div>
-        {{-- <a href="{{ route('download-kecamatan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a> --}}
+        <a href="{{ route('kecamatan.download') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
-        <div class="card">
-            <div class="card-body">
+        {{-- <div class="card">
+            <div class="card-body"> --}}
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered" id="data_kecamatan">
                     <thead>
@@ -31,9 +31,9 @@
                           </tr>
                     </thead>
                     <tbody>
-                      @foreach ($kecamatan as $no => $k)
+                      @foreach ($kecamatan as $k)
                           <tr>
-                            <td>{{ $no+1 }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $k->nama }}</td>
                             <td>{{ $k->wilayah->nama }}</td>
                             <td>{{ $k->created_at }}</td>
@@ -43,8 +43,8 @@
                   </tbody>
               </table>
           </div>
-      </div>
-        </div>
+      {{-- </div>
+        </div> --}}
     </div>
     </div>
   </div>
@@ -65,6 +65,6 @@
     $(document).ready( function () {
         $('#data_kecamatan').DataTable();
     } );
-</script>  
+</script>
 @endpush
 

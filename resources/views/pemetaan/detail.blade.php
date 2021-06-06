@@ -13,23 +13,21 @@
         <h2 class="section-heading">@yield('title')</h2>
     </div>
     <div class="section-body">
-        {{-- <br> --}}
-        {{-- <div> --}}
           <div class="mb-2">
             <a href="{{ route('pemetaan') }}" class="btn btn-danger ">Kembali <i class="fas fa-share"></i></a>
-            <a href="" class="btn btn-primary fas far fa-file-pdf"> Export</a>
+            <a href="{{ route('download.laykesDetail', $laykes->id) }}" class="btn btn-primary fas far fa-file-pdf"> Export</a>
           </div>
       {{-- </div> --}}
           <div class="card">
                   <div class="table-responsive">
                       <table class="table table-striped table-bordered table-md">
-                          <thead>
-                            <tr>
-                              <th>Nama Rumah Sakit</th>
-                              <th>{{ $laykes->nama_rumahsakit }}</th>
-                            </tr>
-                          </thead>
-                          <tbody>
+                          {{-- <thead> --}}
+                              {{-- </thead> --}}
+                            <tbody>
+                              <tr>
+                                <th>Nama Rumah Sakit</th>
+                                <th>{{ $laykes->nama_rumahsakit }}</th>
+                              </tr>
                             <tr>
                               <td>Alamat</td>
                               <td>{{$laykes->alamat}}</td>
@@ -77,7 +75,7 @@
                           </tbody>
                           </table>
                   </div>
-              
+
       </div>
     </div>
   </div>

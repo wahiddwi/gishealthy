@@ -13,8 +13,11 @@
         <h2 class="section-heading">@yield('title')</h2>
     </div>
     <div class="section-body">
-        <div class="card">
-            <div class="card-body p-0">
+        <div class="mb-3">
+            <a href="{{ route('download.datars') }}" class="btn btn-primary fas far fa-file-pdf"> Export</a>
+        </div>
+        {{-- <div class="card">
+            <div class="card-body p-0"> --}}
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered" id="data_wilayah">
                     <thead>
@@ -33,9 +36,9 @@
                           </tr>
                     </thead>
                     <tbody>
-                      @foreach ($laykes as $no => $l)
+                      @foreach ($laykes as $l)
                           <tr>
-                            <td>{{ $no+1 }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $l->nama_rumahsakit }}</td>
                             {{-- <td>{{ $l->longitude }}</td>
                             <td>{{ $l->latitude }}</td> --}}
@@ -50,9 +53,9 @@
               </table>
           </div>
       </div>
-            
-        </div>
-    </div>
+
+        {{-- </div>
+    </div> --}}
     </div>
   </div>
 @endsection

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{{ config('app.name') }} | @yield('title')</title>
   <link rel="icon" type="image/png" href="{{asset('assets/img/logo.png')}}">
 
@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="{{ asset('frontend/fonts/flaticon-covid/font/flaticon.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/css/aos.css') }}">
   <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   @stack('page-styles')
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -43,18 +44,18 @@
       <div class="site-mobile-menu-body"></div>
     </div>
 
-    
+
 <!--navbar-->
 @include('layouts.frontend.includes.navbar')
 
 
     <!-- MAIN -->
-    
+
     @yield('content')
 
     <!--footer-->
     @include('layouts.frontend.includes.footer')
-    
+
   </div> <!-- .site-wrap -->
 
   <script src="{{ asset('frontend/js/jquery-3.3.1.min.js') }}"></script>
