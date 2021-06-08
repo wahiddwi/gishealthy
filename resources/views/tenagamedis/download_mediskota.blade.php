@@ -42,7 +42,7 @@
         <div>
         {{-- <img style="display:block" src="{{asset('assets/img/logo.png')}}" width="50" height="50" alt=""> --}}
         {{-- <h5 style="display:block; margin-left: 250px; font-size: 20px">Laporan Data Kecamatan</h5> --}}
-        <img style="" src="{{ltrim(public_path('assets/img/logo.png'),'/')}}" height="auto" width="120">
+        <img style="" alt="test" src="{{public_path('logo/logo.png')}}" height="auto" width="120">
         <h2 style="text-align:center; margin-top:-30px">Laporan Data Tenaga Medis Per Kotamadya</h2>
     </div>
 

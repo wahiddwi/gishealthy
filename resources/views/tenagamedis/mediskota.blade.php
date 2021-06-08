@@ -1,5 +1,5 @@
 @extends('layouts.frontend.master')
-@section('title', 'Data Rumah Sakit Per Kota Madya')
+@section('title', 'Data Tenaga Medis Per Kota Madya')
 @push('page-styles')
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">

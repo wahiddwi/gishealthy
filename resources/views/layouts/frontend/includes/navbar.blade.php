@@ -56,7 +56,14 @@
                 </ul>
               </li>
 
-            <li><a href="#" class="nav-link">About</a></li>
+              <li class="has-children">
+                <a href="#" class="nav-link">Pasien</a>
+                <ul class="dropdown">
+                  <li><a href="{{ route('wilayah') }}" class="nav-link">Data Pasien</a></li>
+                  <li><a href="{{ route('kecamatan') }}" class="nav-link">Kecamatan</a></li>
+                  <li><a href="{{ route('kelurahan') }}" class="nav-link">Kelurahan</a></li>
+                </ul>
+              </li>
 
 
             <li><a href="{{ route('post') }}" class="nav-link">Artikel</a></li>
