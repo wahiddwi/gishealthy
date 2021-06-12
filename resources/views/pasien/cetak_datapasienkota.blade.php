@@ -38,34 +38,39 @@
     </style>
 </head>
 <body>
-    {{-- <div style="display:flex;"> --}}
-        <div>
-        {{-- <img style="display:block" src="{{asset('assets/img/logo.png')}}" width="50" height="50" alt=""> --}}
-        {{-- <h5 style="display:block; margin-left: 250px; font-size: 20px">Laporan Data Kecamatan</h5> --}}
-        <img style="" alt="test" src="{{public_path('logo/logo.png')}}" height="auto" width="120">
-        <h2 style="text-align:center; margin-top:-30px">Laporan Data Tenaga Medis Per Kotamadya</h2>
+    <div>
+        <img src="{{ public_path('logo.png') }}" height="auto" width="120">
+        <h2 style="text-align:center; margin-top:-30px">Laporan Data Pasien Covid-19 Per Kota Madya</h2>
     </div>
 
     <table style="text-align: center; margin-top: 50px;" border="1" cellspacing="0" cellpadding="8" width="100%">
         <thead>
               <tr>
                 <th>No.</th>
-                <th>Kota Madya</th>
-                <th>Jumlah Tenaga Medis</th>
+                <th>Kotamadya</th>
+                <th>Sembuh</th>
+                <th>Positif</th>
+                <th>Meninggal</th>
               </tr>
         </thead>
         <tbody>
-            @foreach ($medis_kota as $result)
+            @foreach ($pasien_wilayah as $no => $data)
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $result->nama }}</td>
-                <td>{{ $result->jumlah_tenaga_medis }}</td>
+              <td>{{ $no+1 }}</td>
+              <td>{{ $data->nama_wilayah }}</td>
+              <td>{{ $data->jumlah_sembuh }}</td>
+              <td>{{ $data->jumlah_positif }}</td>
+              <td>{{ $data->jumlah_meninggal }}</td>
+              {{-- <td class="text-center">
+                <a href="" class="btn btn-sm btn-info fa fa-eye"></a>
+                <a href="" class="btn btn-sm btn-danger fas fa-file-pdf"></a>
+              </td> --}}
             </tr>
         @endforeach
-      </tbody>
-  </table>
+        </tbody>
+        </table>
 
-<table style="margin-top: 30px" width="640px">
+        <table style="margin-top: 30px" width="640px">
     <tr>
         <td align="right">Jakarta, {{ \Carbon\Carbon::now()->format('d - m - Y') }}</td>
     </tr>

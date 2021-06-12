@@ -53,6 +53,7 @@
                 <th>Jumlah Tenaga Medis</th>
                 <th>Nama Rumah Sakit</th>
               </tr>
+              
         </thead>
         <tbody>
             @foreach ($tenagamedis as $data)

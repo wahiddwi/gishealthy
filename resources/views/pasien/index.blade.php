@@ -1,5 +1,5 @@
 @extends('layouts.frontend.master')
-@section('title', 'Data Tenaga Medis')
+@section('title', 'Data Pasien')
 @push('page-styles')
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
@@ -14,31 +14,36 @@
     </div>
     <div class="section-body">
         <div class="mb-3">
-        <a href="{{ route('download-tenagamedis') }}" class="btn btn-primary fas far fa-file-pdf"> Export</a>
-        </div>
+            <a href="{{ route('pasien.download') }}" class="btn btn-primary fas far fa-file-pdf"> Export</a>
+            </div>
         {{-- <div class="card">
-            <div class="card-body p-0"> --}}
+            <div class="card-body"> --}}
                 <div class="table-responsive">
-                  <table class="table table-striped table-bordered" id="data">
+                  <table class="table table-striped table-bordered" id="data_wilayah">
                     <thead>
                           <tr>
-                                <th>No.</th>
-                                <th>Jumlah Tenaga Medis</th>
-                                <th>Nama Rumah Sakit</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
-                            </tr>
+                            <th>No.</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Usia</th>
+                            <th>Kotamadya</th>
+                            <th>Kecamatan</th>
+                            <th>Kelurahan</th>
+                            <th>Status</th>
+
+                          </tr>
                     </thead>
                     <tbody>
-                @foreach ($tenagamedis as $data)
-                    <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $data->jumlah_tenaga_medis }}</td>
-                    <td>{{ $data->laykes->nama_rumahsakit }}</td>
-                    <td>{{ $data->created_at }}</td>
-                    <td>{{ $data->updated_at }}</td>
-                    </tr>
-                @endforeach
+                        @foreach ($pasien as $p)
+                        <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $p->jenis_kelamin }}</td>
+                        <td>{{ $p->usia }}</td>
+                        <td>{{ $p->wilayah->nama }}</td>
+                        <td>{{ $p->kecamatan->nama }}</td>
+                        <td>{{ $p->kelurahan->nama }}</td>
+                        <td>{{ $p->status }}</td>
+                          @endforeach
+                        </tr>
                   </tbody>
               </table>
           </div>
@@ -62,7 +67,7 @@
 <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready( function () {
-        $('#data').DataTable();
+        $('#data_wilayah').DataTable();
     } );
 </script>
 @endpush

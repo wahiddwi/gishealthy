@@ -56,7 +56,15 @@
                 </ul>
               </li>
 
-            <li><a href="#" class="nav-link">About</a></li>
+              <li class="has-children">
+                <a href="#" class="nav-link">Pasien</a>
+                <ul class="dropdown">
+                  <li><a href="{{ route('pasien.index') }}" class="nav-link">Data Pasien</a></li>
+                  <li><a href="{{ route('pasien.wilayah') }}" class="nav-link">Data Pasien Per Kotamadya</a></li>
+                  <li><a href="{{ route('pasien.kecamatan') }}" class="nav-link">Data Pasien Per Kecamatan</a></li>
+                  <li><a href="{{ route('pasien.kelurahan') }}" class="nav-link">Data Pasien Per Kelurahan</a></li>
+                </ul>
+              </li>
 
 
             <li><a href="{{ route('post') }}" class="nav-link">Artikel</a></li>

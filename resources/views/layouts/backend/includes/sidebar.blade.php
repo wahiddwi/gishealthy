@@ -68,7 +68,7 @@
         <li class="nav-item dropdown">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-globe-asia"></i> <span>Wilayah</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="{{route('petugas.wilayah.index')}}">wilayah</a></li>
+            <li><a class="nav-link" href="{{route('petugas.wilayah.index')}}">Kota</a></li>
             <li><a class="nav-link" href="{{route('petugas.kecamatan.index')}}">Kecamatan</a></li>
             <li><a class="nav-link" href="{{ route('petugas.kelurahan.index') }}">Kelurahan</a></li>
           </ul>

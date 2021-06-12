@@ -46,7 +46,14 @@ Route::get('tenagamedis/kecamatan', 'TenagaMedisController@gettenagamediskecamat
 Route::get('tenagamedis/kelurahan', 'TenagaMedisController@getmediskelurahan')->name('tenagamedis-kelurahan');
 Route::get('artikel', 'PostController@index')->name('post');
 Route::get('post/detail/{id}', 'PostController@artikelDetail')->name('post.artikelDetail');
-
+Route::get('pasien/index', 'PasienController@index')->name('pasien.index');
+Route::get('pasien/wilayah', 'PasienController@PasienWilayah')->name('pasien.wilayah');
+Route::get('pasien/kecamatan', 'PasienController@PasienKecamatan')->name('pasien.kecamatan');
+Route::get('pasien/kelurahan', 'PasienController@PasienKelurahan')->name('pasien.kelurahan');
+Route::get('pasien/download', 'PasienController@downloadPDF')->name('pasien.download');
+Route::get('pasien/download/kota', 'PasienController@downloadPasienKota')->name('pasien.download-kota');
+Route::get('pasien/download/kecamatan', 'PasienController@downloadPasienKecamatan')->name('pasien.download-kecamatan');
+Route::get('pasien/download/kelurahan', 'PasienController@downloadPasienKelurahan')->name('pasien.download-kelurahan');
 
 
 ////Admin/////////////////////////
