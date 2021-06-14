@@ -53,6 +53,7 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'id' => 'required|max:16',
             'nama_pasien' => 'required|min:5|max:40',
             'usia' => 'required|max:3',
             'jenis_kelamin' => 'required',
@@ -64,6 +65,7 @@ class PasienController extends Controller
         ]);
 
         $pasien = new Pasien();
+        $pasien->id = $request->id;
         $pasien->nama_pasien = $request->nama_pasien;
         $pasien->usia = $request->usia;
         $pasien->jenis_kelamin = $request->jenis_kelamin;
@@ -117,6 +119,7 @@ class PasienController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+            'id' => 'required|max:16',
             'nama_pasien' => 'required|min:5|max:40',
             'usia' => 'required|max:3',
             'jenis_kelamin' => 'required',
@@ -128,6 +131,7 @@ class PasienController extends Controller
         ]);
 
         $pasien = Pasien::findOrFail($id);
+        $pasien->id = $request->id;
         $pasien->nama_pasien = $request->nama_pasien;
         $pasien->usia = $request->usia;
         $pasien->jenis_kelamin = $request->jenis_kelamin;

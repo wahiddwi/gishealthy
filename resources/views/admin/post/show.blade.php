@@ -20,7 +20,7 @@
 <div class="section-body">
   <div>
     {{-- <a href="{{route('admin.kelurahan.create')}}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#btn-create"> Tambah Kelurahan</a> --}}
-    <a href="{{ route('admin.post-download',  $post->id) }}" target="_blank" class="btn btn-primary fas fa-file-pdf"> Export</a>
+    {{-- <a href="{{ route('admin.post-download',  $post->id) }}" target="_blank" class="btn btn-primary fas fa-file-pdf"> Export</a> --}}
   </div>
         <br>
         <div class="card">
@@ -30,7 +30,8 @@
             <p><i class="fas fa-user-tie" style="font-size: 2em" > </i> <b>{{ $post->user->name }}</b></p>
             <p style="text-align: center"><img src="{{ asset($post->gambar) }}" width="400"></p>
             {{-- <p><b>{{ Auth::user()->role->name }}</b></p> --}}
-            <hr>
+            {{-- <hr> --}}
+            <div><br></div>
             <div>{!!$post->body!!}</div>
           </div>
         </div>

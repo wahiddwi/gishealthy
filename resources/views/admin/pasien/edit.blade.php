@@ -13,6 +13,16 @@
       @method('put')
       <div class="card-body">
         <div class="form-group">
+            <label for="inputAddress2">NIK</label>
+            <input type="number" class="form-control @error('id') is-invalid @enderror"
+             name="id" value="{{ $pasien->id }}" maxlength="16" id="inputAddress2" placeholder="NIK" required>
+              @error('id')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
+          </div>
+        <div class="form-group">
           <label for="inputAddress2">Nama Pasien</label>
           <input type="text" class="form-control @error('nama_pasien') is-invalid @enderror"
            name="nama_pasien" value="{{ $pasien->nama_pasien }}" id="inputAddress2" placeholder="Nama Pasien" required>

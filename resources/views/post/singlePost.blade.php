@@ -1,5 +1,5 @@
 @extends('layouts.frontend.master')
-@section('title', 'Data Tenaga Medis')
+@section('title', 'Single Post')
 @push('page-styles')
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
@@ -13,7 +13,7 @@
         <h2 class="section-heading">@yield('title')</h2>
     </div> --}}
     <div class="hero-v1">
-            
+
         <div class="container">
             <div class="row align-items-center justify-content-center">
             <div class="col-lg-12 text-center mx-auto">
@@ -21,7 +21,7 @@
                 <h1 class="heading mb-3">{{$singlePost->judul}}</h1>
               <p class="mb-2"></p>
             </div>
-            
+
             <!-- MAIN -->
             <div class="site-section">
         <div class="container">
@@ -33,7 +33,7 @@
                                 <img width="100%" width="auto" src="{{ asset($singlePost->gambar) }}" alt=""/>
                             </div>
                         </div>
-                </div>  
+                </div>
                 <span class="d-block subheading">{{ date('d/m/Y', strtotime($singlePost->created_at))}}</span>
                 <p>Author : {{$singlePost->user->name}}</p>
                 <p class="lead">{!!$singlePost->body!!}</p>
