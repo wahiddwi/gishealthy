@@ -6,11 +6,11 @@
 @section('content')
 
     <div class="section-body">
-        <form action="{{ route('admin.wilayah.update', $wilayah->id) }}" method="POST">
+        <form action="{{ route('petugas.wilayah.update', $wilayah->id) }}" method="POST">
             @csrf
             @method('patch')
-        
-        <div class="card">
+
+        {{-- <div class="card"> --}}
             <div class="form-group">
                 <label for="nama">Nama Wilayah</label>
                 <input type="text" name="nama" value="{{ $wilayah->nama }}"
@@ -21,13 +21,13 @@
                   </span>
                 @enderror
             </div>
-            <div class="card-footer text-right">
+            <div class="text-right">
                 <button class="btn btn-warning fas fa-edit" type="submit">Ubah</button>
                 <button class="btn btn-danger fa fa-trash" type="reset">Reset</button>
             </div>
         </div>
     </form>
-    </div>
+    {{-- </div> --}}
 @endsection
 
 </div>

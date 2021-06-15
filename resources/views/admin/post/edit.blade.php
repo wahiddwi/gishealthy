@@ -19,12 +19,11 @@
                       <h3 class="card-title"></h3>
 
                       @if(Auth::user()->role->id == 1)
-                      <form  method="post" action="{{ route('admin.post.update', $post->id) }}" enctype="multipart/form-data"
-                      class="form-horizontal">
+                      <form  method="post" action="{{ route('admin.post.update', $post->id) }}" enctype="multipart/form-data" class="form-horizontal">
                       @elseif(Auth::user()->role->id == 3)
-                      <form  method="post" action="{{ route('petugas.post.update', $post->id) }}" enctype="multipart/form-data"
+                      <form  method="post" action="{{ route('petugas.post.update', $post->id) }}" enctype="multipart/form-data" class="form-horizontal">
                       @endif
-                      class="form-horizontal">
+
                         @csrf
                         @method('put')
                         <div class="form-group">

@@ -34,9 +34,9 @@
                     <td>{{ $w->updated_at }}</td>
                     <td>
                         {{-- <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalInfo-{{$u->id}}"><i class="fas fa-info"></i></a> --}}
-                        <a href="{{ route('admin.wilayah.edit', $w->id) }}" class="btn btn-warning fas fa-edit btn-edit"></a>
+                        <a href="{{ route('petugas.wilayah.edit', $w->id) }}" class="btn btn-warning fas fa-edit btn-edit"></a>
                         <a href="#" data-id="{{ $w->id }}" class="btn btn-danger fas fa-trash swal-confirm">
-                            <form action="{{ route('admin.wilayah.destroy', $w->id) }}" id="deleteWilayah{{ $w->id }}" method="POST">
+                            <form action="{{ route('petugas.wilayah.destroy', $w->id) }}" id="deleteWilayah{{ $w->id }}" method="POST">
                             @csrf
                             @method('delete')
                             </form>

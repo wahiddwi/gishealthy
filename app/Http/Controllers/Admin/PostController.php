@@ -129,7 +129,7 @@ class PostController extends Controller
     {
         //Validasi
         $this->validate($request, [
-            'judul' => 'required',
+            'judul' => 'required|max:40',
             'gambar' => 'sometimes|mimes:jpeg,jpg,png,bmp|max:10000',
             'body' => 'required',
         ]);

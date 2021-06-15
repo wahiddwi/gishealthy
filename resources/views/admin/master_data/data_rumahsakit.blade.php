@@ -13,8 +13,8 @@
         <a href="{{ route('admin.download-rumahsakit') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
-        <div class="card">
-          <div class="card-body">
+        {{-- <div class="card">
+          <div class="card-body"> --}}
             <div class="table-responsive">
               <table class="table table-striped table-bordered" id="data_rumahsakit">
                 <thead>
@@ -50,8 +50,8 @@
               </tbody>
           </table>
       </div>
-        </div>
-    </div>
+        {{-- </div>
+    </div> --}}
 
 @endsection
 
