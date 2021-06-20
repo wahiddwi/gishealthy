@@ -61,6 +61,7 @@
             @foreach ($pasien as $p)
             <tr>
             <td>{{ $loop->iteration }}</td>
+            <td>{{ $p->id }}</td>
             <td>{{ $p->nama_pasien }}</td>
             <td>{{ $p->jenis_kelamin }}</td>
             <td>{{ $p->usia }}</td>

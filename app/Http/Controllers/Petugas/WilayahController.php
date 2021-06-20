@@ -89,7 +89,7 @@ class WilayahController extends Controller
 
         Wilayah::whereId($id)->update($data_wilayah);
         Toastr::success('Data Wilayah berhasil diubah', 'success');
-        return redirect()->route('admin.wilayah.index');
+        return redirect()->route('petugas.wilayah.index');
     }
 
     /**

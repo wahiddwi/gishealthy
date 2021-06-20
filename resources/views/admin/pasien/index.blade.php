@@ -19,6 +19,7 @@
                 <thead>
                     <tr>
                         <th>No.</th>
+                        <th>NIK</th>
                         <th>Nama</th>
                         <th>Jenis Kelamin</th>
                         <th>Usia</th>
@@ -33,6 +34,7 @@
                     @foreach ($pasien as $p)
                         <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>{{ $p->id }}</td>
                         <td>{{ $p->nama_pasien }}</td>
                         <td>{{ $p->jenis_kelamin }}</td>
                         <td>{{ $p->usia }}</td>

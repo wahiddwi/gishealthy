@@ -64,7 +64,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ route('admin.wilayah.store') }}" method="POST">
+        <form action="{{ route('petugas.wilayah.store') }}" method="POST">
           @csrf
         <div class="modal-body">
             <div class="card-body">

@@ -9,7 +9,7 @@
         <form action="{{ route('petugas.kelurahan.update', $kelurahan->id) }}" method="POST">
             @csrf
             @method('put')
-        
+
         <div class="card">
             <div class="card-body">
             <div class="form-group">
@@ -50,7 +50,7 @@
               </div>
             <div class="card-footer text-right">
                 <button class="btn btn-warning fas fa-edit" type="submit">Ubah</button>
-                <button class="btn btn-danger fa fa-trash" type="reset">Reset</button>
+                {{-- <button class="btn btn-danger fa fa-trash" type="reset">Reset</button> --}}
             </div>
         </div>
     </div>

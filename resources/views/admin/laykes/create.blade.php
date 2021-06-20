@@ -35,7 +35,7 @@
           <div class="form-group col-md-6">
             <label for="inputPassword4">Latitude</label>
             <input type="text" name="latitude" class="form-control @error('latitude') is-invalid @enderror"
-            id="latitude" placeholder="Latitude" required>
+            id="latitude" placeholder="Latitude" required readonly>
             @error('latitude')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@
           <div class="form-group col-md-6">
             <label for="inputEmail4">Longitude</label>
             <input type="text" name="longitude" class="form-control @error('longitude') is-invalid @enderror"
-            id="longitude" placeholder="Longitude" required>
+            id="longitude" placeholder="Longitude" required readonly>
             @error('longitude')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

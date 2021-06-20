@@ -23,7 +23,7 @@
             </div>
             <div class="text-right">
                 <button class="btn btn-warning fas fa-edit" type="submit">Ubah</button>
-                <button class="btn btn-danger fa fa-trash" type="reset">Reset</button>
+                {{-- <button class="btn btn-danger fa fa-trash" type="reset">Reset</button> --}}
             </div>
         </div>
     </form>

@@ -141,6 +141,6 @@ class TenagaMedisController extends Controller
 
 
         $pdf = PDF::loadView('tenagamedis.download_mediskota', compact('medis_kota'));
-        return $pdf->stream();
+        return $pdf->download('data_tenagamedis_kota.pdf');
     }
 }

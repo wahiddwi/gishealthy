@@ -75,8 +75,8 @@
               @enderror
               </div>
             <div class="card-footer text-right">
-                <button class="btn btn-warning fas fa-edit" type="submit">Simpan</button>
-                <button class="btn btn-danger fa fa-trash" type="reset">Reset</button>
+                <button class="btn btn-primary fas fa-edit" type="submit">Simpan</button>
+                {{-- <button class="btn btn-danger fa fa-trash" type="reset">Reset</button> --}}
             </div>
         </div>
         </div>

@@ -23,7 +23,7 @@ class UserController extends Controller
         return view('admin.user.user_management', compact('user', 'role'));
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -104,6 +104,8 @@ class UserController extends Controller
             return redirect()->back();
         }
         $user->delete();
+        // dd($user);
+        Toastr::success('success', 'Role berhasil dihapus');
         return redirect()->back();
     }
 }

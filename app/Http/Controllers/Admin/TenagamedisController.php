@@ -62,7 +62,7 @@ class TenagamedisController extends Controller
         $tenagamedis->id_kecamatan = $request->id_kecamatan;
         $tenagamedis->id_wilayah = $request->id_wilayah;
 
-        Toastr::success('Data Rumah Sakit berhasil di tambahkan', 'success');
+        Toastr::success('Data tenaga medis berhasil di tambahkan', 'success');
         $tenagamedis->save();
 
         return redirect()->route('admin.tenagamedis.index');

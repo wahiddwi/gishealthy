@@ -9,6 +9,7 @@ use App\Wilayah;
 use Brian2694\Toastr\Facades\Toastr;
 use PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KelurahanController extends Controller
 {

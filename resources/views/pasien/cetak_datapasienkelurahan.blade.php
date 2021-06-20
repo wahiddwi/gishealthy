@@ -40,7 +40,7 @@
 <body>
     <div>
         <img src="{{ public_path('logo.png') }}" height="auto" width="120">
-        <h2 style="text-align:center; margin-top:-30px">Laporan Data Pasien Covid-19 Per Kecamatan</h2>
+        <h2 style="text-align:center; margin-top:-30px">Laporan Data Pasien Covid-19 Per Kelurahan</h2>
     </div>
 
     <table style="text-align: center; margin-top: 50px;" border="1" cellspacing="0" cellpadding="8" width="100%">

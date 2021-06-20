@@ -59,9 +59,10 @@
               <li class="has-children">
                 <a href="#" class="nav-link">Pasien</a>
                 <ul class="dropdown">
-                  <li><a href="{{ route('wilayah') }}" class="nav-link">Data Pasien</a></li>
-                  <li><a href="{{ route('kecamatan') }}" class="nav-link">Kecamatan</a></li>
-                  <li><a href="{{ route('kelurahan') }}" class="nav-link">Kelurahan</a></li>
+                  <li><a href="{{ route('pasien.index') }}" class="nav-link">Data Pasien</a></li>
+                  <li><a href="{{ route('pasien.kelurahan') }}" class="nav-link">Data Pasien Per Kelurahan</a></li>
+                  <li><a href="{{ route('pasien.kecamatan') }}" class="nav-link">Data Pasien Per Kecamatan</a></li>
+                  <li><a href="{{ route('pasien.wilayah') }}" class="nav-link">Data Pasien Per Kota</a></li>
                 </ul>
               </li>
 

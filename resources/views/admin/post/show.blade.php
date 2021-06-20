@@ -25,7 +25,7 @@
         <br>
         <div class="card">
           <div class="card-body">
-            <h1 style="text-align: center">{{ $post->judul }}</h1>
+            <h6 style="text-align: center">{{ $post->judul }}</h6>
             <p><i class="far fa-calendar-alt" style="font-size: 2em"></i> {{ $post->created_at->format('d-m-Y') }}</p>
             <p><i class="fas fa-user-tie" style="font-size: 2em" > </i> <b>{{ $post->user->name }}</b></p>
             <p style="text-align: center"><img src="{{ asset($post->gambar) }}" width="400"></p>

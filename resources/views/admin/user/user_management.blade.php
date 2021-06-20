@@ -33,13 +33,13 @@
                     <td>{{ $u->role->name }}</td>
                     <td>{{ $u->created_at }}</td>
                     <td>{{ $u->updated_at }}</td>
-                    <td>
-                        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalInfo-{{$u->id}}"><i class="fas fa-info"></i></a>
-                        <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit-{{$u->id}}"><i class="fas fa-edit"></i></a>
-                        <a href="#" data-id="{{ $u->id }}" class="btn btn-danger fas fa-trash swal-confirm">
+                    <td class="text-center">
+                        <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalInfo-{{$u->id}}"><i class="fas fa-info"></i></a>
+                        <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEdit-{{$u->id}}"><i class="fas fa-edit"></i></a>
+                        <a href="#" data-id="{{ $u->id }}" class="btn btn-danger btn-sm fas fa-trash swal-confirm">
                             <form action="{{ route('admin.user.destroy', $u->id) }}" id="deleteUser{{ $u->id }}" method="POST">
-                            @csrf
-                            @method('delete')
+                                @csrf
+                                @method('delete')
                             </form>
                         </a>
                     </td>
