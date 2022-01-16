@@ -20,7 +20,7 @@ class DashboardController extends Controller
             $total_data_sembuh[] = Pasien::whereMonth('created_at', $i)->where('status', "Sembuh")->count();
             $total_data_meninggal[] = Pasien::whereMonth('created_at', $i)->where('status', "Meninggal")->count();
             $total_data_positif[] = Pasien::whereMonth('created_at', $i)->where('status', "Positif")->count();
-        
+
         }
 
         $total_kasus = json_encode($total_data_kasus);
@@ -33,7 +33,7 @@ class DashboardController extends Controller
 
 
 
-
+//
         $allData = DB::table('pasien')
             ->select([
                 DB::raw('COUNT(*) as total_kasus'),
@@ -42,6 +42,8 @@ class DashboardController extends Controller
                 DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
             ])
             ->get();
+
+
         // $total_kasus = DB::table('pasien')
         //     ->select([
         //         DB::raw('COUNT(*) as total_kasus'),

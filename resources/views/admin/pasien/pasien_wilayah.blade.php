@@ -10,7 +10,7 @@
     <div class="section-body">
       <div>
         {{-- <a href="{{ route('admin.laykes.create') }}" class="btn btn-primary fas fa-plus"> Tambah Layanan Kesehatan</a> --}}
-        <a href="{{ route('admin.pasien-download-kota') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
+        <a href="{{ route('petugas.pasien-download-kota') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
         {{-- <div class="card">
@@ -28,17 +28,13 @@
                       </tr>
                 </thead>
                 <tbody>
-                  @foreach ($pasien_wilayah as $no => $data)
+                  @foreach ($pasien_wilayah as $data)
                       <tr>
-                        <td>{{ $no+1 }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->nama_wilayah }}</td>
                         <td>{{ $data->jumlah_sembuh }}</td>
                         <td>{{ $data->jumlah_positif }}</td>
                         <td>{{ $data->jumlah_meninggal }}</td>
-                        {{-- <td class="text-center">
-                          <a href="" class="btn btn-sm btn-info fa fa-eye"></a>
-                          <a href="" class="btn btn-sm btn-danger fas fa-file-pdf"></a>
-                        </td> --}}
                       </tr>
                   @endforeach
               </tbody>

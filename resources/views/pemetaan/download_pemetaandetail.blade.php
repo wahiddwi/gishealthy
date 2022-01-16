@@ -38,65 +38,62 @@
     </style>
 </head>
 <body>
-    {{-- <div style="display:flex;"> --}}
+    <div style="display: flex; align-items: center; margin-bottom:-30px">
+        {{-- pakai ini kalau di hosting src="./donasi_assets/assets/img/logo.png" --}}
+        <img  src="{{ltrim(public_path('logo.png'),'/')}}" height="80" width="100">
         <div>
-        {{-- <img style="display:block" src="{{asset('assets/img/logo.png')}}" width="50" height="50" alt=""> --}}
-        {{-- <h5 style="display:block; margin-left: 250px; font-size: 20px">Laporan Data Kecamatan</h5> --}}
-        <img style="" src="{{ltrim(public_path('assets/img/logo.png'),'/')}}" height="auto" width="120">
-        <h2 style="text-align:center; margin-top:-30px">Laporan Detail Layanan Kesehatan</h2>
+            <h2 style="text-align:center;">Laporan Data Detail Rumah Sakit</h2>
+            <h4 style="text-align:center;">Periode 2020/2021</h4>
+        </div>
     </div>
 
     <table style="text-align: center; margin-top: 50px;" border="1" cellspacing="0" cellpadding="8" width="100%">
         <tbody>
             <tbody>
                 <tr>
-                  <th>Nama Rumah Sakit</th>
-                  <th>{{ $laykes->nama_rumahsakit }}</th>
+                    <th>Nama Rumah Sakit</th>
+                    <th>{{ $laykes->nama_rumahsakit }}</th>
                 </tr>
-              <tr>
-                <td>Alamat</td>
-                <td>{{$laykes->alamat}}</td>
-              </tr>
-              <tr>
-                <td>Kelurahan</td>
-                <td>{{$laykes->kelurahan->nama}}</td>
-              </tr>
-              <tr>
-                <td>Kecamatan</td>
-                <td>{{$laykes->kecamatan->nama}}</td>
-              </tr>
-              <tr>
-                <td>Kota Madya</td>
-                <td>{{$laykes->wilayah->nama}}</td>
-              </tr>
-              <tr>
-                <td>No. Telpon</td>
-                <td>{{$laykes->no_telpon}}</td>
-              </tr>
-              <tr>
-                <td>Latitude</td>
-                <td>{{$laykes->latitude}}</td>
-              </tr>
-              <tr>
-                <td>Longitude</td>
-                <td>{{$laykes->longitude}}</td>
-              </tr>
-              <tr>
-                <td>Jumlah Kamar</td>
-                <td>{{$laykes->jumlah_kamar}}</td>
-              </tr>
-              <tr>
-                <td>User</td>
-                <td>{{$laykes->user->name}}</td>
-              </tr>
-              <tr>
-                <td>Created At</td>
-                <td>{{$laykes->created_at}}</td>
-              </tr>
-              <tr>
-                <td>Updated At</td>
-                <td>{{$laykes->updated_at}}</td>
-            </tr>
+                <tr>
+                    <td>Alamat</td>
+                    <td>{{$laykes->alamat}}</td>
+                </tr>
+                <tr>
+                  <td>Kelurahan</td>
+                  <td>{{$laykes->kelurahan->nama}}</td>
+                </tr>
+                <tr>
+                  <td>Kecamatan</td>
+                  <td>{{$laykes->kecamatan->nama}}</td>
+                </tr>
+                <tr>
+                  <td>Kota Madya</td>
+                  <td>{{$laykes->wilayah->nama}}</td>
+                </tr>
+                <tr>
+                  <td>No. Telpon</td>
+                  <td>{{$laykes->no_telpon}}</td>
+                </tr>
+                <tr>
+                    <td>Jumlah Kamar Tersedia</td>
+                    <td>{{App\Kamar::where('id_rumahsakit',$laykes->id)->where('status',false)->count()}} Kamar</td>
+                </tr>
+                <tr>
+                    <td>Latitude</td>
+                    <td>{{$laykes->latitude}}</td>
+                </tr>
+                <tr>
+                    <td>Longitude</td>
+                    <td>{{$laykes->longitude}}</td>
+                </tr>
+                <tr>
+                    <td>Tanggal Input</td>
+                    <td>{{$laykes->created_at->format('d-m-Y')}}</td>
+                </tr>
+                <tr>
+                    <td>Tanggal Update</td>
+                    <td>{{$laykes->updated_at->format('d-m-Y')}}</td>
+                </tr>
       </tbody>
   </table>
 
@@ -108,7 +105,7 @@
         <td align="right">Dilaporkan Oleh,</td>
     </tr>
     <tr>
-        <td align="right">Petugas Dinas Kesehatan</td>
+        <td align="right">Petugas Rumah Sakit</td>
     </tr>
     <tr><td></td></tr>
     <tr><td></td></tr>

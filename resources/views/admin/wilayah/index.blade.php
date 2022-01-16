@@ -9,11 +9,11 @@
 
     <div class="section-body">
       <div>
-        <button href="{{ route('admin.wilayah.create') }}" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Tambah Wilayah</button>
+        <button href="{{ route('petugas.wilayah.create') }}" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Tambah Wilayah</button>
     </div>
     <br>
-        <div class="card">
-            <div class="card-body">
+        {{-- <div class="card">
+            <div class="card-body"> --}}
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered" id="data_wilayah">
                     <thead>
@@ -47,8 +47,8 @@
                   </tbody>
               </table>
           </div>
-      </div>
-        </div>
+      {{-- </div>
+        </div> --}}
     </div>
 @endsection
 

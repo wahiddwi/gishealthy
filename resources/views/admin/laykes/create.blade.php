@@ -18,7 +18,7 @@
 <div class="row">
   <div class="col-12 col-md-6 col-lg-6">
     <div class="card">
-      <form action="{{ route('admin.laykes.store') }}" method="POST">
+      <form action="{{ route('petugas.laykes.store') }}" method="POST">
       @csrf
       <div class="card-body">
         <div class="form-group">
@@ -111,16 +111,6 @@
           <input type="text" name="no_telpon" class="form-control @error('no_telpon') is-invalid @enderror"
           id="inputAddress2" placeholder="No. Telpon" required>
           @error('no_telpon')
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-          </span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="inputAddress2">Jumlah Kamar</label>
-          <input type="text" name="jumlah_kamar" class="form-control @error('jumlah_kamar') is-invalid @enderror"
-          id="inputAddress2" placeholder="Jumlah Kamar" required>
-          @error('jumlah_kamar')
           <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
           </span>

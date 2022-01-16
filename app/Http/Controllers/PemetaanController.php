@@ -66,6 +66,7 @@ class PemetaanController extends Controller
         $laykes = Laykes::findOrFail($id);
 
         $pdf = PDF::loadView('pemetaan.download_pemetaandetail', compact('laykes'));
-        return $pdf->download('data_detail-laykes.pdf');
+        // return $pdf->download('data_detail-laykes.pdf');
+        return $pdf->stream();
     }
 }

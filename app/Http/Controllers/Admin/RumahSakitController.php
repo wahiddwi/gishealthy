@@ -138,7 +138,7 @@ class RumahSakitController extends Controller
         ->groupBy(['wilayah.nama'])
         ->orderBy('id_wilayah')
         ->get();
-
+        
         $pdf = PDF::loadView('admin.master_data.cetak_datarskota', compact('rswilayah'));
         return $pdf->download('data_rumahsakit_kota.pdf');
     }

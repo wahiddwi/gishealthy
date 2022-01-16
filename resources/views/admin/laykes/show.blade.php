@@ -16,8 +16,8 @@
 
     <div class="section-body">
       <div>
-        <a href="{{ route('admin.pemetaan') }}" class="btn btn-primary " style="float: right;">Kembali <i class="fas fa-share"></i></a>
-        <a href="{{ route('admin.download-detail-laykes', $laykes->id) }}" class="btn btn-primary fas far fa-file-pdf" style="float: left;"> Export</a>
+        <a href="{{ route('petugas.pemetaan') }}" class="btn btn-primary " style="float: right;">Kembali <i class="fas fa-share"></i></a>
+        <a href="{{ route('petugas.download-detail-laykes', $laykes->id) }}" class="btn btn-primary fas far fa-file-pdf" style="float: left;"> Export</a>
     </div>
     <br>
     <div class="card">
@@ -61,25 +61,13 @@
                         </tr>
                         <tr>
                             <td>Jumlah Kamar</td>
-                            <td>{{$laykes->jumlah_kamar}}</td>
-                        </tr>
-                        <tr>
-                            <td>User</td>
-                            <td>{{$laykes->user->name}}</td>
-                        </tr>
-                        <tr>
-                            <td>Created At</td>
-                            <td>{{$laykes->created_at}}</td>
-                        </tr>
-                        <tr>
-                            <td>Updated At</td>
-                            <td>{{$laykes->updated_at}}</td>
+                            <td>{{App\Kamar::where('id_rumahsakit',$laykes->id)->where('status',false)->count()}} Kamar</td>
                         </tr>
                         </tbody>
                         </table>
                 </div>
             </div>
-    </div>
+        </div>
 @endsection
 
 

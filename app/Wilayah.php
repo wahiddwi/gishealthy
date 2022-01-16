@@ -23,7 +23,7 @@ class Wilayah extends Model
 
     public function laykes()
     {
-        return $this->hasMany(Laykes::class, 'id', 'id');
+        return $this->hasMany(Laykes::class, 'id_wilayah', 'id');
     }
 
     public function tenaga_medis()

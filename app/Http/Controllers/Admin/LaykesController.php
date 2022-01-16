@@ -127,7 +127,6 @@ class LaykesController extends Controller
             'nama_rumahsakit' => 'required',
             'alamat' => 'required',
             'no_telpon' => 'required',
-            'jumlah_kamar' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
             'id_wilayah' => 'required',
@@ -144,7 +143,6 @@ class LaykesController extends Controller
         $laykes->longitude = $request->longitude;
         $laykes->alamat = $request->alamat;
         $laykes->no_telpon =    $request->no_telpon;
-        $laykes->jumlah_kamar = $request->jumlah_kamar;
 
         $laykes->update();
         Toastr::success('Data berhasil diubah', 'success');

@@ -8,14 +8,14 @@
 @section('content')
 
     <div class="card">
-      <form action="{{ route('admin.pasien.store') }}" method="POST">
+      <form action="{{ route('petugas.pasien.store') }}" method="POST">
       @csrf
       <div class="card-body">
         <div class="form-group">
           <label for="inputAddress2">NIK</label>
-          <input type="number" class="form-control @error('id') is-invalid @enderror"
-           name="id" maxlength="16" id="inputAddress2" placeholder="NIK" required>
-            @error('id')
+          <input type="number" class="form-control @error('nik') is-invalid @enderror"
+           name="nik" maxlength="16" id="inputAddress2" placeholder="NIK" required>
+            @error('nik')
               <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
               </span>
@@ -46,8 +46,8 @@
             <label for="inputEmail4">Jenis Kelamin</label>
             <select id="inputState" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" required>
                 <option selected="">--Pilih Jenis Kelamin--</option>
-                <option value="L">Laki-laki</option>
-                <option value="P">Perempuan</option>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
               </select>
             @error('jenis_kelamin')
             <span class="invalid-feedback" role="alert">
@@ -71,6 +71,40 @@
           </div>
         </div>
         <div class="form-group">
+            <label for="inputAddress2">No. Telpon</label>
+            <input type="number" class="form-control @error('no_telpon') is-invalid @enderror"
+             name="no_telpon" id="inputAddress2" placeholder="No. Telpon" required>
+              @error('no_telpon')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
+          </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="usia">Rumah Sakit Asal</label>
+              <select id="rumahSakit" class="form-control @error('id_rumahsakit ') is-invalid @enderror" name="id_rumahsakit" required>
+                <option>--Pilih Rumah Sakit--</option>
+                @foreach ($laykes as $item)
+                <option value="{{ $item->id }}">{{ $item->nama_rumahsakit }}</option>
+              @endforeach
+              </select>
+              @error('status')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+              @enderror
+            </div>
+        {{-- </div> --}}
+            <div class="form-group col-md-4">
+              <label for="noKamar">No Kamar</label>
+              <select id="noKamar" class="form-control @error('id_kamar') is-invalid @enderror" name="id_kamar" required>
+
+                </select>
+
+            </div>
+          </div>
+        <div class="form-group">
           <label for="inputAddress">Alamat Lengkap</label>
           <textarea type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat"
           id="inputAddress" placeholder="Alamat Lengkap" required style="height: 100px"></textarea>
@@ -80,9 +114,10 @@
           </span>
           @enderror
         </div>
-        <div class="form-group">
-          <label for="inputPassword4">Wilayah</label>
-          <select id="inputState" class="form-control @error('id_wilayah') is-invalid @enderror" name="id_wilayah" required>
+        <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="wilayah">Wilayah</label>
+          <select id="wilayah" class="form-control @error('id_wilayah') is-invalid @enderror" name="id_wilayah" required>
             <option selected="">--Pilih Wilayah--</option>
             @foreach ($wilayah as $data)
             <option value="{{ $data->id }}">{{ $data->nama }}</option>
@@ -94,34 +129,18 @@
           </span>
           @enderror
         </div>
-        <div class="form-group">
-          <label for="inputPassword4">Kecamatan</label>
-          <select id="inputState" class="form-control @error('id_kecamatan') is-invalid @enderror" name="id_kecamatan" required>
-            <option selected="">--Pilih Kecamatan--</option>
-            @foreach ($kecamatan as $item)
-            <option value="{{ $item->id }}">{{ $item->nama }}</option>
-          @endforeach
+        <div class="form-group col-md-4">
+          <label for="kecamatan">Kecamatan</label>
+          <select id="kecamatan" class="form-control @error('id_kecamatan') is-invalid @enderror" name="id_kecamatan" required>
           </select>
-          @error('id_kecamatan')
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-          </span>
-          @enderror
         </div>
-        <div class="form-group">
-          <label for="inputPassword4">Kelurahan</label>
-          <select id="inputState" class="form-control @error('id_kelurahan') is-invalid @enderror"
+        <div class="form-group col-md-4">
+          <label for="kelurahan">Kelurahan</label>
+          <select id="kelurahan" class="form-control @error('id_kelurahan') is-invalid @enderror"
           name="id_kelurahan" required>
-            <option selected="">--Pilih Kelurahan--</option>
-            @foreach ($kelurahan as $data)
-            <option value="{{ $data->id }}">{{ $data->nama }}</option>
-          @endforeach
+
           </select>
-          @error('id_kelurahan')
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-          </span>
-          @enderror
+
         </div>
       </div>
       <div class="card-footer">
@@ -141,5 +160,77 @@
 @push('after-scripts')
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
+
+{{-- dropdown kamar --}}
+    <script>
+        $(document).ready(function () {
+            $('#rumahSakit').on('change', function () {
+                let id = $(this).val();
+                $('#noKamar').empty();
+                $('#noKamar').append(`<option value="0" disabled selected>Processing....</option>`);
+                $.ajax({
+                    type: 'GET',
+                    url: '/petugas/getKamar/' + id,
+                    success: function (response) {
+                        var response = JSON.parse(response);
+                        console.log(response);
+                        $('#noKamar').empty();
+                        $('#noKamar').append(`<option value="0" disabled selected>Pilih No Kamar</option>`);
+                        response.forEach(element => {
+                            $("#noKamar").append(`<option value="${element['id']}">${element['no_kamar']}</option>`);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+{{-- dropdown kecamatan --}}
+    <script>
+        $(document).ready(function () {
+            $('#wilayah').on('change', function () {
+                let id = $(this).val();
+                $('#kecamatan').empty();
+                $('#kecamatan').append(`<option value="0" disabled selected>Mohon Tunggu....</option>`);
+                $.ajax({
+                    type: 'GET',
+                    url: '/petugas/getKecamatan/' + id,
+                    success: function (response) {
+                        var response = JSON.parse(response);
+                        console.log(response);
+                        $('#kecamatan').empty();
+                        $('#kecamatan').append(`<option value="0" disabled selected>Pilih Kecamatan</option>`);
+                        response.forEach(element => {
+                            $("#kecamatan").append(`<option value="${element['id']}">${element['nama']}</option>`);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+{{-- dropdown kelurahan --}}
+<script>
+    $(document).ready(function () {
+        $('#kecamatan').on('change', function () {
+            let id = $(this).val();
+            $('#kelurahan').empty();
+            $('#kelurahan').append(`<option value="0" disabled selected>Mohon Tunggu....</option>`);
+            $.ajax({
+                type: 'GET',
+                url: '/petugas/getKelurahan/' + id,
+                success: function (response) {
+                    var response = JSON.parse(response);
+                    console.log(response);
+                    $('#kelurahan').empty();
+                    $('#kelurahan').append(`<option value="0" disabled selected>Pilih Kelurahan</option>`);
+                    response.forEach(element => {
+                        $("#kelurahan").append(`<option value="${element['id']}">${element['nama']}</option>`);
+                    });
+                }
+            });
+        });
+    });
+</script>
 @endpush
 

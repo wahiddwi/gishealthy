@@ -9,12 +9,12 @@
 
     <div class="section-body">
       <div>
-        <a href="{{route('petugas.kelurahan.create')}}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#btn-create"> Tambah Kelurahan</a>
-        <a href="{{ route('petugas.download-kelurahan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
+        <a href="{{route('admin.kelurahan.create')}}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#btn-create"> Tambah Kelurahan</a>
+        {{-- <a href="{{ route('admin.download-kelurahan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a> --}}
     </div>
     <br>
-        <div class="card">
-            <div class="card-body">
+        {{-- <div class="card"> --}}
+            {{-- <div class="card-body"> --}}
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered" id="data_kelurahan">
                     <thead>
@@ -40,9 +40,9 @@
                             <td>{{ $data->created_at }}</td>
                             <td>{{ $data->updated_at }}</td>
                             <td>
-                              <a href="{{ route('petugas.kelurahan.edit', $data->id) }}" class="btn btn-warning fa fa-edit"></a>
+                              <a href="{{ route('admin.kelurahan.edit', $data->id) }}" class="btn btn-warning fa fa-edit"></a>
                               <a href="#" data-id="{{ $data->id }}" class="btn btn-danger fas fa-trash swal-confirm">
-                                <form action="{{ route('petugas.kelurahan.destroy', $data->id) }}" id="deleteKelurahan{{ $data->id }}" method="POST">
+                                <form action="{{ route('admin.kelurahan.destroy', $data->id) }}" id="deleteKelurahan{{ $data->id }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 </form>
@@ -53,8 +53,8 @@
                   </tbody>
               </table>
           </div>
-      </div>
-        </div>
+      {{-- </div> --}}
+        {{-- </div> --}}
     </div>
 @endsection
 
@@ -69,7 +69,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ route('petugas.kelurahan.store') }}" method="POST">
+        <form action="{{ route('admin.kelurahan.store') }}" method="POST">
           @csrf
         <div class="modal-body">
             <div class="card-body">

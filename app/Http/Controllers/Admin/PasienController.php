@@ -105,8 +105,12 @@ class PasienController extends Controller
         $kecamatan = Kecamatan::all();
         $kelurahan = Kelurahan::all();
 
-        return view('admin.pasien.edit', compact('pasien', 'wilayah', 'kecamatan'
-                    , 'kelurahan'));
+        return view('admin.pasien.edit', compact(
+            'pasien',
+            'wilayah',
+            'kecamatan',
+            'kelurahan'
+        ));
     }
 
     /**
@@ -181,140 +185,141 @@ class PasienController extends Controller
 
     public function getDataKecamatan()
     {
-        $data['pasien_kecamatan'] = DB::table('pasien')
-            ->select([
-                'kecamatan.nama as nama_kecamatan',
-                'pasien.*',
-                DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
-                DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
-                DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
-                DB::raw('COUNT(status) as jumlah_pasien')
-            ])
-            ->join('kecamatan', 'kecamatan.id', '=', 'pasien.id_kecamatan')
-            ->groupBy(['kecamatan.nama'])
-            ->orderBy('id_kecamatan')
-            ->get();
+        // $data['pasien_kecamatan'] = DB::table('pasien')
+        //     ->select([
+        //         'kecamatan.nama as nama_kecamatan',
+        //         'pasien.*',
+        //         DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
+        //         DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
+        //         DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
+        //         DB::raw('COUNT(status) as jumlah_pasien')
+        //     ])
+        //     ->join('kecamatan', 'kecamatan.id', '=', 'pasien.id_kecamatan')
+        //     ->groupBy(['kecamatan.nama'])
+        //     ->orderBy('id_kecamatan')
+        //     ->get();
         // dd($data);
-        return view('admin.pasien.pasien_kecamatan', $data);
+        // return view('admin.pasien.pasien_kecamatan', $data);
     }
 
 
-    public function getDatakelurahan()
-    {
-        $data['pasien_kelurahan'] = DB::table('pasien')
-            ->select([
-                'kelurahan.nama as nama_kelurahan',
-                'pasien.*',
-                DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
-                DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
-                DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
-                DB::raw('COUNT(status) as jumlah_pasien')
-            ])
-            ->join('kelurahan', 'kelurahan.id', '=', 'pasien.id_kelurahan')
-            ->groupBy(['kelurahan.nama'])
-            ->orderBy('id_kelurahan')
-            ->get();
-        // dd($data);
-        return view('admin.pasien.pasien_kelurahan', $data);
-    }
+    // public function getDatakelurahan()
+    // {
+    //     $data['pasien_kelurahan'] = DB::table('pasien')
+    //         ->select([
+    //             'kelurahan.nama as nama_kelurahan',
+    //             'pasien.*',
+    //             DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
+    //             DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
+    //             DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
+    //             DB::raw('COUNT(status) as jumlah_pasien')
+    //         ])
+    //         ->join('kelurahan', 'kelurahan.id', '=', 'pasien.id_kelurahan')
+    //         ->groupBy(['kelurahan.nama'])
+    //         ->orderBy('id_kelurahan')
+    //         ->get();
+    //     // dd($data);
+    //     return view('admin.pasien.pasien_kelurahan', $data);
+    // }
 
 
     public function getAllData()
     {
         $data['allData'] = DB::table('pasien')
             ->select([
-                'pasien.*',
+                // 'pasien.*',
                 DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
                 DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
                 DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
             ])
             ->get();
+        dd($data);
         return view('admin.pasien.alldata', $data);
     }
 
-    public function downloadPDF()
-    {
-        $pasien = Pasien::all();
-        $wilayah = Wilayah::all();
-        $kecamatan = Kecamatan::all();
-        $kelurahan = Kelurahan::all();
+    // public function downloadPDF()
+    // {
+    //     $pasien = Pasien::all();
+    //     $wilayah = Wilayah::all();
+    //     $kecamatan = Kecamatan::all();
+    //     $kelurahan = Kelurahan::all();
 
-        $pdf = PDF::loadView('admin.pasien.cetak_datapasien', compact('wilayah', 'kecamatan', 'kelurahan', 'pasien'));
-        return $pdf->download('data_pasien.pdf');
-    }
+    //     $pdf = PDF::loadView('admin.pasien.cetak_datapasien', compact('wilayah', 'kecamatan', 'kelurahan', 'pasien'));
+    //     return $pdf->download('data_pasien.pdf');
+    // }
 
-    public function downloadTotalKasus()
-    {
-        $allData = DB::table('pasien')
-        ->select([
-            'pasien.*',
-            DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
-            DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
-            DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
-        ])
-        ->get();
+    // public function downloadTotalKasus()
+    // {
+    //     $allData = DB::table('pasien')
+    //     ->select([
+    //         'pasien.*',
+    //         DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
+    //         DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
+    //         DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
+    //     ])
+    //     ->get();
 
-        $pdf = PDF::loadView('admin.pasien.cetak_datakasus', compact('allData'));
-        return $pdf->download('data_kasus-covid19.pdf');
-    }
+    //     $pdf = PDF::loadView('admin.pasien.cetak_datakasus', compact('allData'));
+    //     return $pdf->download('data_kasus-covid19.pdf');
+    // }
 
-    public function downloadPasienKota()
-    {
-        $pasien_wilayah = DB::table('pasien')
-        ->select([
-            'wilayah.nama as nama_wilayah',
-            'pasien.*',
-            DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
-            DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
-            DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
-            DB::raw('COUNT(status) as jumlah_pasien')
-        ])
-        ->join('wilayah', 'wilayah.id', '=', 'pasien.id_wilayah')
-        ->groupBy(['wilayah.nama'])
-        ->orderBy('id_wilayah')
-        ->get();
+    // public function downloadPasienKota()
+    // {
+    //     $pasien_wilayah = DB::table('pasien')
+    //     ->select([
+    //         'wilayah.nama as nama_wilayah',
+    //         'pasien.*',
+    //         DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
+    //         DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
+    //         DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
+    //         DB::raw('COUNT(status) as jumlah_pasien')
+    //     ])
+    //     ->join('wilayah', 'wilayah.id', '=', 'pasien.id_wilayah')
+    //     ->groupBy(['wilayah.nama'])
+    //     ->orderBy('id_wilayah')
+    //     ->get();
 
-        $pdf = PDF::loadView('admin.pasien.cetak_datapasienkota', compact('pasien_wilayah'));
-        return $pdf->download('data_kasus-covid19-kota.pdf');
-    }
+    //     $pdf = PDF::loadView('admin.pasien.cetak_datapasienkota', compact('pasien_wilayah'));
+    //     return $pdf->download('data_kasus-covid19-kota.pdf');
+    // }
 
-    public function downloadPasienKecamatan()
-    {
-        $pasien_kecamatan = DB::table('pasien')
-        ->select([
-            'kecamatan.nama as nama_kecamatan',
-            'pasien.*',
-            DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
-            DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
-            DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
-            DB::raw('COUNT(status) as jumlah_pasien')
-        ])
-        ->join('kecamatan', 'kecamatan.id', '=', 'pasien.id_kecamatan')
-        ->groupBy(['kecamatan.nama'])
-        ->orderBy('id_kecamatan')
-        ->get();
+    // public function downloadPasienKecamatan()
+    // {
+    //     $pasien_kecamatan = DB::table('pasien')
+    //     ->select([
+    //         'kecamatan.nama as nama_kecamatan',
+    //         'pasien.*',
+    //         DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
+    //         DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
+    //         DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
+    //         DB::raw('COUNT(status) as jumlah_pasien')
+    //     ])
+    //     ->join('kecamatan', 'kecamatan.id', '=', 'pasien.id_kecamatan')
+    //     ->groupBy(['kecamatan.nama'])
+    //     ->orderBy('id_kecamatan')
+    //     ->get();
 
-        $pdf = PDF::loadView('admin.pasien.cetak_datapasienkecamatan', compact('pasien_kecamatan'));
-        return $pdf->download('data_kasus-covid19-kecamatan.pdf');
-    }
+    //     $pdf = PDF::loadView('admin.pasien.cetak_datapasienkecamatan', compact('pasien_kecamatan'));
+    //     return $pdf->download('data_kasus-covid19-kecamatan.pdf');
+    // }
 
-    public function downloadPasienKelurahan()
-    {
-        $pasien_kelurahan = DB::table('pasien')
-        ->select([
-            'kelurahan.nama as nama_kelurahan',
-            'pasien.*',
-            DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
-            DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
-            DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
-            DB::raw('COUNT(status) as jumlah_pasien')
-        ])
-        ->join('kelurahan', 'kelurahan.id', '=', 'pasien.id_kelurahan')
-        ->groupBy(['kelurahan.nama'])
-        ->orderBy('id_kelurahan')
-        ->get();
+    // public function downloadPasienKelurahan()
+    // {
+    //     $pasien_kelurahan = DB::table('pasien')
+    //     ->select([
+    //         'kelurahan.nama as nama_kelurahan',
+    //         'pasien.*',
+    //         DB::raw('COUNT(if(status="Sembuh", status, NULL)) as jumlah_sembuh'),
+    //         DB::raw('COUNT(if(status="Meninggal", status, NULL)) as jumlah_meninggal'),
+    //         DB::raw('COUNT(if(status="Positif", status, NULL)) as jumlah_positif'),
+    //         DB::raw('COUNT(status) as jumlah_pasien')
+    //     ])
+    //     ->join('kelurahan', 'kelurahan.id', '=', 'pasien.id_kelurahan')
+    //     ->groupBy(['kelurahan.nama'])
+    //     ->orderBy('id_kelurahan')
+    //     ->get();
 
-        $pdf = PDF::loadView('admin.pasien.cetak_datapasienkelurahan', compact('pasien_kelurahan'));
-        return $pdf->download('data_kasus-covid19-kelurahan.pdf');
-    }
+    //     $pdf = PDF::loadView('admin.pasien.cetak_datapasienkelurahan', compact('pasien_kelurahan'));
+    //     return $pdf->download('data_kasus-covid19-kelurahan.pdf');
+    // }
 }

@@ -7,11 +7,6 @@
     <title></title>
     <style type="text/css">
 
-        /* table, th, td, tr {
-            border: 1px solid black;
-            align:"center"
-        } */
-
         @page {
             margin: 0cm 0cm;
         }
@@ -38,10 +33,15 @@
     </style>
 </head>
 <body>
-    <div>
-        <img src="{{ public_path('logo.png') }}" height="auto" width="120">
-        <h2 style="text-align:center; margin-top:-30px">Laporan Detail Layanan Kesehatan</h2>
+    <div style="display: flex; align-items: center; margin-bottom:-30px">
+        {{-- pakai ini kalau di hosting src="./donasi_assets/assets/img/logo.png" --}}
+        <img  src="{{ltrim(public_path('logo.png'),'/')}}" height="80" width="100">
+        <div>
+            <h2 style="text-align:center;">Laporan Data Detail Rumah Sakit</h2>
+            <h4 style="text-align:center;">Periode 2020/2021</h4>
+        </div>
     </div>
+
 
     <table style="text-align: center; margin-top: 50px;" border="1" cellspacing="0" cellpadding="8" width="100%">
         <tbody>
@@ -70,6 +70,10 @@
               <td>{{$laykes->no_telpon}}</td>
             </tr>
             <tr>
+                <td>Jumlah Kamar Tersedia</td>
+                <td>{{App\Kamar::where('id_rumahsakit',$laykes->id)->where('status',false)->count()}} Kamar</td>
+            </tr>
+            <tr>
                 <td>Latitude</td>
                 <td>{{$laykes->latitude}}</td>
             </tr>
@@ -78,20 +82,12 @@
                 <td>{{$laykes->longitude}}</td>
             </tr>
             <tr>
-                <td>Jumlah Kamar</td>
-                <td>{{$laykes->jumlah_kamar}}</td>
+                <td>Tanggal Input</td>
+                <td>{{$laykes->created_at->format('d-m-Y')}}</td>
             </tr>
             <tr>
-                <td>User</td>
-                <td>{{$laykes->user->name}}</td>
-            </tr>
-            <tr>
-                <td>Created At</td>
-                <td>{{$laykes->created_at}}</td>
-            </tr>
-            <tr>
-                <td>Updated At</td>
-                <td>{{$laykes->updated_at}}</td>
+                <td>Tanggal Update</td>
+                <td>{{$laykes->updated_at->format('d-m-Y')}}</td>
             </tr>
         </tbody>
         </table>
@@ -104,7 +100,7 @@
         <td align="right">Dilaporkan Oleh,</td>
     </tr>
     <tr>
-        <td align="right">Petugas Dinas Kesehatan</td>
+        <td align="right">Petugas Rumah Sakit</td>
     </tr>
     <tr><td></td></tr>
     <tr><td></td></tr>

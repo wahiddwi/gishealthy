@@ -9,12 +9,12 @@
 
     <div class="section-body">
       <div>
-        <a href="{{route('petugas.kecamatan.create')}}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#btn-create"> Tambah Kecamatan</a>
-        <a href="{{ route('petugas.download-kecamatan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
+        <a href="{{route('admin.kecamatan.create')}}" class="btn btn-primary fas fa-plus" data-toggle="modal" data-target="#btn-create"> Tambah Kecamatan</a>
+        <a href="{{ route('admin.download-kecamatan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
-        <div class="card">
-            <div class="card-body">
+        {{-- <div class="card">
+            <div class="card-body"> --}}
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered" id="data_kecamatan">
                     <thead>
@@ -36,9 +36,9 @@
                             <td>{{ $k->created_at }}</td>
                             <td>{{ $k->updated_at }}</td>
                             <td>
-                              <a href="{{ route('petugas.kecamatan.edit', $k->id) }}" class="btn btn-warning fa fa-edit"></a>
+                              <a href="{{ route('admin.kecamatan.edit', $k->id) }}" class="btn btn-warning fa fa-edit"></a>
                               <a href="#" data-id="{{ $k->id }}" class="btn btn-danger fas fa-trash swal-confirm">
-                                <form action="{{ route('petugas.kecamatan.destroy', $k->id) }}" id="deleteKecamatan{{ $k->id }}" method="POST">
+                                <form action="{{ route('admin.kecamatan.destroy', $k->id) }}" id="deleteKecamatan{{ $k->id }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 </form>
@@ -49,8 +49,8 @@
                   </tbody>
               </table>
           </div>
-      </div>
-        </div>
+      {{-- </div>
+        </div> --}}
     </div>
 @endsection
 
@@ -65,11 +65,11 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ route('petugas.kecamatan.store') }}" method="POST">
+        <form action="{{ route('admin.kecamatan.store') }}" method="POST">
           @csrf
         <div class="modal-body">
             <div class="card-body">
-              <div class="form-group">
+                <div class="form-group">
                 <label for="nama">Nama</label>
                 <input type="text" class="form-control @error('nama') is-invalid @enderror"
                 value="{{ old('nama') }}" id="inputName" name="nama" placeholder="Nama Kecamatan" autofocus required>
@@ -103,7 +103,7 @@
     </div>
   </div>
 </div>
-    
+
 </div>
 
 </div>
@@ -123,7 +123,7 @@
     $(document).ready( function () {
         $('#data_kecamatan').DataTable();
     } );
-</script>  
+</script>
 <script>
     $(".swal-confirm").click(function(e) {
         id = e.target.dataset.id;

@@ -38,9 +38,13 @@
     </style>
 </head>
 <body>
-    <div>
-        <img src="{{ public_path('logo.png') }}" height="auto" width="120">
-        <h2 style="text-align:center; margin-top:-30px">Laporan Data Rumah Sakit</h2>
+    <div style="display: flex; align-items: center; margin-bottom:-30px">
+        {{-- pakai ini kalau di hosting src="./donasi_assets/assets/img/logo.png" --}}
+        <img  src="{{ltrim(public_path('logo.png'),'/')}}" height="80" width="100">
+        <div>
+            <h2 style="text-align:center;">Laporan Data Rumah Sakit</h2>
+            <h4 style="text-align:center;">Periode 2020/2021</h4>
+        </div>
     </div>
 
     <table style="text-align: center; margin-top: 50px;" border="1" cellspacing="0" cellpadding="8" width="100%">
@@ -48,13 +52,14 @@
               <tr>
                 <th>No.</th>
                 <th>Nama Layanan</th>
-                <th>Longitude</th>
-                <th>Latitude</th>
+                {{-- <th>Longitude</th>
+                <th>Latitude</th> --}}
                 <th>Alamat</th>
                 <th>No. Telpon</th>
-                <th>Kelurahan</th>
+                <th>Jumlah Kamar Tersedia</th>
+                {{-- <th>Kelurahan</th>
                 <th>Kecamatan</th>
-                <th>Kota Madya</th>
+                <th>Kota Madya</th> --}}
 
               </tr>
         </thead>
@@ -63,13 +68,14 @@
             <tr>
               <td>{{ $loop->iteration }}</td>
               <td>{{ $l->nama_rumahsakit }}</td>
-              <td>{{ $l->longitude }}</td>
-              <td>{{ $l->latitude }}</td>
+              {{-- <td>{{ $l->longitude }}</td>
+              <td>{{ $l->latitude }}</td> --}}
               <td>{{ $l->alamat }}</td>
               <td>{{ $l->no_telpon }}</td>
-              <td>{{ $l->kelurahan->nama }}</td>
+              <td>{{App\Kamar::where('id_rumahsakit',$l->id)->where('status',false)->count()}} Kamar</td>
+              {{-- <td>{{ $l->kelurahan->nama }}</td>
               <td>{{ $l->kecamatan->nama }}</td>
-              <td>{{ $l->wilayah->nama }}</td>
+              <td>{{ $l->wilayah->nama }}</td> --}}
             </tr>
             @endforeach
         </tbody>
@@ -83,7 +89,7 @@
         <td align="right">Dilaporkan Oleh,</td>
     </tr>
     <tr>
-        <td align="right">{{ $l->user->name }}</td>
+        <td align="right">Petugas Rumah Sakit</td>
     </tr>
     <tr><td></td></tr>
     <tr><td></td></tr>

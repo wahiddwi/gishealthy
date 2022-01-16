@@ -1,5 +1,5 @@
 @extends('layouts.backend.master')
-@section('title', 'Data Kasus')
+@section('title', 'Data Kasus Provinsi DKI Jakarta')
 @push('page-styles')
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">

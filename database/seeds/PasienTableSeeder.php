@@ -17,7 +17,7 @@ class PasienTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create('id_ID');
-        for ($i = 0; $i < 7; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             Pasien::insert([
                 'id' => $faker->nik(),
                 'id_kelurahan' => kelurahan::all()->random()->id,

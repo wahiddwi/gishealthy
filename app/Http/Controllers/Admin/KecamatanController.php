@@ -93,13 +93,10 @@ class KecamatanController extends Controller
             'nama' => 'required',
             'id_wilayah' => 'required'
         ]);
-
         $kecamatan = Kecamatan::findOrFail($id);
         $kecamatan->nama = $request->nama;
         $kecamatan->id_wilayah = $request->id_wilayah;
         $kecamatan->update();
-
-        // return 'data berhasil diupdate';
 
         Toastr::success('Data berhasil diubah', 'success');
         return redirect()->route('admin.kecamatan.index');

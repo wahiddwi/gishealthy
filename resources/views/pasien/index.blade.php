@@ -21,29 +21,37 @@
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered" id="data_wilayah">
                     <thead>
-                          <tr>
+                        <tr class="text-center">
                             <th>No.</th>
+                            {{-- <th>NIK</th>
+                            <th>Nama</th> --}}
                             <th>Jenis Kelamin</th>
                             <th>Usia</th>
-                            <th>Kotamadya</th>
-                            <th>Kecamatan</th>
-                            <th>Kelurahan</th>
                             <th>Status</th>
-
+                            <th>Nama Rumah Sakit</th>
+                            <th>Tanggal Masuk</th>
+                            <th>Tanggal Keluar</th>
+                            {{-- <th>Action</th> --}}
                           </tr>
                     </thead>
                     <tbody>
                         @foreach ($pasien as $p)
-                        <tr>
+                        <tr class="text-center">
                         <td>{{ $loop->iteration }}</td>
+                        {{-- <td>{{ $p->nik }}</td>
+                        <td>{{ $p->nama_pasien }}</td> --}}
                         <td>{{ $p->jenis_kelamin }}</td>
                         <td>{{ $p->usia }}</td>
-                        <td>{{ $p->wilayah->nama }}</td>
-                        <td>{{ $p->kecamatan->nama }}</td>
-                        <td>{{ $p->kelurahan->nama }}</td>
                         <td>{{ $p->status }}</td>
+                        <td>{{ $p->laykes->nama_rumahsakit }}</td>
+                        <td>{{ $p->created_at->format('d - m - Y') }}</td>
+                            @if ($p->tanggal_keluar == null)
+                                <td>{{$p->tanggal_keluar}}</td>
+                            @else
+                                <td>{{$p->updated_at->format('d - m - Y')}}</td>
+                            @endif
+                    </tr>
                           @endforeach
-                        </tr>
                   </tbody>
               </table>
           </div>

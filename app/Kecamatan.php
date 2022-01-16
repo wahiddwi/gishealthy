@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use App\Wilayah;
 use App\Kelurahan;
 use Illuminate\Database\Eloquent\Model;
@@ -21,9 +22,10 @@ class Kecamatan extends Model
         return $this->hasMany(Kelurahan::class, 'id', 'id');
     }
 
+
     public function laykes()
     {
-        return $this->hasMany(Laykes::class, 'id', 'id');
+        return $this->hasMany(Laykes::class, 'id_kecamatan', 'id');
     }
 
     public function tenaga_medis()
@@ -35,6 +37,4 @@ class Kecamatan extends Model
     {
         return $this->hasMany(Pasien::class, 'id', 'id');
     }
-
-    
 }

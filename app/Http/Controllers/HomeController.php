@@ -41,9 +41,9 @@ class HomeController extends Controller
             $total_data_sembuh[] = Pasien::whereMonth('created_at', $i)->where('status', "Sembuh")->count();
             $total_data_meninggal[] = Pasien::whereMonth('created_at', $i)->where('status', "Meninggal")->count();
             $total_data_positif[] = Pasien::whereMonth('created_at', $i)->where('status', "Positif")->count();
-        
+
         }
-    
+
         $total_kasus = json_encode($total_data_kasus);
         $total_sembuh = json_encode($total_data_sembuh);
         $total_meninggal = json_encode($total_data_meninggal);
@@ -60,5 +60,6 @@ class HomeController extends Controller
 
         return view('index', compact('allData', 'posts', 'user', 'total_kasus', 'total_sembuh', 'total_meninggal', 'total_positif'));
     }
+
 
 }

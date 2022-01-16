@@ -10,7 +10,7 @@
     <div class="section-body">
       <div>
         {{-- <a href="{{ route('admin.laykes.create') }}" class="btn btn-primary fas fa-plus"> Tambah Layanan Kesehatan</a> --}}
-        <a href="{{ route('admin.download-rumahsakit-kecamatan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
+        <a href="{{ route('petugas.download-rumahsakit-kecamatan') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
         <div class="card">
@@ -22,17 +22,22 @@
                         <th>No.</th>
                         <th>Kecamatan</th>
                         <th>Jumlah Rumah Sakit Rujukan</th>
-                        {{-- <th>Action</th> --}}
+                        <th>Nama Rumah Sakit</th>
                       </tr>
                 </thead>
                 <tbody>
-                    @foreach ($rskecamatan as $result)
+                    @foreach ($data as $result)
                       <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $result->nama }}</td>
-                        <td>{{ $result->jumlah }}</td>
+                        <td>{{ $result->laykes->count() }}</td>
+                        <td>
+                            @foreach ($result->laykes as $item)
+                                <li>{{$item->nama_rumahsakit}}</li>
+                            @endforeach
+                        </td>
                         {{-- <td class="text-center">
-                          <a href="" class="btn btn-sm btn-info fa fa-eye"></a>
+                          <a href="{{ route('petugas.') }}" class="btn btn-sm btn-info fa fa-eye"></a>
                           <a href="" class="btn btn-sm btn-danger fas fa-file-pdf"></a>
                         </td> --}}
                       </tr>

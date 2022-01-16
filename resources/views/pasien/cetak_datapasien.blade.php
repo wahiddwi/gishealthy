@@ -38,37 +38,44 @@
     </style>
 </head>
 <body>
-    <div>
-        <img src="{{ public_path('logo.png') }}" height="auto" width="120">
-        <h2 style="text-align:center; margin-top:-30px">Laporan Data Pasien Covid-19</h2>
+    <div style="display: flex; align-items: center; margin-bottom:-30px">
+        {{-- pakai ini kalau di hosting src="./donasi_assets/assets/img/logo.png" --}}
+        <img  src="{{ltrim(public_path('logo.png'),'/')}}" height="80" width="100">
+        <div>
+            <h2 style="text-align:center;">Laporan Data Pasien Covid-19</h2>
+            <h4 style="text-align:center;">Periode 2020/2021</h4>
+        </div>
     </div>
 
     <table style="text-align: center; margin-top: 50px;" border="1" cellspacing="0" cellpadding="8" width="100%">
         <thead>
-              <tr>
+            <tr class="text-center">
                 <th>No.</th>
-                {{-- <th>Nama</th> --}}
                 <th>Jenis Kelamin</th>
                 <th>Usia</th>
-                <th>Kotamadya</th>
-                <th>Kecamatan</th>
-                <th>Kelurahan</th>
                 <th>Status</th>
-
+                <th>Nama Rumah Sakit</th>
+                <th>Tanggal Masuk</th>
+                <th>Tanggal Keluar</th>
               </tr>
         </thead>
         <tbody>
             @foreach ($pasien as $p)
-            <tr>
+            <tr class="text-center">
             <td>{{ $loop->iteration }}</td>
-            {{-- <td>{{ $p->nama_pasien }}</td> --}}
+            {{-- <td>{{ $p->nik }}</td>
+            <td>{{ $p->nama_pasien }}</td> --}}
             <td>{{ $p->jenis_kelamin }}</td>
             <td>{{ $p->usia }}</td>
-            <td>{{ $p->wilayah->nama }}</td>
-            <td>{{ $p->kecamatan->nama }}</td>
-            <td>{{ $p->kelurahan->nama }}</td>
             <td>{{ $p->status }}</td>
-            </tr>
+            <td>{{ $p->laykes->nama_rumahsakit }}</td>
+            <td>{{ $p->created_at->format('d - m - Y') }}</td>
+                @if ($p->tanggal_keluar == null)
+                    <td>{{$p->tanggal_keluar}}</td>
+                @else
+                    <td>{{$p->updated_at->format('d - m - Y')}}</td>
+                @endif
+        </tr>
               @endforeach
         </tbody>
         </table>
@@ -81,7 +88,7 @@
         <td align="right">Dilaporkan Oleh,</td>
     </tr>
     <tr>
-        <td align="right">Petugas Dinas Kesehatan</td>
+        <td align="right">Petugas Rumah Sakit</td>
     </tr>
     <tr><td></td></tr>
     <tr><td></td></tr>

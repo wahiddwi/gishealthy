@@ -1,5 +1,5 @@
 @extends('layouts.backend.master')
-@section('title', 'Edit Layanan Kesehatan')
+@section('title', 'Edit Rumah Sakit')
 @push('page-styles')
 
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
@@ -17,7 +17,7 @@
 <div class="row">
   <div class="col-12 col-md-6 col-lg-6">
     <div class="card">
-      <form action="{{ route('admin.laykes.update', $laykes->id) }}" method="POST">
+      <form action="{{ route('petugas.laykes.update', $laykes->id) }}" method="POST">
       @csrf
       @method('put')
       <div class="card">
@@ -115,7 +115,7 @@
           </span>
         @enderror
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
           <label for="inputAddress2">Jumlah Kamar</label>
           <input type="text" name="jumlah_kamar" class="form-control @error('jumlah_kamar') is-invalid @enderror"
           id="inputAddress2" value="{{$laykes->jumlah_kamar}}" placeholder="Jumlah Kamar" required>
@@ -124,7 +124,7 @@
               <strong>{{ $message }}</strong>
           </span>
         @enderror
-        </div>
+        </div> --}}
       </div>
 
       <div class="card-footer">

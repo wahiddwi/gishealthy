@@ -36,8 +36,8 @@ crossorigin="">
             <h1 class="heading mb-3">Stay Safe & Stay Home</h1>
             <p class="mb-5"></p>
             <br>
-            <p class="mb-4"><a href="#" class="btn btn-primary">How to prevent</a></p>
-  
+            {{-- <p class="mb-4"><a href="#statistik" class="btn btn-primary">How to prevent</a></p> --}}
+
           </div>
           <div class="col-lg-6">
             <figure class="illustration">
@@ -49,14 +49,14 @@ crossorigin="">
       </div>
     </div>
 
-<div class="site-section stats">
+<div class="site-section stats" >
     <div class="container">
       <div class="row mb-3">
         <div class="col-lg-7 text-center mx-auto">
           <h2 class="section-heading">Statistik Kasus Covid-19</h2>
         </div>
       </div>
-      <div class="row"> 
+      <div class="row">
         <div class="col-lg-4">
           <div class="data">
         @foreach ($allData as $data)
@@ -283,7 +283,7 @@ crossorigin="">
           {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex officia quas, modi sit eligendi numquam!</p> --}}
         </div>
       </div>
-      
+
       <div class="row">
       @foreach ($posts as $post)
       <div class="col-lg-4">
@@ -309,31 +309,31 @@ crossorigin="">
   <script>
     //highchart
     Highcharts.chart('container', {
-    
+
     title: {
         text: 'Grafik Penyebaran Covid-19'
     },
-    
+
     subtitle: {
         text: 'Source: Gishealthy'
     },
-    
+
     yAxis: {
         title: {
             text: 'Jumlah kasus Covid-19'
         }
     },
-    
+
     xAxis: {
         categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
     },
-    
+
     legend: {
         layout: 'vertical',
         align: 'right',
         verticalAlign: 'middle'
     },
-    
+
     plotOptions: {
         series: {
             allowPointSelect: true
@@ -366,8 +366,8 @@ crossorigin="">
             }
         }]
     }
-    
+
     });
-    
+
     </script>
 @endsection

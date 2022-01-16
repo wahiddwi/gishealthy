@@ -8,8 +8,8 @@
 
     <div class="section-body">
       <div>
-        <a href="{{ route('admin.pasien.create') }}" class="btn btn-primary fas fa-plus"> Tambah Pasien</a>
-        <a href="{{ route('admin.pasien-download') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
+        <a href="{{ route('petugas.pasien.create') }}" class="btn btn-primary fas fa-plus"> Tambah Pasien</a>
+        <a href="{{ route('petugas.pasien-download') }}" class="btn btn-primary fas fa-file-pdf"> Export</a>
     </div>
     <br>
         {{-- <div class="card"> --}}
@@ -17,39 +17,48 @@
             <div class="table-responsive">
               <table class="table table-striped table-bordered" id="data_rumahsakitKota">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>No.</th>
                         <th>NIK</th>
                         <th>Nama</th>
                         <th>Jenis Kelamin</th>
                         <th>Usia</th>
-                        <th>Kotamadya</th>
+                        {{-- <th>Kotamadya</th>
                         <th>Kecamatan</th>
-                        <th>Kelurahan</th>
+                        <th>Kelurahan</th> --}}
                         <th>Status</th>
+                        <th>Tanggal Masuk</th>
                         <th>Action</th>
                       </tr>
                 </thead>
                 <tbody>
                     @foreach ($pasien as $p)
-                        <tr>
+                        <tr class="text-center">
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $p->id }}</td>
+                        <td>{{ $p->nik }}</td>
                         <td>{{ $p->nama_pasien }}</td>
                         <td>{{ $p->jenis_kelamin }}</td>
                         <td>{{ $p->usia }}</td>
-                        <td>{{ $p->wilayah->nama }}</td>
+                        {{-- <td>{{ $p->wilayah->nama }}</td>
                         <td>{{ $p->kecamatan->nama }}</td>
-                        <td>{{ $p->kelurahan->nama }}</td>
+                        <td>{{ $p->kelurahan->nama }}</td> --}}
                         <td>{{ $p->status }}</td>
-                        <td class="text-center">
-                            <a href="{{ route('admin.pasien.edit', $p->id) }}" class="btn btn-sm btn-warning fa fa-edit"></a>
+                        <td>{{ $p->created_at->format('d - m - Y') }}</td>
+                        <td>
+                        {{-- <div> --}}
+                            <a href="{{ route('petugas.pasien.show', $p->id) }}" class="btn btn-sm btn-info fa fa-eye"></a>
+                        {{-- </div>
+                        <div> --}}
+                            <a href="{{ route('petugas.pasien.edit', $p->id) }}" class="btn btn-sm btn-warning fa fa-edit"></a>
+                        {{-- </div>
+                        <div> --}}
                             <a href="#" data-id="{{ $p->id }}" class="btn btn-sm btn-danger fas fa-trash swal-confirm">
-                                <form action="{{ route('admin.pasien.destroy', $p->id) }}" id="deletePasien{{ $p->id }}" method="POST">
+                                <form action="{{ route('petugas.pasien.destroy', $p->id) }}" id="deletePasien{{ $p->id }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 </form>
                             </a>
+                        {{-- </div> --}}
                           </td>
                           @endforeach
                         </tr>

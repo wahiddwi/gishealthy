@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Kamar;
 use App\Kecamatan;
 use App\Kelurahan;
+use App\Laykes;
 use App\Pasien;
 use App\Wilayah;
 use PDF;
@@ -14,12 +16,14 @@ class PasienController extends Controller
 {
     public function index()
     {
-        $pasien = Pasien::all();
         $wilayah = Wilayah::all();
         $kecamatan = Kecamatan::all();
         $kelurahan = Kelurahan::all();
+        $pasien = Pasien::all();
+        $laykes = Laykes::all();
+        $kamar = Kamar::all();
 
-        return view('pasien.index', compact('pasien', 'wilayah', 'kecamatan', 'kelurahan'));
+        return view('pasien.index', compact('pasien', 'wilayah', 'kecamatan', 'kelurahan', 'laykes', 'kamar'));
     }
 
     public function PasienWilayah()
@@ -87,7 +91,8 @@ class PasienController extends Controller
         $kelurahan = Kelurahan::all();
 
         $pdf = PDF::loadView('pasien.cetak_datapasien', compact('wilayah', 'kecamatan', 'kelurahan', 'pasien'));
-        return $pdf->download('data_pasien.pdf');
+        // return $pdf->download('data_pasien.pdf');
+        return $pdf->stream();
     }
 
     public function downloadPasienKota()
@@ -107,7 +112,8 @@ class PasienController extends Controller
         ->get();
 
         $pdf = PDF::loadView('pasien.cetak_datapasienkota', compact('pasien_wilayah'));
-        return $pdf->download('data_kasus-covid19-kota.pdf');
+        // return $pdf->download('data_kasus-covid19-kota.pdf');
+        return $pdf->stream();
     }
 
     public function downloadPasienKecamatan()
@@ -127,7 +133,8 @@ class PasienController extends Controller
         ->get();
 
         $pdf = PDF::loadView('pasien.cetak_datapasienkecamatan', compact('pasien_kecamatan'));
-        return $pdf->download('data_kasus-covid19-kecamatan.pdf');
+        // return $pdf->download('data_kasus-covid19-kecamatan.pdf');
+        return $pdf->stream();
     }
 
     public function downloadPasienKelurahan()
@@ -147,7 +154,8 @@ class PasienController extends Controller
         ->get();
 
         $pdf = PDF::loadView('pasien.cetak_datapasienkelurahan', compact('pasien_kelurahan'));
-        return $pdf->download('data_kasus-covid19-kelurahan.pdf');
+        // return $pdf->download('data_kasus-covid19-kelurahan.pdf');
+        return $pdf->stream();
 
     }
 }

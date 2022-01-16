@@ -6,7 +6,7 @@
 @section('content')
 
     <div class="section-body">
-        <form action="{{ route('petugas.kelurahan.update', $kelurahan->id) }}" method="POST">
+        <form action="{{ route('admin.kelurahan.update', $kelurahan->id) }}" method="POST">
             @csrf
             @method('put')
 

@@ -43,6 +43,9 @@ class WilayahController extends Controller
         // $wilayah->nama = $request->nama;
 
         // $wilayah->save();
+        $this->validate($request, [
+            'nama' => 'required'
+        ]);
         Wilayah::create($request->all());
         Toastr::success('Data berhasil ditambah', 'success');
         return redirect()->back();
@@ -90,7 +93,7 @@ class WilayahController extends Controller
 
         Wilayah::whereId($id)->update($data_wilayah);
         Toastr::success('Data Wilayah berhasil diubah', 'success');
-        return redirect()->route('admin.wilayah.index');
+        return redirect()->route('petugas.wilayah.index');
     }
 
     /**

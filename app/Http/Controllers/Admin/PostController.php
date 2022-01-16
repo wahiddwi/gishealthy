@@ -52,20 +52,6 @@ class PostController extends Controller
             'gambar' => 'required|mimes:jpg,png,bmp,jpeg'
         ]);
         $slug = Str::slug($request->judul);
-        // $gambar = $request->gambar;
-        // $namaGambar = $slug . '-' . Carbon::now()->timestamp . '.' . $gambar->getClientOriginalExtension();
-        // //cek folder gambar
-        // if (!Storage::disk('public')->exists('post')) {
-        //     Storage::disk('public')->makeDirectory('post');
-
-        // }
-        // //Img Crop
-        // $img = Image::make($gambar)->resize(752, null, function ($constraint) {
-        //     $constraint->aspectRatio();
-        //     $constraint->upsize();
-        // })->stream();
-
-        // Storage::disk('public')->put('post/'. $namaGambar, $img);
 
         $post = new Post();
         $post->judul = $request->judul;

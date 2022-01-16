@@ -38,9 +38,13 @@
     </style>
 </head>
 <body>
-    <div>
-        <img src="{{ public_path('logo.png') }}" height="auto" width="120">
-        <h2 style="text-align:center; margin-top:-30px">Laporan Data Rumah Sakit Per Kota Madya</h2>
+    <div style="display: flex; align-items: center; margin-bottom:-30px">
+        {{-- pakai ini kalau di hosting src="./donasi_assets/assets/img/logo.png" --}}
+        <img  src="{{ltrim(public_path('logo.png'),'/')}}" height="80" width="100">
+        <div>
+            <h2 style="text-align:center;">Laporan Data Rumah Sakit Per Kota Madya</h2>
+            <h4 style="text-align:center;">Periode 2020/2021</h4>
+        </div>
     </div>
 
     <table style="text-align: center; margin-top: 50px;" border="1" cellspacing="0" cellpadding="8" width="100%">
@@ -49,20 +53,24 @@
                 <th>No.</th>
                 <th>Kota Madya</th>
                 <th>Jumlah Rumah Sakit Rujukan</th>
+                <th>Nama Rumah Sakit</th>
               </tr>
         </thead>
         <tbody>
-            @foreach ($rswilayah as $no => $result)
-                <tr>
-                    <td>{{ $no+1 }}</td>
-                    <td>{{ $result->nama }}</td>
-                    <td>{{ $result->jumlah }}</td>
-                {{-- <td class="text-center">
-                    <a href="" class="btn btn-sm btn-info fa fa-eye"></a>
-                    <a href="" class="btn btn-sm btn-danger fas fa-file-pdf"></a>
-                </td> --}}
-                </tr>
-            @endforeach
+            @foreach ($data as $result)
+            <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $result->nama }}</td>
+              <td>{{ $result->laykes->count() }}</td>
+              <td>
+                <ol>
+                    @foreach ($result->laykes as $item)
+                        <li>{{$item->nama_rumahsakit}}</li>
+                    @endforeach
+                </ol>
+              </td>
+          </tr>
+          @endforeach
         </tbody>
         </table>
 
@@ -74,7 +82,7 @@
                 <td align="right">Dilaporkan Oleh,</td>
             </tr>
             <tr>
-                <td align="right">Petugas Dinas Kesehatan</td>
+                <td align="right">Petugas Rumah Sakit</td>
             </tr>
             <tr><td></td></tr>
             <tr><td></td></tr>

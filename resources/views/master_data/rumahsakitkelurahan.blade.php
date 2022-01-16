@@ -25,19 +25,22 @@
                         <th>No.</th>
                         <th>Kelurahan</th>
                         <th>Jumlah Rumah Sakit Rujukan</th>
-                        {{-- <th>Action</th> --}}
+                        <th>Nama Rumah Sakit</th>
                       </tr>
                 </thead>
                 <tbody>
-                    @foreach ($rskelurahan as $result)
+                    @foreach ($data as $result)
                       <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $result->nama }}</td>
-                        <td>{{ $result->jumlah }}</td>
-                        {{-- <td class="text-center">
-                            <a href="" class="btn btn-sm btn-info fa fa-eye"></a>
-                            <a href="" class="btn btn-sm btn-danger fas fa-file-pdf"></a>
-                        </td> --}}
+                        <td>{{ $result->laykes->count() }}</td>
+                        <td>
+                            <ol>
+                                @foreach ($result->laykes as $item)
+                                    <li>{{$item->nama_rumahsakit}}</li>
+                                @endforeach
+                            </ol>
+                        </td>
                     </tr>
                     @endforeach
                   </tbody>

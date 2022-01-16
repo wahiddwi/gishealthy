@@ -28,9 +28,10 @@
                             <th>Latitude</th> --}}
                             <th>Alamat</th>
                             <th>No. Telpon</th>
-                            <th>Kelurahan</th>
+                            <th>Jumlah Kamar Tersedia</th>
+                            {{-- <th>Kelurahan</th>
                             <th>Kecamatan</th>
-                            <th>Kota Madya</th>
+                            <th>Kota Madya</th> --}}
                             {{-- <th>User</th> --}}
                             {{-- <th>Action</th> --}}
                           </tr>
@@ -40,13 +41,9 @@
                           <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $l->nama_rumahsakit }}</td>
-                            {{-- <td>{{ $l->longitude }}</td>
-                            <td>{{ $l->latitude }}</td> --}}
                             <td>{{ $l->alamat }}</td>
                             <td>{{ $l->no_telpon }}</td>
-                            <td>{{ $l->kelurahan->nama }}</td>
-                            <td>{{ $l->kecamatan->nama }}</td>
-                            <td>{{ $l->wilayah->nama }}</td>
+                            <td>{{App\Kamar::where('id_rumahsakit',$l->id)->where('status',false)->count()}} Kamar</td>
                           </tr>
                       @endforeach
                   </tbody>
